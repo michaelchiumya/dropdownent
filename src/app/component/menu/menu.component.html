@@ -1,0 +1,55 @@
+
+<nav class="navbar navbar-expand-md navbar-light sticky-top">
+
+    <!-- Brand -->
+    <a class="navbar-brand" routerLink="home">
+      <img src="/assets/img/dd-logo.svg" alt="dropdown ent" height="60" width="60" class="d-inline-block alighn-top">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportContent" aria-label="Toggle navigation" aria-expanded="false">
+           <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="releases">Releases</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="events">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="videos">Videos</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"routerLink="news">News</a>
+      </li>
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+         Artist
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">PQ</a>
+          <a class="dropdown-item" href="#">Don Wargon</a>
+          <a class="dropdown-item" href="#">LShattaz</a>
+        </div>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0" action="/action_page.php">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn-outline-white btn-md my-2 my-sm-0 ml-3 text-muted" type="submit">Search</button>
+    </form>
+
+  </div>
+
+
+
+</nav>
