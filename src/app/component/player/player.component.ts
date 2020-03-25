@@ -22,15 +22,15 @@ msaapDisplayVolumeControls = true;
 msaapPlaylist: Track[] = [
   {
     title: 'Audio One Title',
-    link: 'Link to Audio One URL'
+    link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
   },
   {
     title: 'Audio Two Title',
-    link: 'Link to Audio Two URL'
+    link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
   },
   {
     title: 'Audio Three Title',
-    link: 'Link to Audio Three URL'
+    link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3'
   },
 ];
 
