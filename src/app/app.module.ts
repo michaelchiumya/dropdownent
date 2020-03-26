@@ -9,6 +9,9 @@ import { PlayerComponent } from './component/player/player.component';
 import { RoutingModule } from './routing.module';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlbumsService } from './albums.service';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     RoutingModule,
     BrowserAnimationsModule,
-    NgxAudioPlayerModule
+    NgxAudioPlayerModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AlbumsService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

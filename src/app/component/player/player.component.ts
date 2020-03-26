@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
+import { AlbumsService } from 'src/app/albums.service';
+import { DataService } from 'src/app/data.service';
+
+
 
 @Component({
   selector: 'app-player',
@@ -7,31 +11,35 @@ import { Track } from 'ngx-audio-player';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent implements OnInit {
+  playlist :Track[] ;
+  msaapDisplayTitle :boolean;
+  msaapDisplayPlayList :boolean;
+  pageSizeOptions :any;
+  msaapDisplayVolumeControls :boolean;
+  msaapPlaylist : Track[];
 
-  constructor() { }
 
+
+  constructor(private AlbumsService: AlbumsService,private DataService: DataService) {
+
+  }
   ngOnInit(): void {
+
+    this.msaapDisplayTitle = true;
+    this.msaapDisplayPlayList = true;
+    this.pageSizeOptions = [5, 10, 15, 20];
+    this.msaapDisplayVolumeControls = true;
+    this.DataService.data.subscribe(data => this.msaapPlaylist = data);
+        console.log(this.msaapPlaylist);
   }
 
-  msaapDisplayTitle = true;
-msaapDisplayPlayList = true;
-msaapPageSizeOptions = [2,4,6];
-msaapDisplayVolumeControls = true;
 
-// Material Style Advance Audio Player Playlist
-msaapPlaylist: Track[] = [
-  {
-    title: 'Audio One Title',
-    link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
-  },
-  {
-    title: 'Audio Two Title',
-    link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
-  },
-  {
-    title: 'Audio Three Title',
-    link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3'
-  },
-];
+
+
+
+
+//DataService.data.subscribe(data => {
+//   //do what ever needs doing when data changes
+// })
 
 }
