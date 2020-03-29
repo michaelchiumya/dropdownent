@@ -15,9 +15,10 @@
           Dropdown
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
-          <button class="dropdown-item" type="button">Albums</button>
-          <button class="dropdown-item" type="button">Mixtapes</button>
-          <button class="dropdown-item" type="button">Singles</button>
+          <button class="dropdown-item" type="button">Spotify</button>
+          <button class="dropdown-item" type="button">Tidal</button>
+          <button class="dropdown-item" type="button">Deezer</button>
+          <button class="dropdown-item" type="button">MalawiMusic</button>
         </div>
       </div>
 
@@ -26,28 +27,109 @@
 </div>
 <!-- Jumbotron -->
 
-
-<div class="row my-5 rgba-black-dark">
-
-     <div class="col-sm-6 col-md-6 mx-0 sm-my-2" *ngFor="let album of albums">
+<div class="container-fluid">
+ <div class="row my-5 py-3 rgba-black-dark">
+     <div class="col-sm-6 col-md-4 mx-0 py-1" *ngFor="let album of albums">
 
       <div class="card">
         <div class="d-flex flex-row">
            <div class="">
             <img src="{{album.cover}}" class="img-thumbnail" style="width: 150px">
           </div>
+
           <div class="px-2 py-2 ">
-           <h5 class="card-title">{{album.title}}</h5>
-            <p class="card-text text-muted font-weight-lighter">Album</p>
-            <a class="btn btn-outline-warning sm-mx-0" (click)="songLoader(album)"><i class="fas fa-play"></i></a>
-            <a href="" class="btn btn-outline-warning"><i class="fas fa-share-alt"></i></a>
+            <h5 class="card-title">{{album.title}}</h5>
+            <p class="card-text text-muted font-weight-border font-italic">Album : {{album.album}}</p>
+            <a class="btn btn-outline-warning sm-mx-0" (click)="albumLoader(album.songs)"><i class="fas fa-play"></i></a>
+            <a class="btn btn-outline-warning"><i class="fas fa-share-alt"></i></a>
           </div>
         </div>
       </div>
 
    </div>
   </div>
+</div>
 
+
+ <!-- Table with panel -->
+<div class="card card-cascade narrower">
+
+  <!--Card image-->
+  <div class=
+    "view view-cascade gradient-card-header blue-gradient
+     narrower py-2 mx-4 mb-3 d-flex justify-content-between
+      align-items-center">
+
+    <div>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fas fa-th-large mt-0"></i>
+      </button>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fas fa-columns mt-0"></i>
+      </button>
+    </div>
+
+    <a href="" class="white-text mx-3">Table name</a>
+
+  </div>
+  <!--/Card image-->
+
+  <div class="px-2">
+
+    <div class="table-wrapper">
+      <!--Table-->
+      <table class="table table-sm mb-0">
+
+        <!--Table head-->
+        <thead>
+
+            <th class="th-lg">
+              <a>First Name
+                <i class="fas fa-sort ml-1"></i>
+              </a>
+            </th>
+            <th class="th-lg">
+              <a href="">Last Name
+                <i class="fas fa-sort ml-1"></i>
+              </a>
+            </th>
+        </thead>
+        <!--Table head-->
+
+        <!--Table body-->
+        <tbody>
+          <tr>
+            <td><img src="/assets/img/pq1.jpg" width="80" alt=""></td>
+            <td>Title</td>
+            <td>
+               <button type="button" class="btn btn-outline-warning btn-rounded btn-sm px-2">
+                 <i class="far fa-trash-alt mt-0"></i>
+              </button>
+          </td>
+          </tr>
+
+          <tr>
+            <td><img src="/assets/img/dwt.jpg" width="80" alt=""></td>
+            <td>Title</td>
+            <td>
+               <button type="button" class="btn btn-outline-warning btn-rounded btn-sm px-2">
+                 <i class="far fa-trash-alt mt-0"></i>
+              </button>
+          </td>
+          </tr>
+
+        </tbody>
+        <!--Table body-->
+      </table>
+      <!--Table-->
+    </div>
+
+  </div>
+
+</div>
+<!-- Table with panel -->
+  <br><br>
+  <br><br>
   <br><br>
   <br><br>
   <br><br>

@@ -11,25 +11,30 @@ import { Track } from 'ngx-audio-player';
 export class ArtistComponent implements OnInit {
 
 
-  public albums : any;
+  public songs : any;
+  public albums :any;
   public playlist :Track[];
   public list :any;
 
   constructor(private AlbumsService: AlbumsService,private DataService: DataService) { }
 
   ngOnInit(): void {
-        this.albums = this.AlbumsService.showSongs();
+        this.songs = this.AlbumsService.showSongs();
+        this.albums = this.AlbumsService.showAlbums();
   }
 
-
   songLoader(song :any){
-
-    console.log(song);
+    console.log('song '+song);
     var toAdd: Track[];
     toAdd = [{title: song.title, link: song.link}];
     this.DataService.storeData(toAdd);
 
+  }
 
+  albumLoader(album : Track[]){
+    console.log('album '+ album);
+
+    this.DataService.storeData(album);
   }
 
 }
