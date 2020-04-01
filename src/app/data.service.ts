@@ -9,8 +9,8 @@ export class DataService {
 
  private dataSource = new BehaviorSubject<Track[]>
  ( [{
-  title: 'Title init',
-  link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+  title: null,
+  link: null
 }] );
 
  public data : Observable<Track[]> = this.dataSource.asObservable();

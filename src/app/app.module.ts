@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumsService } from './albums.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
+import { ArtistService } from './artist.service';
+import { VideosService } from './videos.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { DataService } from './data.service';
     NgxAudioPlayerModule,
     HttpClientModule
   ],
-  providers: [AlbumsService,DataService],
+  providers: [AlbumsService,DataService,ArtistService,VideosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { ArtistComponent } from './component/artist/artist.component';
+import { VideosComponent } from './component/videos/videos.component';
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 
 
 export const routes: Routes = [
+  { path:'', redirectTo: '/home', pathMatch:'full'},
   {path: 'home',  component: HomeComponent},
   {path:'artist', component: ArtistComponent},
-  { path:'',redirectTo:'/home',pathMatch:'full'}
+  {path:'videos', component: VideosComponent},
+  {path: '404', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '/404'}
+
 ];
 
 
@@ -17,6 +23,7 @@ export const routes: Routes = [
   imports: [
     [RouterModule.forRoot(routes)]
   ],
-  exports:[RouterModule]
+  exports:[RouterModule],
+  declarations: [VideosComponent]
 })
 export class RoutingModule { }

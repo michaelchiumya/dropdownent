@@ -1,12 +1,9 @@
-
-
 <!-- Jumbotron -->
-<div class="card card-image" style="background-image: url(/assets/img/ns.jpg);">
+<div class="card card-image" style="background-image: url(/assets/img/ns.jpg);background-size: contain;">
   <div class="text-white text-center rgba-stylish-strong py-5 px-4">
     <div class="py-3">
 
       <!-- Content -->
-
       <h2 class="card-title h2 my-4 py-1 font-weight-bold">PQ</h2>
       <p class="mb-4 pb-2 px-md-5 mx-md-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur obcaecati vero aliquid libero doloribus ad, unde tempora maiores, ullam, modi qui quidem minima debitis perferendis vitae cumque et quo impedit.</p>
       <div class="dropdown">
@@ -14,11 +11,11 @@
           aria-haspopup="true" aria-expanded="false">
           Dropdown
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
-          <button class="dropdown-item" type="button">Spotify</button>
-          <button class="dropdown-item" type="button">Tidal</button>
-          <button class="dropdown-item" type="button">Deezer</button>
-          <button class="dropdown-item" type="button">MalawiMusic</button>
+        <div class="dropdown-menu px-1" aria-labelledby="dropdownMenuMenu">
+          <button class="dropdown-item" type="button"><img src="https://img.icons8.com/color/32/000000/spotify--v1.png" class="px-1"/>Spotify</button>
+          <button class="dropdown-item " type="button"><img src="https://img.icons8.com/material/32/000000/tidal.png" class="px-1"/>Tidal</button>
+          <button class="dropdown-item" type="button"><img src="https://img.icons8.com/color/32/000000/deezer.png" class="px-1"/>Deezer</button>
+          <button class="dropdown-item" type="button"><img src="/assets/img/mmlogo.jpg" width="32" class="px-1"/>MalawiMusic</button>
         </div>
       </div>
 
@@ -27,22 +24,36 @@
 </div>
 <!-- Jumbotron -->
 
+<!-- song cards -->
 <div class="container-fluid">
  <div class="row my-5 py-3 rgba-black-dark">
-     <div class="col-sm-6 col-md-4 mx-0 py-1" *ngFor="let album of albums">
+     <div class="col-sm-6 col-md-3 mx-auto my-2" *ngFor="let song of songs">
 
       <div class="card">
         <div class="d-flex flex-row">
            <div class="">
-            <img src="{{album.cover}}" class="img-thumbnail" style="width: 150px">
+            <img src="{{song.cover}}" class="img-thumbnail" style="width: 140px">
           </div>
 
-          <div class="px-2 py-2 ">
-            <h5 class="card-title">{{album.title}}</h5>
-            <p class="card-text text-muted font-weight-border font-italic">Album : {{album.album}}</p>
-            <a class="btn btn-outline-warning sm-mx-0" (click)="albumLoader(album.songs)"><i class="fas fa-play"></i></a>
-            <a class="btn btn-outline-warning"><i class="fas fa-share-alt"></i></a>
+          <div>
+             <h5 class="card-title px-1">{{song.title}}</h5>
+             <p class="card-text text-muted font-weight-border font-italic px-1">{{song.album}}</p>
+             <!-- Split button -->
+             <div class="btn-group dropleft">
+                <button type="button" class="btn btn-elegant">Options</button>
+                <button type="button" class="btn btn-elegant dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+               </button>
+                 <div class="dropdown-menu">
+                   <a class="dropdown-item" (click)="songLoader(song)">Play<i class="mx-2 fas fa-play"></i></a>
+                   <a class="dropdown-item" >Playlist<i class="mx-2 fas fa-list"></i></a>
+                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item">Share<i class="mx-2 fas fa-share-alt"></i></a>
+               </div>
+             </div>
           </div>
+
         </div>
       </div>
 
@@ -50,84 +61,42 @@
   </div>
 </div>
 
+<div class="container-fluid elegant-color pt-4 py-4">
+  <div class="card-deck">
+   <!-- <div class="col-sm-5 col-md-3 mx-auto" >-->
+        <!-- Card -->
+   <div class="card mb-4" *ngFor="let album of albums">
+    <!-- Card image -->
+    <div class="view overlay">
+    <img class="card-img-top" src="{{album.cover}}" alt="Card image cap">
+    <div class="mask rgba-white-slight"></div>
+</div>
+    <!-- Card content -->
+    <div class="card-body">
+      <!-- Title -->
+      <h4 class="card-title text-muted">{{album.album}}</h4>
 
- <!-- Table with panel -->
-<div class="card card-cascade narrower">
-
-  <!--Card image-->
-  <div class=
-    "view view-cascade gradient-card-header blue-gradient
-     narrower py-2 mx-4 mb-3 d-flex justify-content-between
-      align-items-center">
-
-    <div>
-      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-        <i class="fas fa-th-large mt-0"></i>
+      <!-- Button -->
+      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg" (click)="albumLoader(album.songs)">
+        <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
       </button>
-      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-        <i class="fas fa-columns mt-0"></i>
-      </button>
+        <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg">
+          <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+        </button>
+
     </div>
-
-    <a href="" class="white-text mx-3">Table name</a>
-
   </div>
-  <!--/Card image-->
+  <!-- Card -->
 
-  <div class="px-2">
-
-    <div class="table-wrapper">
-      <!--Table-->
-      <table class="table table-sm mb-0">
-
-        <!--Table head-->
-        <thead>
-
-            <th class="th-lg">
-              <a>First Name
-                <i class="fas fa-sort ml-1"></i>
-              </a>
-            </th>
-            <th class="th-lg">
-              <a href="">Last Name
-                <i class="fas fa-sort ml-1"></i>
-              </a>
-            </th>
-        </thead>
-        <!--Table head-->
-
-        <!--Table body-->
-        <tbody>
-          <tr>
-            <td><img src="/assets/img/pq1.jpg" width="80" alt=""></td>
-            <td>Title</td>
-            <td>
-               <button type="button" class="btn btn-outline-warning btn-rounded btn-sm px-2">
-                 <i class="far fa-trash-alt mt-0"></i>
-              </button>
-          </td>
-          </tr>
-
-          <tr>
-            <td><img src="/assets/img/dwt.jpg" width="80" alt=""></td>
-            <td>Title</td>
-            <td>
-               <button type="button" class="btn btn-outline-warning btn-rounded btn-sm px-2">
-                 <i class="far fa-trash-alt mt-0"></i>
-              </button>
-          </td>
-          </tr>
-
-        </tbody>
-        <!--Table body-->
-      </table>
-      <!--Table-->
     </div>
-
-  </div>
 
 </div>
-<!-- Table with panel -->
+
+
+
+
+
+
   <br><br>
   <br><br>
   <br><br>
