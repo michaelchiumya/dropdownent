@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { MenuComponent } from './component/menu/menu.component';
+import { VideosComponent } from './component/videos/videos.component';
 import { HomeComponent } from './component/home/home.component';
 import { ArtistComponent } from './component/artist/artist.component';
 import { PlayerComponent } from './component/player/player.component';
@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import { ArtistService } from './artist.service';
 import { VideosService } from './videos.service';
+import { SafePipePipe } from './safe-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { VideosService } from './videos.service';
     MenuComponent,
     HomeComponent,
     ArtistComponent,
-    PlayerComponent
+    PlayerComponent,
+    VideosComponent,
+    SafePipePipe
   ],
 
   imports: [

@@ -42,17 +42,17 @@ export class AlbumsService {
       },
 
        {
-        album:'Best of PQ',
+        album:'Tema Tema',
         cover:'/assets/img/pqs.jpg',
         songs:[
           {
-            title: 'Best of 1',
-            link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3'
+            title: 'Wangongole',
+            link: 'https://www.malawi-music.com/songs/P.Q%20-%20Wangongole%20(www_malawi-music_com).mp3'
           },
 
           {
-            title: 'Best of 2',
-            link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+            title: 'Alibe pabwino feat. Blaze',
+            link: 'https://www.malawi-music.com/songs/PQ%20-%20Alibe%20Pabwino%20(Feat%20Blaze).mp3'
          }]
       }
       ];
@@ -62,25 +62,25 @@ export class AlbumsService {
     return [
       {
         id: 1,
-        title: 'Title',
+        title: 'Sindidzakula',
         album:'Single',
         cover:'/assets/img/pqp.png',
-        link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp1'
+        link: 'https://www.malawi-music.com/songs/Sindidzakula%20Feat%20Krazie%20G%20&%20Martse%20-%20PQ%20(www.malawi-music.com).mp3'
 
       },
       {
         id: 2,
-        title: 'Title 2',
+        title: 'Rainbow feat Macia',
         album:'Single',
         cover:'/assets/img/pqrb.jpg',
-        link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+        link: 'https://www.malawi-music.com/songs/PQ%20-%20Rainbow%20ft%20Macia%20(Prod%20By%20Cuff%20B).mp3'
       },
       {
         id: 3,
-        title: 'Title 3',
+        title: 'Uptown Girl feat Blasto',
         album:'Single',
         cover:'/assets/img/pqs.jpg',
-        link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+        link: 'https://www.malawi-music.com/songs/PQ%20-%20Uptown%20Girl%20(Feat.%20Blasto).mp3'
       },
       {
         id: 4,

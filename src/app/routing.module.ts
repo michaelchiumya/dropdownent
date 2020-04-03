@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { ArtistComponent } from './component/artist/artist.component';
 import { VideosComponent } from './component/videos/videos.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+
 
 
 export const routes: Routes = [
@@ -23,7 +25,7 @@ export const routes: Routes = [
   imports: [
     [RouterModule.forRoot(routes)]
   ],
-  exports:[RouterModule],
-  declarations: [VideosComponent]
+  exports:[RouterModule,CommonModule],
+  declarations: []
 })
 export class RoutingModule { }

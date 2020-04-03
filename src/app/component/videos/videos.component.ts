@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VideosService } from 'src/app/videos.service';
 
 @Component({
   selector: 'app-videos',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./videos.component.css']
 })
 export class VideosComponent implements OnInit {
+    videos: any;
+    modalId: string ='modal';
 
-  constructor() { }
+  constructor(private VideosService: VideosService) { }
 
   ngOnInit(): void {
+    this.videos = this.VideosService.getVideos();
   }
 
 }
