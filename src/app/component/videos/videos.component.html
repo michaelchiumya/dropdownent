@@ -3,7 +3,7 @@
 <!-- Grid row -->
 <div class="row">
   <!-- Grid column -->
-  <div class="col-lg-3 col-md-3 col-sm-5 mx-auto mb-4" *ngFor="let video of videos; let i = index">
+  <div class="col-lg-3 col-md-3 col-sm-5 mb-4" *ngFor="let video of videos; let i = index">
     <!--Modal: Name-->
     <div class="modal fade" id="{{modalId + i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -21,9 +21,7 @@
            <!--Footer-->
            <div class="modal-footer justify-content-center">
             <span class="mr-4">{{video.title}}</span>
-             <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
-             <!--Twitter-->
-            <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+
             <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
           </div>
 
@@ -34,7 +32,7 @@
 
     <!--Modal: Name-->
     <a>
-     <div (ngClass)="'view'">
+     <div>
       <img class="img-fluid z-depth-1 rgba-black-light h-10"  src="{{ video.screenshot }}"
         alt="video" data-toggle="modal" attr.data-target="#{{modalId+i}}">
           <div class="mask elegant-color flex-center">

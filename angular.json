@@ -119,6 +119,10 @@
               "devServerTarget": "dropdown-ent:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

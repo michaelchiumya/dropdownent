@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArtistService {
+configUrl = "http://178.62.65.145/api/artist";
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  postArtist(data : any){
+    this.http.post(this.configUrl, data).subscribe((val)=>{console.log(val.toString)});
+  }
 
   getArtist(): any{
     return [

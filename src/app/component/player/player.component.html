@@ -1,6 +1,14 @@
 <div class="mt-10"></div>
 <!-- Footer -->
-<footer class="page-footer font-small fixed-bottom mt-5  pb-0 pt-4 white">
+<footer class="page-footer font-small fixed-bottom mt-5  pb-0 pt-1 white">
+
+    <div *ngIf="msaapPlaylist;else playerDown">
+      <a (click)="minimisePlayer()" class="btn btn-sm btn-floating elegant-color"><i class="fas fa-angle-double-up"></i></a>
+    </div>
+
+    <ng-template  #playerDown>
+      <a (click)="minimisePlayer()" class="btn btn-sm btn-tw "><i class="fas fa-angle-double-down elegant-color"></i></a>
+    </ng-template>
 
   <mat-advanced-audio-player
 

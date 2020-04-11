@@ -17,7 +17,7 @@ export class AlbumsService {
         songs:[
           {
             title: 'Mad settingz 1',
-            link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp1'
+            link: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3'
           },
 
           {

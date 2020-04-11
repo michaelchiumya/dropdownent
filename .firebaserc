@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dropdown-entertainment"
+  },
+  "targets": {
+    "dropdown-entertainment": {
+      "hosting": {
+        "dropdown-ent": [
+          "dropdown-entertainment"
+        ]
+      }
+    }
+  }
+}

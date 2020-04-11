@@ -14,7 +14,7 @@ export class ArtistComponent implements OnInit {
 
   public songs : any;
   public albums :any;
-  public playlist : Track[] = null;
+  public playlist : Track[];
   public artist :any;
 
   constructor(private AlbumsService: AlbumsService, private DataService: DataService, private ArtistService: ArtistService) { }
@@ -26,18 +26,19 @@ export class ArtistComponent implements OnInit {
        }
 
   songLoader(song :any){
-    console.log('song '+song);
-    var toAdd: Track[];
-    toAdd = [{title: song.title, link: song.link}];
-    this.playlist = toAdd;
+    // console.log('song '+song);
+    this.playlist = [];
+    var toAdd = {title: song.title, link: song.link};
+    this.playlist.push(toAdd);
     this.DataService.storeData(this.playlist);
 
   }
 
-  albumLoader(album : Track[]){
-    console.log('album '+ album);
-    this.playlist = album;
-    this.DataService.storeData(this.playlist);
+  albumLoader(album :any){
+    //console.log('album '+ album);
+    this.playlist = [];
+    this.playlist.push(album);
+    this.DataService.storeData(album);
   }
 
   playlistSong(song :any){
@@ -47,9 +48,13 @@ export class ArtistComponent implements OnInit {
     }
 
     playlistAlbum(album :any){
-       this.playlist.push(album);
+       album.forEach(element => {
+        this.playlist.push( {title: element.title, link: element.link });
+       });
+       //console.log(this.playlist);
        this.DataService.storeData(this.playlist);
+       }
 
-  }
+
 
 }

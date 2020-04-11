@@ -15,6 +15,9 @@ import { ArtistService } from './artist.service';
 import { VideosService } from './videos.service';
 import { SafePipePipe } from './safe-pipe.pipe';
 import { ArtistComponent } from './component/artist/artist.component';
+import { AdminComponent } from './component/admin/admin.component';
+import { FormsModule } from '@angular/forms';
+import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ArtistComponent } from './component/artist/artist.component';
     PlayerComponent,
     VideosComponent,
     ArtistComponent,
-    SafePipePipe
+    AdminComponent,
+    SafePipePipe,
+    ArtistBackComponent
   ],
 
   imports: [
@@ -32,7 +37,8 @@ import { ArtistComponent } from './component/artist/artist.component';
     RoutingModule,
     BrowserAnimationsModule,
     NgxAudioPlayerModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AlbumsService,DataService,ArtistService,VideosService],
   bootstrap: [AppComponent]

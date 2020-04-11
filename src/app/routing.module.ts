@@ -5,12 +5,14 @@ import { HomeComponent } from './component/home/home.component';
 import { ArtistComponent } from './component/artist/artist.component';
 import { VideosComponent } from './component/videos/videos.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 
 
 export const routes: Routes = [
   { path:'', redirectTo: '/home', pathMatch:'full'},
   {path: 'home',  component: HomeComponent},
+  {path: 'admin',  component: AdminComponent},
   {path:'artist', component: ArtistComponent},
   {path:'videos', component: VideosComponent},
   {path: '404', component: PageNotFoundComponent},
