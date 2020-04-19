@@ -1,100 +1,290 @@
 <div class="container my-4 d-flex justify-content-start">
 
 <!--add artist-->
-<div class="modal fade" id="addartist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-notify modal-warning elegant-color" role="document">
-  <!--Content-->
-  <div class="modal-content">
-    <!--Header-->
-    <div class="modal-header text-center">
-      <h4 class="modal-title white-text w-100 font-weight-bold py-2">ADD NEW ARTIST</h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true" class="white-text">&times;</span>
-      </button>
-    </div>
-    <!--Body-->
-    <div class="modal-body">
-    <form>
-      <div class="md-form mb-4">
-        <i class="fas fa-user prefix grey-text"></i>
-        <input type="text" class="form-control validate" name="name" >
-        <label data-error="wrong" data-success="right" for="form3">Name</label>
-      </div>
-      <div class="md-form mb-4">
-        <i class="fas fa-book prefix grey-text"></i>
-        <textarea  class="form-control validate md-textarea rounded-0" rows="5" name="biography">
-        </textarea>
-        <label data-error="wrong" data-success="right" for="biography">Biography</label>
-      </div>
+<div class="modal fade" id="addartist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-notify elegant-color" role="document">
+        <!--Content-->
+       <div class="modal-content">
+        <!--Header-->
+          <div class="modal-header text-center">
+            <h4 class="modal-title white-text w-100 font-weight-bold py-2">ADD NEW ARTIST</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">&times;</span>
+             </button>
+         </div>
+        <!--Body-->
+       <div class="modal-body">
+         <form  [formGroup] = "artistForm" (ngSubmit)="onArtistSubmit()">
+            <div class="md-form mb-4">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" class="form-control validate" formControlName="name" >
+              <label data-error="wrong" data-success="right" for="form3">Name</label>
+           </div>
+           <div class="md-form mb-4">
+              <i class="fas fa-book prefix grey-text"></i>
+              <textarea  class="form-control validate md-textarea rounded-0" rows="5" formControlName="biography">
+              </textarea>
+              <label data-error="wrong" data-success="right" for="biography">Biography</label>
+           </div>
+
     <!--Footer-->
    <div class="modal-footer justify-content-center">
     <button type="submit" class="btn btn-outline-warning waves-effect">Send<i class="fas fa-paper-plane-o ml-1"></i></button>
   </div>
-
   </form>
   </div>
-
-
   </div>
   <!--Content-->
+ </div>
+</div>
+
+<!--add song-->
+<div class="modal fade" id="addsong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-warning elegant-color" role="document">
+       <!--Content-->
+      <div class="modal-content">
+       <!--Header-->
+         <div class="modal-header text-center">
+           <h4 class="modal-title white-text w-100 font-weight-bold py-2">ADD NEW SONG</h4>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+        </div>
+       <!--Body-->
+      <div class="modal-body">
+        <form>
+          <div class="md-form mb-4">
+            <select name="artist" id="" class="browser-default custom-select">
+               <option selected>Select Artist</option>
+               <option value="PQ">PQ</option>
+               <option value="PQ">Artist 2</option>
+               <option value="PQ">Artist 3</option>
+            </select>
+         </div>
+           <div class="md-form mb-4">
+             <i class="fas fa-user prefix grey-text"></i>
+             <input type="text" class="form-control validate" name="title" >
+             <label data-error="wrong" data-success="right" for="form3">Title</label>
+          </div>
+          <div class="md-form mb-4">
+             <i class="fas fa-book prefix grey-text"></i>
+             <input type="file" name="link" id="">
+          </div>
+   <!--Footer-->
+  <div class="modal-footer justify-content-center">
+   <button type="submit" class="btn btn-outline-warning waves-effect">Send<i class="fas fa-paper-plane-o ml-1"></i></button>
+ </div>
+ </form>
+ </div>
+ </div>
+ <!--Content-->
+</div>
+</div>
+
+<!--add artist-->
+<div class="modal fade" id="addvideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-warning elegant-color" role="document">
+       <!--Content-->
+      <div class="modal-content">
+       <!--Header-->
+         <div class="modal-header text-center">
+           <h4 class="modal-title white-text w-100 font-weight-bold py-2">ADD NEW VIDEO</h4>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+        </div>
+       <!--Body-->
+      <div class="modal-body">
+        <form>
+          <div class="md-form mb-4">
+            <select name="artist" id="" class="browser-default custom-select">
+              <option selected>Select Artist</option>
+              <option value="PQ">PQ</option>
+              <option value="PQ">Artist 2</option>
+              <option value="PQ">Artist 3</option>
+           </select>
+         </div>
+           <div class="md-form mb-4">
+             <i class="fas fa-user prefix grey-text"></i>
+             <input type="text" class="form-control validate" name="title" >
+             <label data-error="wrong" data-success="right" for="form3">title</label>
+          </div>
+          <div class="md-form mb-4">
+            <i class="fas fa-user prefix grey-text"></i>
+            <input type="text" class="form-control validate" name="link" >
+            <label data-error="wrong" data-success="right" for="form3"link>Emdeded link</label>
+         </div>
+   <!--Footer-->
+  <div class="modal-footer justify-content-center">
+   <button type="submit" class="btn btn-outline-warning waves-effect">Send<i class="fas fa-paper-plane-o ml-1"></i></button>
+ </div>
+ </form>
+ </div>
+ </div>
+ <!--Content-->
 </div>
 </div>
 
 
-
 </div>
 
 
-<!-- Jumbotron -->
-<div class="jumbotron text-center elegant-color lighten-2 white-text mx-2 mb-5">
 
-  <!-- Title -->
-  <h2 class="card-title h2">Dropdown Entertainment Artists</h2>
+<hr class="my-4 warning-color">
+<div class="py-4 px-2">
 
-  <!-- Subtitle -->
-  <p class="my-4 h6 font-weight-light">Powerful and free Material Design UI KIT</p>
-
-  <!-- Grid row -->
-  <div class="row d-flex justify-content-center">
-
-    <!-- Grid column -->
-    <div class="col-xl-7 pb-2">
-      <div class="card text-black-50">
-
-        <ul class="nav flex-column list-group list-group-flush">
-          <li class="list-group-item ">
-            <a class="px-2 nav-link">
-             <img src="/assets/img/ns.jpg" class="px-2 rounded-circle" width="70" alt="">
-            Cras justo odio</a>
-          </li>
-          <li class="list-group-item ">
-            <a class="px-2 nav-link">
-             <img src="/assets/img/pq1.jpg" class="px-2 rounded-circle" width="70" alt="">
-            Cras justo odio</a>
-          </li>
-          <li class="list-group-item ">
-            <a class="px-2 nav-link">
-             <img src="/assets/img/pqp.png" class="px-2 rounded-circle" width="70" alt="">
-            Cras justo odio</a>
-          </li>
-        </ul>
+  <div class="card-body grey lighten-4 rounded-bottom">
+    <!-- Grid row -->
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col-md-3 p-1">
+        <div class="card grey lighten-2">
+          <div class="card-body pb-0">
+            <i class="fas fa-user fa-3x pb-4"></i>
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 h5">15&deg;</p>
+            </div>
+          </div>
+          <hr>
+          <div class="card-body pt-0">
+              <div class="float-left">
+                 <h6 class="font-weight-bold mb-1">
+                    <a class="black-text" routerLink="/artist-backend">Artist</a>
+                 </h6>
+              </div>
+              <div class="float-right">
+                <a class="btn-floating btn-lg" data-toggle="modal" data-target="#addartist">
+                  <i class="far fa-plus-square"></i>
+                </a>
+              </div>
+          </div>
+        </div>
       </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 p-1">
+        <div class="card orange lighten-3">
+          <div class="card-body pb-0">
+            <i class="fas fa-play fa-3x pb-4"></i>
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 h5">3&deg;</p>
+            </div>
+          </div>
+          <hr>
+          <div class="card-body pt-0">
+            <div class="float-left">
+               <h6 class="font-weight-bold mb-1">
+                  <a class="black-text" routerLink="/artist-backend">Songs</a>
+               </h6>
+            </div>
+            <div class="float-right">
+              <a class="btn-floating btn-lg" data-toggle="modal" data-target="#addsong">
+                <i class="far fa-plus-square"></i>
+              </a>
+            </div>
+        </div>
+        </div>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 p-1">
+        <div class="card indigo lighten-3">
+          <div class="card-body pb-0">
+            <i class="fas fa-play-circle fa-3x pb-4"></i>
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 h5">10&deg;</p>
+            </div>
+          </div>
+          <hr>
+          <div class="card-body pt-0">
+            <div class="float-left">
+               <h6 class="font-weight-bold mb-1">
+                  <a class="black-text" routerLink="/artist-backend">Albums</a>
+               </h6>
+            </div>
+            <div class="float-right">
+              <a class="btn-floating btn-lg" data-toggle="modal" data-target="#addartist">
+                <i class="far fa-plus-square"></i>
+              </a>
+            </div>
+        </div>
+        </div>
+      </div>
+      <!-- Grid column -->
+
+
+       <!-- Grid column -->
+       <div class="col-md-3 p-2">
+        <div class="card grey lighten-2">
+          <div class="card-body pb-0">
+            <i class="fas fa-tv fa-3x pb-4"></i>
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 h5">14&deg;</p>
+            </div>
+          </div>
+          <hr>
+          <div class="card-body pt-0">
+            <div class="float-left">
+               <h6 class="font-weight-bold mb-1">
+                  <a class="black-text" routerLink="/artist-backend">Videos</a>
+               </h6>
+            </div>
+            <div class="float-right">
+              <a class="btn-floating btn-lg" data-toggle="modal" data-target="#addvideo">
+                <i class="far fa-plus-square"></i>
+              </a>
+            </div>
+        </div>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 p-1">
+
+        <div class="card orange lighten-3">
+          <div class="card-body pb-0">
+            <i class="fas fa-newspaper fa-3x pb-4"></i>
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 h5">25&deg;</p>
+            </div>
+          </div>
+          <hr>
+          <div class="card-body pt-0">
+            <h6 class="font-weight-bold mb-1">News</h6>
+          </div>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 p-1">
+
+        <div class="card indigo white-text">
+          <div class="card-body pb-0">
+            <i class="fas fa-chalkboard-teacher fa-3x pb-4"></i>
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 h5">5&deg;</p>
+            </div>
+          </div>
+          <hr class="hr-light">
+          <div class="card-body pt-0">
+            <h6 class="font-weight-bold mb-1">Admin</h6>
+          </div>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
     </div>
-    <!-- Grid column -->
+    <!-- Grid row -->
 
-  </div>
-  <!-- Grid row -->
-
-  <hr class="my-4 warning-color">
-
-  <div class="pt-2">
-        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#addartist">
-          Add New Artist <i class="far fa-gem ml-1"></i>
-        </button>
   </div>
 
 </div>
-<!-- Jumbotron -->
 <br><br>
 <br><br>

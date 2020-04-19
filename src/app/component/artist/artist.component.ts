@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AlbumsService } from 'src/app/albums.service';
 import { DataService } from 'src/app/data.service';
 import { ArtistService } from 'src/app/artist.service';
@@ -17,12 +18,17 @@ export class ArtistComponent implements OnInit {
   public playlist : Track[];
   public artist :any;
 
-  constructor(private AlbumsService: AlbumsService, private DataService: DataService, private ArtistService: ArtistService) { }
+  public id :string;
+
+  constructor(private AlbumsService: AlbumsService, private DataService: DataService, private ArtistService: ArtistService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
         this.songs = this.AlbumsService.showSongs();
         this.albums = this.AlbumsService.showAlbums();
-        this.artist = this.ArtistService.getArtist();
+        this.id = this.route.snapshot.paramMap.get('id');
+        var numId = Number(this.id);
+        this.artist = this.ArtistService.getArtistByIdBlock(numId);
+        console.log(this.artist);
        }
 
   songLoader(song :any){

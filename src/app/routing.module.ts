@@ -6,6 +6,7 @@ import { ArtistComponent } from './component/artist/artist.component';
 import { VideosComponent } from './component/videos/videos.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
 
 
 
@@ -13,8 +14,9 @@ export const routes: Routes = [
   { path:'', redirectTo: '/home', pathMatch:'full'},
   {path: 'home',  component: HomeComponent},
   {path: 'admin',  component: AdminComponent},
-  {path:'artist', component: ArtistComponent},
+  {path:'artist/:id', component: ArtistComponent},
   {path:'videos', component: VideosComponent},
+  {path: 'artist-backend', component: ArtistBackComponent},
   {path: '404', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/404'}
 

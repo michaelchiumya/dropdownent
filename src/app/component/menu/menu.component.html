@@ -21,9 +21,6 @@
         <a class="nav-link" routerLink="releases" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">Releases</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="events" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">Events</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" routerLink="videos" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">Videos</a>
       </li>
       <li class="nav-item">
@@ -38,10 +35,8 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
          Artist
         </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" routerLink="artist" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">PQ</a>
-          <a class="dropdown-item" href="#" data-toggle="collapse" data-target="#navbarSupportedContent">Don Wargon</a>
-          <a class="dropdown-item" href="#" data-toggle="collapse" data-target="#navbarSupportedContent">LShattaz</a>
+        <div class="dropdown-menu" *ngFor="let artist of artists" >
+          <a class="dropdown-item" routerLink="artist/{{artist.id}}" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">{{artist.name}}</a>
         </div>
       </li>
     </ul>

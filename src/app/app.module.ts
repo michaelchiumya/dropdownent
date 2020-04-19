@@ -16,7 +16,7 @@ import { VideosService } from './videos.service';
 import { SafePipePipe } from './safe-pipe.pipe';
 import { ArtistComponent } from './component/artist/artist.component';
 import { AdminComponent } from './component/admin/admin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
 
 @NgModule({
@@ -38,7 +38,8 @@ import { ArtistBackComponent } from './component-back/artist-back/artist-back.co
     BrowserAnimationsModule,
     NgxAudioPlayerModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [AlbumsService,DataService,ArtistService,VideosService],
   bootstrap: [AppComponent]

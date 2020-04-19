@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArtistService } from 'src/app/artist.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor() { }
+artists : any;
+  constructor(private ArtistService: ArtistService) {
+     this.artists = this.ArtistService.getArtistsBlock();
+  }
 
   ngOnInit(): void {
   }
