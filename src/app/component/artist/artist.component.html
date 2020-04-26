@@ -1,11 +1,10 @@
 <!-- Jumbotron -->
-<div class="card card-image" style="background-image: url({{artist.cover}});background-size: contain;">
+<div class="card card-image" style="background-image: url(https://dropdownent.s3-eu-west-1.amazonaws.com/{{artist?.image}});background-size: contain;">
   <div class="text-white text-center rgba-stylish-strong py-5 px-4">
     <div class="py-3">
 
       <!-- Content -->
-      <h2 class="card-title h2 my-4 font-weight-bold">{{artist.name}}</h2>
-      <p class="mb-4 pb-2 px-md-5 mx-md-5">{{artist.biography}}</p>
+      <h2 class="card-title h2 my-4 font-weight-bold">{{artist?.name}}</h2>
       <div class="dropdown">
         <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -22,81 +21,88 @@
     </div>
   </div>
 </div>
+<button class="btn btn-elegant my-3" type="button" data-toggle="collapse" data-target="#mycollapse"
+    aria-expanded="false" aria-controls="mycollapse">
+    Biography
+  </button>
+<div class="container collapse" id="mycollapse">
+  <h3 class="h3">Biography</h3>
+  <p class="my-2 pb-2 px-md-5 mx-md-5">{{artist?.biography}}</p>
+</div>
 <!-- Jumbotron -->
+<br><br>
 
-<!-- song cards -->
-<div class="container-fluid">
- <div class="row my-5 py-3 rgba-black-dark">
-     <div class="col-sm-6 col-md-3 mx-auto my-2" *ngFor="let song of songs">
 
-      <div class="card">
-        <div class="d-flex flex-row">
-           <div class="">
-            <img src="{{song.cover}}" class="img-thumbnail" style="width: 140px">
+
+<div class="elegant-color">
+<div class="card-deck py-4 d-none d-sm-block">
+  <h3 class="h3 font-weight-bold my-3 text-muted">SINGLES</h3>
+  <ng-carousel [config]="config" >
+     <ng-template ngCarouselSlide let-item>
+        <div class="card">
+            <img src="{{item?.cover}}" class="card-img-top">
+           <div classs="card-body elegant-color">
+             <h5 class="card-title text-truncate px-1">{{item?.title}}</h5>
+             <p class="card-text text-muted font-weight-border font-italic px-1">{{item.album}}</p>
+             <a class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="songLoader(item)"><i class="far fa-play-circle fa-2x" aria-hidden="true"></i></a>
+             <a class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="playlistSong(item)"><i class="fas fa-list-ul fa-2x" aria-hidden="true"></i></a>
           </div>
-
-          <div>
-             <h5 class="card-title text-truncate px-1">{{song.title}}</h5>
-             <p class="card-text text-muted font-weight-border font-italic px-1">{{song.album}}</p>
-             <!-- Split button -->
-             <div class="btn-group dropleft">
-                <button type="button" class="btn btn-elegant">Options</button>
-                <button type="button" class="btn btn-elegant dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                  <span class="sr-only">Toggle Dropdown</span>
-               </button>
-                 <div class="dropdown-menu py-2">
-                   <a class="dropdown-item" (click)="songLoader(song)">Play<i class="mx-2 fas fa-play"></i></a>
-                   <a class="dropdown-item" (click)="playlistSong(song)">Playlist<i class="mx-2 fas fa-list"></i></a>
-                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item">Share<i class="mx-2 fas fa-share-alt"></i></a>
-               </div>
-             </div>
-          </div>
-
-        </div>
       </div>
-
-   </div>
-  </div>
+  </ng-template>
+</ng-carousel>
+</div>
 </div>
 
-<div class="container-fluid elegant-color pt-4 py-4">
-  <div class="card-deck">
-   <!-- <div class="col-sm-5 col-md-3 mx-auto" >-->
-        <!-- Card -->
-   <div class="card mb-4" *ngFor="let album of albums">
-    <!-- Card image -->
-    <div class="view overlay">
-    <img class="card-img-top" src="{{album.cover}}" alt="Card image cap">
-    <div class="mask rgba-white-slight"></div>
-</div>
-    <!-- Card content -->
+
+<div class="container-fluid elegant-color py-4" *ngIf="songs">
+  <h3 class="h3 font-weight-bold my-3 text-muted">SINGLES</h3>
+  <div class="card-deck d-none d-md-block ">
+
+   <div class="card mb-4 elegant-color" *ngFor="let song of songs">
+     <div class="view overlay">
+       <img class="card-img-top" src="{{song.cover}}" alt="Card image cap">
+       <div class="mask rgba-white-slight"></div>
+     </div>
     <div class="card-body">
-      <!-- Title -->
-      <h4 class="card-title text-muted">{{album.album}}</h4>
-
-      <!-- Button -->
-      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg" (click)="albumLoader(album.songs)">
+      <h4 class="card-title text-muted">{{song.album}}</h4>
+      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="songLoader(song)">
         <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
       </button>
-        <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg" (click)="playlistAlbum(album.songs)">
-          <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
-        </button>
-
+      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="playlistSong(song)">
+        <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
-  <!-- Card -->
 
-    </div>
-
+ </div>
 </div>
 
+  <br>
 
 
+<br>
+<div class="container-fluid elegant-color py-4" *ngIf="albums">
+  <h3 class="h3 font-weight-bold my-3 text-muted">Albums</h3>
+  <div class="card-deck">
 
+   <div class="card mb-4 elegant-color" *ngFor="let album of albums">
+     <div class="view overlay">
+       <img class="card-img-top" src="{{album.cover}}" alt="Card image cap">
+       <div class="mask rgba-white-slight"></div>
+     </div>
+    <div class="card-body">
+      <h4 class="card-title text-muted">{{album.album}}</h4>
+      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="albumLoader(album.songs)">
+        <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="playlistAlbum(album.songs)">
+        <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
 
+ </div>
+</div>
 
-  <br><br>
   <br><br>
 

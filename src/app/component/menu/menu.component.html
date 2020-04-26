@@ -35,8 +35,8 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
          Artist
         </a>
-        <div class="dropdown-menu" *ngFor="let artist of artists" >
-          <a class="dropdown-item" routerLink="artist/{{artist.id}}" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">{{artist.name}}</a>
+        <div class="dropdown-menu" >
+          <a class="dropdown-item"  *ngFor="let artist of artists" routerLink="artist/{{artist.id}}" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">{{artist.name}}</a>
         </div>
       </li>
     </ul>

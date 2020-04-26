@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArtistService } from 'src/app/artist.service';
+import { ArtistService } from 'src/app/services/artist.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +7,12 @@ import { ArtistService } from 'src/app/artist.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  artistData :any ;
+  artistData :any [];
   constructor(private ArtistService: ArtistService ) { }
 
   ngOnInit(): void {
-    this.artistData = this.ArtistService.getArtistsBlock();
+    this.artistData = this.ArtistService.getArtist().subscribe(arg => this.artistData = arg  );
+
   }
 
 }

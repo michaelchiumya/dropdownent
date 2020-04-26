@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/services/data.service';
 
 
 
@@ -10,6 +10,7 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent implements OnInit {
+
   playlist :Track[] ;
   msaapDisplayTitle :boolean;
   msaapDisplayPlayList :boolean;
@@ -17,11 +18,8 @@ export class PlayerComponent implements OnInit {
   msaapDisplayVolumeControls :boolean;
   msaapPlaylist : Track[];
 
+  constructor(private DataService: DataService) {}
 
-
-  constructor(private DataService: DataService) {
-
-  }
   ngOnInit(): void {
 
     this.msaapDisplayTitle = false;

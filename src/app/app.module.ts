@@ -8,16 +8,17 @@ import { PlayerComponent } from './component/player/player.component';
 import { RoutingModule } from './routing.module';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AlbumsService } from './albums.service';
+import { AlbumsService } from './services/albums.service';
 import { HttpClientModule } from '@angular/common/http';
-import { DataService } from './data.service';
-import { ArtistService } from './artist.service';
-import { VideosService } from './videos.service';
+import { DataService } from './services/data.service';
+import { ArtistService } from './services/artist.service';
+import { VideosService } from './services/videos.service';
 import { SafePipePipe } from './safe-pipe.pipe';
 import { ArtistComponent } from './component/artist/artist.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
+import { CarouselModule } from 'ng-carousel-cdk';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ArtistBackComponent } from './component-back/artist-back/artist-back.co
     NgxAudioPlayerModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    CarouselModule
   ],
   providers: [AlbumsService,DataService,ArtistService,VideosService],
   bootstrap: [AppComponent]

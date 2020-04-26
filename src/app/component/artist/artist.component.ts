@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlbumsService } from 'src/app/albums.service';
-import { DataService } from 'src/app/data.service';
-import { ArtistService } from 'src/app/artist.service';
+import { AlbumsService } from 'src/app/services/albums.service';
+import { DataService } from 'src/app/services/data.service';
+import { ArtistService } from 'src/app/services/artist.service'
 import { Track } from 'ngx-audio-player';
-
+import { CarouselConfig, CarouselAlignMode } from 'ng-carousel-cdk';
 
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.css']
 })
+
 export class ArtistComponent implements OnInit {
 
-  public songs : any;
-  public albums :any;
-  public playlist : Track[];
-  public artist :any;
+  songs : any[];
+  albums :any;
+  private playlist : Track[];
+  private id :string;
+  artist :any;
+  config: CarouselConfig ;
 
-  public id :string;
 
   constructor(private AlbumsService: AlbumsService, private DataService: DataService, private ArtistService: ArtistService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-        this.songs = this.AlbumsService.showSongs();
-        this.albums = this.AlbumsService.showAlbums();
+
         this.id = this.route.snapshot.paramMap.get('id');
         var numId = Number(this.id);
-        this.artist = this.ArtistService.getArtistByIdBlock(numId);
+        this.ArtistService.getArtistById(numId).subscribe(arg=> this.artist= arg);
+        this.config = {items: this.songs, shouldLoop: false, slideWidth: 80, autoplayEnabled: false}
         console.log(this.artist);
        }
 

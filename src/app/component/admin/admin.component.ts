@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArtistService } from 'src/app/artist.service';
+import { ArtistService } from 'src/app/services/artist.service';
+import { VideosService } from 'src/app/services/videos.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -7,40 +8,101 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+
 export class AdminComponent implements OnInit {
   artistForm : FormGroup;
+  videoForm :FormGroup;
+  addSongForm :FormGroup;
 
-  constructor(private fb:FormBuilder, private ArtistService: ArtistService) { }
+  constructor(private fb:FormBuilder, private ArtistService: ArtistService,private VideosService:VideosService) { }
 
   ngOnInit(): void {
-    this.artistForm = this.fb.group({
-      name: [''],
-      biography: ['']
-    });
+
+    this.artistForm =  this.fb.group({
+      name: ['', [Validators.required]],
+      biography: ['',Validators.required]
+   });
+
+   this.videoForm =  this.fb.group({
+    artistId: ['', [Validators.required]],
+    title: ['', [Validators.required]],
+    link: ['',Validators.required]
+ });
+
+ this.addSongForm =  this.fb.group({
+  artistId: ['', [Validators.required]],
+  title: ['', [Validators.required]],
+  album: ['', [Validators.required]],
+  file: ['',Validators.required]
+});
+
   }
 
-  onArtistImageSelect(event) {
+onSongSelect(event){
+    if(event.target.files.length > 0)
+     {
+       const file = event.target.files[0];
+       this.addSongForm.patchValue({
+         file : file
+       });
+     }
+  }
+
+onArtistImageSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.artistForm.get('image').setValue(file);
-
     }
-
-
   }
+
+ onSongSubmit(){
+  if(this.addSongForm.valid){
+    var formData = new FormData();
+       formData.append('artistId', this.addSongForm.get('artistId').value);
+       formData.append('title', this.addSongForm.get('title').value);
+       formData.append('album', this.addSongForm.get('album').value);
+       formData.append('file', this.addSongForm.get('file').value);
+       console.log(formData);
+
+    console.log(this.addSongForm.valid);
+    this.ArtistService.postSong(formData).subscribe(
+           response=>{ console.log(response); },
+           error  => { console.log("Rrror", error); }
+       );
+       console.log(this.addSongForm.value);
+       this.artistForm.reset();
+}else{
+  console.log('form not valid');
+   }
+
+ }
 
   onArtistSubmit() {
-    // this.artistForm.get('name').setValue('name');
-    // this.artistForm.get('biobraphy').setValue('biography');
-
-   let formData = new FormData();
-   formData.append('name', this.artistForm.get('name').value);
-   formData.append('biobraphy', this.artistForm.get('biography').value);
-   //formData.append('image', this.artistForm.get('image').value);
-    this.ArtistService.postArtist(formData);
-    console.log( 'form', formData);
+   if(this.artistForm.valid){
+       console.log(this.artistForm.valid);
+       this.ArtistService.postArtist(this.artistForm.value).subscribe(
+              response=>{ console.log(response); },
+              error  => { console.log("Rrror", error); }
+          );
+       this.artistForm.reset();
+   }else{
+    console.log('form not valid');
+   }
 
   }
 
+  onVideoSubmit() {
+    if(this.videoForm.valid){
+        console.log(this.videoForm.valid);
+        this.VideosService.postVideo(this.videoForm.value).subscribe(
+               response=>{ console.log(response); },
+               error  => { console.log("Rrror", error); }
+           );
+        this.videoForm.reset();
+    }else{
+      console.log('form not valid');
+    }
+
+   }
 
 }

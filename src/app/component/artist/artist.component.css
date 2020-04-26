@@ -1,16 +1,9 @@
-table, th,td{
-  padding:0;
-}
-@media (max-width: 575px) {
-  .caraousel-inner{height:140px !important}
-
-  }
 
 
-  @media (max-width: 767px) {  }
+@media (max-width: 575px) {}
 
+@media (max-width: 767px) {}
 
-  @media (max-width: 991px) { }
+@media (max-width: 991px) {}
 
-
-  @media (max-width: 1199px) {  }
+@media (max-width: 1199px) { }

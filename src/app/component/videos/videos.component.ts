@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VideosService } from 'src/app/videos.service';
+import { VideosService } from 'src/app/services/videos.service';
 
 @Component({
   selector: 'app-videos',
@@ -13,7 +13,7 @@ export class VideosComponent implements OnInit {
   constructor(private VideosService: VideosService) { }
 
   ngOnInit(): void {
-    this.videos = this.VideosService.getVideos();
+    this.videos = this.VideosService.getVideosData();
   }
 
 }
