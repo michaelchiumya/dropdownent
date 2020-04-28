@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistService } from 'src/app/services/artist.service';
+import { Artist } from 'src/app/interface/artist';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,18 @@ import { ArtistService } from 'src/app/services/artist.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  artistData :any [];
+  artistData : Artist[];
   constructor(private ArtistService: ArtistService ) { }
 
   ngOnInit(): void {
-    this.artistData = this.ArtistService.getArtist().subscribe(arg => this.artistData = arg  );
+   this.getArtistList();
+  }
 
+  getArtistList(){
+    this.ArtistService.getArtist().subscribe((data: any)=>{
+      console.log(data);
+      this.artistData = data;
+    });
   }
 
 }

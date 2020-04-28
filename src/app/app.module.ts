@@ -19,6 +19,8 @@ import { AdminComponent } from './component/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
 import { CarouselModule } from 'ng-carousel-cdk';
+import { SignupComponent } from './component/signup/signup.component';
+import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CarouselModule } from 'ng-carousel-cdk';
     ArtistComponent,
     AdminComponent,
     SafePipePipe,
-    ArtistBackComponent
+    ArtistBackComponent,
+    SignupComponent,
+    LoginComponent
   ],
 
   imports: [

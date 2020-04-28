@@ -1,38 +1,65 @@
 <div class="px-2">
 <!-- Card deck -->
-<div class="card-deck">
+<div class="card-group">
 
-  <div class="card mb-4" *ngFor="let artist of artists">
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-        alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
+  <div class="card mb-4 col-md-3 col-sm-12" *ngFor="let artist of artists;let item = index">
+      <div class="view overlay">
+        <a href="#!"></a>
+         <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card">
+        <a href="#!">
+         <div class="mask rgba-white-slight"></div>
+       </a>
+    </div>
+
+<!-- Collapse buttons -->
+<div class="py2">
+  <a class="btn btn-sm elegant-color white-text" data-toggle="collapse" href="#multiCollapseExample1{{item}}" role="button" aria-expanded="false"
+    aria-controls="multiCollapseExample1">Upload Cover</a>
+  <a class="btn btn-sm elegant-color white-text" type="button" data-toggle="collapse" href="#multiCollapseExample2{{item}}"
+    aria-expanded="false" aria-controls="multiCollapseExample2">Update</a>
+  <a class="btn-floating btn-lg btn-danger"><i class="fas fa-bolt"></i></a>
+</div>
+<!--/ Collapse buttons -->
+
+<!-- Collapsible content -->
+
+
+    <div class="collapse multi-collapse" id="multiCollapseExample1{{item}}">
+      <div class="container-fluid">
+         <form [formGroup]="imageform" (ngSubmit)="UpdateImageSubmit()">
+          <div class="md-form">
+            <input type="hidden" class="form-control" formControlName="artistId" [(ngModel)]="artist.id">
+          </div>
+          <div class="md-form">
+            <input type="file"  class="form-control" formControlName="image">
+          </div>
+          <button class="btn elegant-color white-text btn-block" type="submit">Update</button>
+         </form>
+      </div>
     </div>
 
 
-    <div class="card-body">
-      <form>
-        <div class="md-form">
-          <input type="text" id="inputMDEx" class="form-control"  [(ngModel)]="artist.name" name="name">
-          <label for="inputMDEx">Name</label>
-        </div>
-         <div class="md-form amber-textarea active-amber-textarea">
-          <textarea id="form19" class="md-textarea form-control" rows="3" name="biography" [(ngModel)]="artist.biography"></textarea>
-          <label for="form19">Bio</label>
-         </div>
-          <!-- Sign in button -->
-    <button class="btn elegant-color white-text btn-block" type="submit">Update</button>
+    <div class="collapse multi-collapse" id="multiCollapseExample2{{item}}">
+      <div class="container-fluid">
+        <form [formGroup]="updateform" (ngSubmit)="UpdateFormSubmit()">
+          <select class="browser-default custom-select" formControlName="status" [(ngModel)]="artist.active">
+            <option value="true">On</option>
+            <option value="false">Off</option>
+          </select>
+          <div class="md-form">
+            <input type="text" id="inputMDEx" class="form-control" [(ngModel)]="artist.name" formControlName="name">
+            <label for="inputMDEx">Name</label>
+          </div>
+           <div class="md-form amber-textarea active-amber-textarea">
+            <textarea id="form19" class="md-textarea form-control" rows="3" formControlName="biography" [(ngModel)]="artist.biography"></textarea>
+            <label for="form19">Bio</label>
+           </div>
 
-      </form>
-  </div>
-  <!-- Card -->
+           <button class="btn elegant-color white-text btn-block" type="submit">Update</button>
+        </form>
+      </div>
+    </div>
 
 
-
-</div>
-<!-- Card deck -->
-
-</div>
+<br><br>
 <br><br>
