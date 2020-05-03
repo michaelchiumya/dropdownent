@@ -11,8 +11,7 @@ import { Artist } from '../interface/artist';
 export class ArtistService {
 
  private artists : Artist[];
- private postUrl = "https://dropdown-entertainment.herokuapp.com/api/artist";
- private getUrl ="https://dropdown-entertainment.herokuapp.com/api/artists";
+ private url = "https://dropdown-entertainment.herokuapp.com/api";
 
 
  private httpHeaders = new HttpHeaders()
@@ -25,7 +24,7 @@ export class ArtistService {
 
   postArtist(data : any) {
     var body = JSON.stringify(data);
-     return  this.http.post<any>(this.postUrl, body, this.options).pipe(map((data: any)=>{
+     return  this.http.post<any>(`${this.url}/artist`, body, this.options).pipe(map((data: any)=>{
        return data;
     }),
     catchError(error => {
@@ -35,7 +34,7 @@ export class ArtistService {
   }
 
   postSong(data : any) {
-    return  this.http.post<any>("https://dropdown-entertainment.herokuapp.com/api/song" , data).pipe(map((data: any)=>{
+    return  this.http.post<any>(`${this.url}/song` , data).pipe(map((data: any)=>{
       return data;
    }),
    catchError(error => {
@@ -45,7 +44,7 @@ export class ArtistService {
   }
 
   postImage(data : any, id: string) {
-    return  this.http.post<any>("https://dropdown-entertainment.herokuapp.com/api/artist/"+id +"/image" , data).pipe(map((data: any)=>{
+    return  this.http.post<any>(`${this.url}/artist/${id}/image`, data).pipe(map((data: any)=>{
       return data;
    }),
    catchError(error => {
@@ -55,7 +54,7 @@ export class ArtistService {
   }
 
   getArtist():any{
-    return this.http.get(this.getUrl).pipe(map((data: Artist[])=>data),
+    return this.http.get(`${this.url}/artists`).pipe(map((data: Artist[])=>data),
     catchError(error=>{
       return throwError('something went wrong..');
     })
@@ -63,7 +62,7 @@ export class ArtistService {
   }
 
 updateArtist(data:any, id: string){
-  return this.http.put<any>("https://dropdown-entertainment.herokuapp.com/api/artist/"+id, data).pipe(map((data: any)=>{
+  return this.http.put<any>(`${this.url}/artist/${id}`, data).pipe(map((data: any)=>{
     return data;
  }),
  catchError(error => {
@@ -74,7 +73,7 @@ updateArtist(data:any, id: string){
 
 
   getArtistById(id :number){
-     return this.http.get(this.postUrl+"/"+id).pipe(map((data: Artist[])=>data),
+     return this.http.get(`${this.url}/artist/${id}`).pipe(map((data: Artist[])=>data),
      catchError(error=>{
        return throwError('something went wrong getting data..');
      })
@@ -82,6 +81,6 @@ updateArtist(data:any, id: string){
   }
 
   destroyArtist(id :number){
-    return this.http.delete(this.postUrl+"/"+id);
+    return this.http.delete(`${this.url}/artist/${id}`);
  }
 }

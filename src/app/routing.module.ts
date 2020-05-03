@@ -9,18 +9,20 @@ import { AdminComponent } from './component/admin/admin.component';
 import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { PortalAuthGuard } from './portal-auth.guard';
 
 
 
 export const routes: Routes = [
   { path:'', redirectTo: '/home', pathMatch:'full'},
   {path: 'home',  component: HomeComponent},
-  {path: 'admin',  component: AdminComponent},
-  {path:'artist/:id', component: ArtistComponent},
   {path:'videos', component: VideosComponent},
-  {path: 'artist-backend', component: ArtistBackComponent},
+  {path:'artist/:id', component: ArtistComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'signup', component:SignupComponent},
+
+  {path: 'admin',  component: AdminComponent, canActivate: [PortalAuthGuard] },
+  {path: 'artist-backend', component: ArtistBackComponent, canActivate: [PortalAuthGuard]},
+  {path: 'signup', component:SignupComponent, canActivate: [PortalAuthGuard]},
   {path: '404', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/404'}
 

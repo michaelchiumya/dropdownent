@@ -173,7 +173,21 @@
 
 </div>
 
+<div class="panel">
+{{admin?.name}}
+<div class="btn-group">
+  <button type="button" class="btn elegant-color white-text">action</button>
+  <button type="button" class="btn elegant-color white-text dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+  </div>
+</div>
 
+</div>
 
 <hr class="my-4 warning-color">
 <div class="py-4 px-2">

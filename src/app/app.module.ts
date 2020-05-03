@@ -21,6 +21,11 @@ import { ArtistBackComponent } from './component-back/artist-back/artist-back.co
 import { CarouselModule } from 'ng-carousel-cdk';
 import { SignupComponent } from './component/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
+import { AdminService } from './services/admin.service';
+import { AuthService } from './services/auth.service';
+import { PortalAuthService } from './services/portal-auth.service';
+
+
 
 @NgModule({
   declarations: [
@@ -46,8 +51,17 @@ import { LoginComponent } from './component/login/login.component';
     FormsModule,
     ReactiveFormsModule,
     CarouselModule
+
   ],
-  providers: [AlbumsService,DataService,ArtistService,VideosService],
+  providers: [
+    AlbumsService,
+    DataService,
+    ArtistService,
+    VideosService,
+    AdminService,
+    AuthService,
+    PortalAuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

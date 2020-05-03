@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistService } from 'src/app/services/artist.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Artist } from 'src/app/interface/artist';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
@@ -9,29 +10,54 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./artist-back.component.css']
 })
 export class ArtistBackComponent implements OnInit {
+
+  artist : any;
   artists : Artist[];
   updateform: FormGroup;
   imageform: FormGroup;
+  access_token = '';
 
-  constructor(private ArtistService: ArtistService,private fb: FormBuilder) { }
+  constructor(private ArtistService: ArtistService,private fb: FormBuilder, private AuthService:AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
        this.getArtistList();
        this.updateform = this.fb.group({
-         artistId: ['', [Validators.required]],
-         status: ['', [Validators.required]],
-         name: ['', [Validators.required]],
-        biography: ['', [Validators.required]]
-        });
+            artistId: ['', [Validators.required]],
+            status: ['', [Validators.required]],
+            name: ['', [Validators.required]],
+            biography: ['', [Validators.required]]
+            });
 
-        this.imageform = this.fb.group({
+      this.imageform = this.fb.group({
           artistId: ['', [Validators.required]],
           image: ['', [Validators.required]]
           });
 
+          this.AuthService.getAccess().subscribe((res)=> {
+            this.access_token = res['token']
+           });
 }
 
-getArtistList(){
+getAppCredentials(): void
+{
+    this.AuthService.getAppUserDetails(this.access_token).subscribe((res)=>
+    {
+      this.artist = res;
+      console.log(this.artist);
+
+    });
+}
+
+getAuthentication(): void
+{
+      this.AuthService.getAccess().subscribe((res)=>{
+        this.access_token = res['access_token'];
+      });
+}
+
+getArtistList()
+{
   this.ArtistService.getArtist().subscribe((data: any)=>{
     console.log(data);
     this.artists = data;

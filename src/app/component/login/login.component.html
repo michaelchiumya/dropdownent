@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <!-- Default form login -->
-<form class="text-center border border-light p-5" action="#!">
+
+<form class="text-center border border-light p-5" [formGroup]="portalForm" (ngSubmit)="onPortalSubmit()">
   <p class="h4 mb-4">Sign in</p>
-   <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+   <input type="email" formControlName="email" class="form-control mb-4" placeholder="E-mail">
+    <input type="password" formControlName="password" class="form-control mb-4" placeholder="Password">
 
   <div class="d-flex justify-content-around">
         <div>
@@ -16,7 +16,7 @@
   </div>
 
   <!-- Sign in button -->
-  <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+  <button class="btn elegant-color white-text btn-lg my-4" type="submit">Sign in</button>
 
   <p>Not a member?<a routerLink="/signup">Register</a></p>
 </form>
