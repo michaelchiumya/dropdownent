@@ -4,6 +4,7 @@ import { VideosService } from 'src/app/services/videos.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PortalAuthService } from 'src/app/services/portal-auth.service';
+import { Admin } from 'src/app/interface/admin';
 
 
 @Component({
@@ -16,8 +17,8 @@ export class AdminComponent implements OnInit {
   artistForm :  FormGroup;
   videoForm :   FormGroup;
   addSongForm : FormGroup;
-  admin : any;
-  token :string = '';
+  admin : Admin;
+
 
   constructor(
     private fb: FormBuilder,
@@ -30,11 +31,6 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void
    {
-    this.token = localStorage.getItem('token');
-    this.PortalAuth.userDetails(this.token).subscribe((res)=>{
-         this.admin = res;
-        });
-
     this.artistForm =  this.fb.group({
         name: ['', [Validators.required]],
         biography: ['',Validators.required]
@@ -122,16 +118,6 @@ onArtistImageSelect(event)
     }else{
       console.log('form not valid');
       }
-   }
-
-
-   logout()
-   {
-     localStorage.removeItem('token');
-     this.PortalAuth.logout().subscribe((res)=>{
-       console.log(res);
-     });
-      this.route.navigate(['/home']);
    }
 
 }

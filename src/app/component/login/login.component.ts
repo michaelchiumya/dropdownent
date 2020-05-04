@@ -10,8 +10,10 @@ import { PortalAuthService } from 'src/app/services/portal-auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  token : string= '';
-  portalForm :FormGroup;
+
+   token : string= '';
+   error : string ;
+   portalForm :FormGroup;
 
   constructor(private fb:FormBuilder, private router: Router,private PortalAuth: PortalAuthService) { }
 
@@ -26,15 +28,14 @@ export class LoginComponent implements OnInit {
     if(this.portalForm.valid){
           this.PortalAuth.login(this.portalForm.value).subscribe((res)=>{
           if (res.status == 200) {
-              console.log(res);
-              this.token = res['token'];
+             this.token = res.body['success'].token;
               localStorage.setItem('token', this.token);
-              this.router.navigate(['admin']);
+               this.router.navigate(['admin']);
+             }else{
+               this.error = "Error logging in please enter valid credentials"
              }
 
-       (err) => {
-        alert("There was a problem logging in");
-         }
+
 
 
     })

@@ -9,21 +9,22 @@ import { RoutingModule } from './routing.module';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumsService } from './services/albums.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataService } from './services/data.service';
 import { ArtistService } from './services/artist.service';
 import { VideosService } from './services/videos.service';
 import { SafePipePipe } from './safe-pipe.pipe';
 import { ArtistComponent } from './component/artist/artist.component';
-import { AdminComponent } from './component/admin/admin.component';
+import { AdminComponent } from './component-back/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
 import { CarouselModule } from 'ng-carousel-cdk';
-import { SignupComponent } from './component/signup/signup.component';
+import { SignupComponent } from './component-back/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
 import { AdminService } from './services/admin.service';
 import { AuthService } from './services/auth.service';
 import { PortalAuthService } from './services/portal-auth.service';
+import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 
 
 
@@ -60,7 +61,8 @@ import { PortalAuthService } from './services/portal-auth.service';
     VideosService,
     AdminService,
     AuthService,
-    PortalAuthService
+    PortalAuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
