@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistService } from 'src/app/services/artist.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Artist } from 'src/app/interface/artist';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Artist } from 'src/app/interface/artist';
 
 @Component({
   selector: 'app-artist-back',
@@ -10,21 +11,23 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./artist-back.component.css']
 })
 export class ArtistBackComponent implements OnInit {
-
-  artist : any;
-  artists : Artist[];
+  id : string;
+  artist = new Artist()
   updateform: FormGroup;
   imageform: FormGroup;
-  access_token = '';
 
-  constructor(private ArtistService: ArtistService,private fb: FormBuilder, private AuthService:AuthService) { }
+
+  constructor(
+    private ArtistService: ArtistService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void
   {
-       this.getArtistList();
        this.updateform = this.fb.group({
-            artistId: ['', [Validators.required]],
-            status: ['', [Validators.required]],
+            id: ['', [Validators.required]],
+            active: ['', [Validators.required]],
             name: ['', [Validators.required]],
             biography: ['', [Validators.required]]
             });
@@ -34,36 +37,17 @@ export class ArtistBackComponent implements OnInit {
           image: ['', [Validators.required]]
           });
 
-          this.AuthService.getAccess().subscribe((res)=> {
-            this.access_token = res['token']
-           });
+      this.loadArtist()
 }
 
-getAppCredentials(): void
-{
-    this.AuthService.getAppUserDetails(this.access_token).subscribe((res)=>
-    {
-      this.artist = res;
-      console.log(this.artist);
-
-    });
+loadArtist(){
+  this.id = this.route.snapshot.paramMap.get('id');
+  var numId = Number(this.id);
+  this.ArtistService.getArtistById(numId).subscribe((arg)=>{
+    this.artist = arg
+    console.log(this.artist)
+  })
 }
-
-getAuthentication(): void
-{
-      this.AuthService.getAccess().subscribe((res)=>{
-        this.access_token = res['access_token'];
-      });
-}
-
-getArtistList()
-{
-  this.ArtistService.getArtist().subscribe((data: any)=>{
-    console.log(data);
-    this.artists = data;
-  });
-}
-
 
 onImageSelect(event){
   if(event.target.files.length > 0)
@@ -77,8 +61,7 @@ onImageSelect(event){
 
 UpdateImageSubmit(){
   var formData = new FormData();
-  var id =  this.imageform.get('artistId').value;
-
+  var id =  this.id;
   formData.append('image', this.imageform.get('image').value);
   formData.append('id', id);
    this.ArtistService.postImage(formData, id).subscribe(
@@ -89,10 +72,11 @@ UpdateImageSubmit(){
 }
 
 UpdateFormSubmit(){
+   console.log(this.updateform.value)
   if(this.updateform.valid){
-       console.log(this.updateform);
-       let id = this.updateform.get('artistId').value;
-       this.ArtistService.updateArtist(this.updateform.value, id).subscribe(
+       console.log("updateform", this.updateform.value);
+
+       this.ArtistService.updateArtist(this.updateform.value, this.id).subscribe(
               response=>{ console.log(response); },
               error  => { console.log("Rrror", error); }
           );

@@ -21,7 +21,7 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
   {path: 'admin',  component: AdminComponent, canActivate: [PortalAuthGuard] },
-  {path: 'artist-backend', component: ArtistBackComponent, canActivate: [PortalAuthGuard]},
+  {path: 'artist-backend/:id', component: ArtistBackComponent, canActivate: [PortalAuthGuard]},
   {path: 'signup', component:SignupComponent, canActivate: [PortalAuthGuard]},
   {path: '404', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/404'}

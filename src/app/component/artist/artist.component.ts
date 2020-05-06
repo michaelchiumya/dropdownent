@@ -22,7 +22,12 @@ export class ArtistComponent implements OnInit {
   config: CarouselConfig ;
 
 
-  constructor(private AlbumsService: AlbumsService, private DataService: DataService, private ArtistService: ArtistService, private route:ActivatedRoute) { }
+  constructor(
+    private AlbumsService: AlbumsService,
+    private DataService: DataService,
+    private ArtistService: ArtistService,
+    private route:ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
 

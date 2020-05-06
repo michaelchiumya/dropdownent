@@ -31,8 +31,6 @@ export class LoginComponent implements OnInit {
              this.token = res.body['success'].token;
               localStorage.setItem('token', this.token);
                this.router.navigate(['admin']);
-             }else{
-               this.error = "Error logging in please enter valid credentials"
              }
 
 

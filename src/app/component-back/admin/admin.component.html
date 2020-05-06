@@ -185,10 +185,15 @@
         </div>
           <hr>
           <div class="card-body pt-0">
-            <div class="float-left">
-               <h6 class="font-weight-bold mb-1">
-                 <a class="black-text" routerLink="/artist-backend">Artist</a>
-               </h6>
+            <div class="nav-item dropdown float-left">
+
+                <a class="nav-link dropdown-toggle text-muted" href="#" id="navbardrop" data-toggle="dropdown">
+                 Artist
+                </a>
+                <div class="dropdown-menu" >
+                  <a class="dropdown-item text-muted" *ngFor="let artist of artists" routerLink="/artist-backend/{{artist.id}}" data-toggle="collapse" data-target="#navbarSupportedContent">{{artist.name}}</a>
+                </div>
+
             </div>
             <div class="float-right">
               <a class="btn-floating btn-lg" data-toggle="modal" data-target="#addartist">

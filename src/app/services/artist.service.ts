@@ -54,7 +54,7 @@ export class ArtistService {
   }
 
   getArtist():any{
-    return this.http.get(`${this.url}/artists`).pipe(map((data: Artist[])=>data),
+    return this.http.get(`${this.url}/artists`).pipe(map((data: Artist)=>data),
     catchError(error=>{
       return throwError('something went wrong..');
     })
@@ -62,7 +62,8 @@ export class ArtistService {
   }
 
 updateArtist(data:any, id: string){
-  return this.http.put<any>(`${this.url}/artist/${id}`, data).pipe(map((data: any)=>{
+  var body = JSON.stringify(data);
+  return this.http.put<any>(`${this.url}/artist/${id}`, body).pipe(map((data: any)=>{
     return data;
  }),
  catchError(error => {
@@ -73,7 +74,7 @@ updateArtist(data:any, id: string){
 
 
   getArtistById(id :number){
-     return this.http.get(`${this.url}/artist/${id}`).pipe(map((data: Artist[])=>data),
+     return this.http.get(`${this.url}/artist/${id}`).pipe(map((data: Artist)=>data),
      catchError(error=>{
        return throwError('something went wrong getting data..');
      })

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 artists : Artist[];
-user : any;
+user : any = '';
 
 
   constructor(
@@ -25,6 +25,7 @@ user : any;
     this.PortalAuth.userDetails().subscribe((data :any)=>{
       this.user = data['success']
     })
+
   }
 
   getArtistList(){
@@ -37,11 +38,13 @@ user : any;
   logout()
    {
      localStorage.removeItem('token');
-     this.user= null;
+     this.user = null;
     //  this.PortalAuth.logout().subscribe((res)=>{
     //    console.log(res);
     //  });
       this.route.navigate(['/login']);
    }
+
+
 
 }

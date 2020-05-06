@@ -5,6 +5,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PortalAuthService } from 'src/app/services/portal-auth.service';
 import { Admin } from 'src/app/interface/admin';
+import { Artist } from 'src/app/interface/artist';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AdminComponent implements OnInit {
   videoForm :   FormGroup;
   addSongForm : FormGroup;
   admin : Admin;
+  artists: Artist[];
 
 
   constructor(
@@ -31,6 +33,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void
    {
+    this.getArtistList();
     this.artistForm =  this.fb.group({
         name: ['', [Validators.required]],
         biography: ['',Validators.required]
@@ -48,7 +51,15 @@ export class AdminComponent implements OnInit {
     album: ['', [Validators.required]],
     file: ['',Validators.required]
      });
+
 }
+
+getArtistList(){
+      this.ArtistService.getArtist().subscribe((data: any)=>{
+        console.log(data);
+        this.artists = data;
+      });
+    }
 
 onSongSelect(event)
 {
