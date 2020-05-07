@@ -33,8 +33,7 @@ export class ArtistBackComponent implements OnInit {
             });
 
       this.imageform = this.fb.group({
-          artistId: ['', [Validators.required]],
-          image: ['', [Validators.required]]
+          image: ['']
           });
 
       this.loadArtist()
@@ -49,26 +48,24 @@ loadArtist(){
   })
 }
 
-onImageSelect(event){
-  if(event.target.files.length > 0)
-  {
-    const image = event.target.files[0];
-    this.imageform.patchValue({
-      image : image
-    });
-  }
+onImageSelect(event)
+{
+  if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.imageform.get('image').setValue(file);
+    }
 }
 
 UpdateImageSubmit(){
   var formData = new FormData();
   var id =  this.id;
   formData.append('image', this.imageform.get('image').value);
-  formData.append('id', id);
+
    this.ArtistService.postImage(formData, id).subscribe(
               response=>{ console.log(response); },
               error  => { console.log("Rrror", error); }
           );
-       console.log(formData.get('image'),id);
+       console.log(formData.get('image'));
 }
 
 UpdateFormSubmit(){

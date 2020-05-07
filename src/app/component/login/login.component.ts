@@ -15,14 +15,22 @@ export class LoginComponent implements OnInit {
    error : string ;
    portalForm :FormGroup;
 
-  constructor(private fb:FormBuilder, private router: Router,private PortalAuth: PortalAuthService) { }
+  constructor(
+    private fb:FormBuilder,
+    private router: Router,
+    private PortalAuth: PortalAuthService
+    ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+   {
     this.portalForm =  this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['',Validators.required]
-   });
+        email: ['', [Validators.required,Validators.email ]],
+        password: ['',Validators.required]
+        });
+
+   this.loggedInCheck();
   }
+
 
   onPortalSubmit(){
     if(this.portalForm.valid){
@@ -32,13 +40,15 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('token', this.token);
                this.router.navigate(['admin']);
              }
-
-
-
-
-    })
+      })
   }
+}
 
+loggedInCheck()
+{
+  if(localStorage.getItem('token')){
+      this.router.navigate(['/admin'])
+  }
 }
 
 }

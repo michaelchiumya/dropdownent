@@ -20,12 +20,12 @@ user : any = '';
     private route: Router
     ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void
+   {
     this.getArtistList();
     this.PortalAuth.userDetails().subscribe((data :any)=>{
       this.user = data['success']
     })
-
   }
 
   getArtistList(){

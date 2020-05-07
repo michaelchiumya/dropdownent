@@ -16,14 +16,15 @@ export class AuthService {
 public getAccess()
 {
     var Data = {
-      "email": "michaelchiumya@gmail.com",
-       'password': 'BlackBoyJoyDev'
-       };
-    var body = JSON.stringify(Data);
-    const header = new HttpHeaders({
-      'content-type': 'application/json'
-        });
-    return this.http.post(`${this.apiURL}/login`, body, {'headers' :header}).pipe( catchError(this.handleError));
+           "email": "michaelchiumya@gmail.com",
+           'password': 'BlackBoyJoyDev'
+         };
+
+    // const header = new HttpHeaders({
+    //   'content-type': 'application/json'
+    //     });
+    
+    return this.http.post(`${this.apiURL}/login`, Data).pipe( catchError(this.handleError));
 }
 
 public getAppUserDetails(access_token)

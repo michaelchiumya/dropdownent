@@ -90,7 +90,7 @@ onArtistImageSelect(event)
        formData.append('file', this.addSongForm.get('file').value);
        console.log(formData);
 
-      console.log(this.addSongForm.valid);
+      console.log(this.addSongForm.valid, this.addSongForm.value);
       this.ArtistService.postSong(formData).subscribe(
            response=>{ console.log(response); },
            error  => { console.log("Rrror", error); }

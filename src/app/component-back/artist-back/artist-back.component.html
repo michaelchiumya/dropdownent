@@ -15,7 +15,7 @@
         <div class="file-field">
           <div class="btn elegant-color white-text btn-sm float-left">
             <span>Choose file</span>
-            <input type="file" formControlName="image" >
+            <input type="file" formControlName="image" (change)="onImageSelect($event)">
           </div>
         </div>
         <button class="btn elegant-color white-text" type="submit">Update</button>

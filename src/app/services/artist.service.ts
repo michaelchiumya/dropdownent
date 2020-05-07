@@ -34,7 +34,7 @@ export class ArtistService {
   }
 
   postSong(data : any) {
-    return  this.http.post<any>(`${this.url}/song` , data).pipe(map((data: any)=>{
+    return  this.http.post<any>(`${this.url}/song` ,data).pipe(map((data: any)=>{
       return data;
    }),
    catchError(error => {
@@ -62,8 +62,8 @@ export class ArtistService {
   }
 
 updateArtist(data:any, id: string){
-  var body = JSON.stringify(data);
-  return this.http.put<any>(`${this.url}/artist/${id}`, body).pipe(map((data: any)=>{
+  //var body = JSON.stringify(data);
+  return this.http.put<any>(`${this.url}/artist/${id}`,data).pipe(map((data: any)=>{
     return data;
  }),
  catchError(error => {

@@ -45,7 +45,7 @@
           <h5>Give Thanks Music Video<br>
             <small class="muted-text">PQ ft Malinga</small>
          </h5>
-        <button class="btn btn-outline-warning p-4 ">Watch Video</button>
+        <button class="btn btn-outline-warning p-4" href="https://youtu.be/XLmcp6Eq1lo">Watch Video</button>
     </div>
   </div>
 
@@ -67,25 +67,26 @@
 <div class="m-5"></div>
 
 <!--signed artists-->
-<div class="jumbotron">
+<div class="container-fluid">
   <h2 class="h2-responsive text-elegant-color text-center font-weight-bold">Artist</h2>
-   <div class="row" *ngFor="let data of artistData">
-       <div class="col-sm-4 mx-auto my-4 wow fadeIn slow">
+   <div class="row">
+       <div class="col-sm-4 my-2 mx-auto p-3 wow fadeIn slow" *ngFor="let data of artistData">
          <div class="view overlay zoom ">
-          <img src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{data.image}}" class="rounded-circle mx-auto" alt="zoom" width="230">
+          <img *ngIf="data.image=='null' " src="/assets/img/dd-logo.svg" class="rounded-circle mx-auto" alt="zoom" width="180">
+          <img src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{data.image}}" class="rounded-circle mx-auto" alt="zoom" width="180">
           <div class="mask flex-center waves-effect waves-light rgba-white-light rounded-0">
             <h4 class=" h4-responsive">
-              <a routerLink="/artist/{{data.id}}" class="black-text font-weight-bold text-monospace"> {{data.name}}</a>
+              <a routerLink="/artist/{{data.id}}" class="black-text font-weight-bold text-monospace"> {{data.name | uppercase}}</a>
              </h4>
          </div>
        </div>
       </div>
   </div>
+</div>
 
-
-
-<div class="container mb-5">
-  <div class="card text-center mt-4 mb-4">
+<div class="jumbotron">
+  <div class="col-sm-8 mx-auto mb-5">
+    <div class="card text-center mt-4 mb-4">
 
   <div class="card-header text-white elegant-color">
       <h5>Fun Love</h5>
