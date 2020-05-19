@@ -67,25 +67,26 @@
 <div class="m-5"></div>
 
 <!--signed artists-->
-<div class="container-fluid">
-  <h2 class="h2-responsive text-elegant-color text-center font-weight-bold">Artist</h2>
-   <div class="row">
-       <div class="col-sm-4 my-2 mx-auto p-3 wow fadeIn slow" *ngFor="let data of artistData">
-         <div class="view overlay zoom ">
-          <img *ngIf="data.image=='null' " src="/assets/img/dd-logo.svg" class="rounded-circle mx-auto" alt="zoom" width="180">
-          <img src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{data.image}}" class="rounded-circle mx-auto" alt="zoom" width="180">
-          <div class="mask flex-center waves-effect waves-light rgba-white-light rounded-0">
-            <h4 class=" h4-responsive">
-              <a routerLink="/artist/{{data.id}}" class="black-text font-weight-bold text-monospace"> {{data.name | uppercase}}</a>
-             </h4>
-         </div>
-       </div>
+<div class="container-fluid wow fadeIn slow">
+
+<div class="col-md-3 col-5 elegant-color rounded-circle  my-4 mx-auto p-2" *ngFor="let data of artistData;let i = index">
+  <div class="p-2 mx-auto white rounded-circle">
+  <div class="view overlay zoom ">
+    <img *ngIf="data.image ==='null'" src="/assets/img/dd-logo.svg" class="rounded-circle mx-auto img-fluid" alt="dde">
+    <img *ngIf="data.image !=='null'"src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{data.image}}" class="rounded-circle mx-auto img-fluid" alt="dde">
+      <div class="mask flex-center waves-effect waves-light rgba-white-light rounded-0">
+        <h4 class=" h4-responsive">
+          <a routerLink="/artist/{{data.id}}" class="black-text font-weight-bold text-monospace"> {{data.name | uppercase}}</a>
+       </h4>
       </div>
-  </div>
+   </div>
+ </div>
+ </div>
+
 </div>
 
 <div class="jumbotron">
-  <div class="col-sm-8 mx-auto mb-5">
+  <div class="col-sm-8 col-md-6 mx-auto mb-5">
     <div class="card text-center mt-4 mb-4">
 
   <div class="card-header text-white elegant-color">
@@ -106,6 +107,7 @@
     </form>
   </div>
 
+</div>
 </div>
 </div>
 

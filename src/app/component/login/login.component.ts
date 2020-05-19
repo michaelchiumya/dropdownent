@@ -23,30 +23,34 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void
    {
-    this.portalForm =  this.fb.group({
-        email: ['', [Validators.required,Validators.email ]],
-        password: ['',Validators.required]
-        });
+       this.portalForm =  this.fb.group({
+          email: ['', [Validators.required,Validators.email ]],
+          password: ['',Validators.required]
+         });
 
-   this.loggedInCheck();
+       this.loggedInCheck();
   }
 
 
-  onPortalSubmit(){
-    if(this.portalForm.valid){
+  onPortalSubmit()
+  {
+      if(this.portalForm.valid)
+      {
           this.PortalAuth.login(this.portalForm.value).subscribe((res)=>{
-          if (res.status == 200) {
+          if (res.status == 200)
+           {
              this.token = res.body['success'].token;
-              localStorage.setItem('token', this.token);
-               this.router.navigate(['admin']);
-             }
-      })
-  }
+              sessionStorage.setItem('token', this.token);
+                this.router.navigate(['admin']);
+            }
+        })
+      }
 }
 
 loggedInCheck()
 {
-  if(localStorage.getItem('token')){
+  if(sessionStorage.getItem('token'))
+  {
       this.router.navigate(['/admin'])
   }
 }

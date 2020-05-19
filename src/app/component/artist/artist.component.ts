@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Router, NavigationEnd,ActivatedRoute } from '@angular/router';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { DataService } from 'src/app/services/data.service';
-import { ArtistService } from 'src/app/services/artist.service'
+import { ArtistService } from 'src/app/services/artist.service';
+import { MusicService } from 'src/app/services/music.service'
 import { Track } from 'ngx-audio-player';
-import { CarouselConfig, CarouselAlignMode } from 'ng-carousel-cdk';
 
 @Component({
   selector: 'app-artist',
@@ -12,62 +12,76 @@ import { CarouselConfig, CarouselAlignMode } from 'ng-carousel-cdk';
   styleUrls: ['./artist.component.css']
 })
 
-export class ArtistComponent implements OnInit {
+export class ArtistComponent implements OnInit,OnDestroy {
 
   songs : any[];
   albums :any;
   private playlist : Track[];
-  private id :string;
-  artist :any;
-  config: CarouselConfig ;
+  id :string;
+  artist : any;
 
 
   constructor(
     private AlbumsService: AlbumsService,
     private DataService: DataService,
+    private MusicService: MusicService,
     private ArtistService: ArtistService,
-    private route:ActivatedRoute
-    ) { }
+    private activeRoute: ActivatedRoute,
+    private route: Router
+    ) {}
 
-  ngOnInit(): void {
-
-        this.id = this.route.snapshot.paramMap.get('id');
-        var numId = Number(this.id);
-        this.ArtistService.getArtistById(numId).subscribe(arg=> this.artist= arg);
-        this.config = {items: this.songs, shouldLoop: false, slideWidth: 80, autoplayEnabled: false}
-        console.log(this.artist);
-       }
-
-  songLoader(song :any){
-    // console.log('song '+song);
-    this.playlist = [];
-    var toAdd = {title: song.title, link: song.link};
-    this.playlist.push(toAdd);
-    this.DataService.storeData(this.playlist);
-
+  ngOnInit(): void
+   {
+          this.activeRoute.params.subscribe((res)=>{
+            this.getArtist(res.id)
+            this.getSongs(res.id)
+           })
+          this.albums = this.AlbumsService.showAlbums()
   }
 
-  albumLoader(album :any){
-    //console.log('album '+ album);
+  getArtist(id)
+  {
+    this.ArtistService.getArtistById(id).subscribe(arg=> this.artist= arg);
+  }
+
+  getSongs(id)
+  {
+    this.MusicService.getSongs(id).subscribe(arg=> this.songs= arg);
+  }
+
+  songLoader(song :any)
+  {
+    this.playlist = [];
+    var toAdd = {title: song.title, link: song.song};
+    this.playlist.push(toAdd);
+    this.DataService.storeData(this.playlist);
+  }
+
+  albumLoader(album :any)
+  {
     this.playlist = [];
     this.playlist.push(album);
     this.DataService.storeData(album);
   }
 
-  playlistSong(song :any){
-    var selectedSong = {title: song.title, link: song.link};
+  playlistSong(song :any)
+  {
+    var selectedSong = {title: song.title, link: song.song};
     this.playlist.push(selectedSong);
     this.DataService.storeData(this.playlist);
-    }
+  }
 
-    playlistAlbum(album :any){
+  playlistAlbum(album :any)
+  {
        album.forEach(element => {
         this.playlist.push( {title: element.title, link: element.link });
        });
-       //console.log(this.playlist);
        this.DataService.storeData(this.playlist);
-       }
+  }
 
-
+ngOnDestroy()
+{
+  //this.ArtistService.getArtist().unsubscribe()
+}
 
 }

@@ -1,38 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Video } from 'src/app/interface/video';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideosService {
-  videos :any ;
+
   url = "https://dropdown-entertainment.herokuapp.com/api";
-
-
-  httpHeaders = new HttpHeaders()
-     .set('Content-Type', 'application/json')
-     .set('Cache-Control', 'no-cache');
-     options = {
-           headers: this.httpHeaders
-        };
 
   constructor(private http:HttpClient) { }
 
   postVideo(data : any) {
-    var body = JSON.stringify(data);
-    return  this.http.post<any>(`${this.url}/video`, body, this.options);
+    return  this.http.post<any>(`${this.url}/video`, data);
   }
 
-
-  getVideo(): any{
-    return this.http.get(`${this.url}/video`).subscribe(data=>{
-      console.log(data);
-      this.videos = data;
+  getVideos(): any{
+    return this.http.get(`${this.url}/videos`).pipe(map((data: Video[])=>data),
+    catchError(error=>{
+      return throwError('something went wrong..');
     })
+    )
   }
 
-  getVideosData(){
-    return this.videos;
-  }
 
 }

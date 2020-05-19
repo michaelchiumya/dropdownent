@@ -33,15 +33,7 @@ export class ArtistService {
     );
   }
 
-  postSong(data : any) {
-    return  this.http.post<any>(`${this.url}/song` ,data).pipe(map((data: any)=>{
-      return data;
-   }),
-   catchError(error => {
-     return throwError('something went wrong...');
-   })
-   );
-  }
+
 
   postImage(data : any, id: string) {
     return  this.http.post<any>(`${this.url}/artist/${id}/image`, data).pipe(map((data: any)=>{

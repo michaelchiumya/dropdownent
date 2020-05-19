@@ -32,39 +32,17 @@
 <!-- Jumbotron -->
 <br><br>
 
-
-
-<div class="elegant-color">
-<div class="card-deck py-4 d-none d-sm-block">
-  <h3 class="h3 font-weight-bold my-3 text-muted">SINGLES</h3>
-  <ng-carousel [config]="config" >
-     <ng-template ngCarouselSlide let-item>
-        <div class="card">
-            <img src="{{item?.cover}}" class="card-img-top">
-           <div classs="card-body elegant-color">
-             <h5 class="card-title text-truncate px-1">{{item?.title}}</h5>
-             <p class="card-text text-muted font-weight-border font-italic px-1">{{item.album}}</p>
-             <a class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="songLoader(item)"><i class="far fa-play-circle fa-2x" aria-hidden="true"></i></a>
-             <a class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="playlistSong(item)"><i class="fas fa-list-ul fa-2x" aria-hidden="true"></i></a>
-          </div>
-      </div>
-  </ng-template>
-</ng-carousel>
-</div>
-</div>
-
-
 <div class="container-fluid elegant-color py-4" *ngIf="songs">
   <h3 class="h3 font-weight-bold my-3 text-muted">SINGLES</h3>
-  <div class="card-deck d-none d-md-block ">
+  <div class="row ">
 
-   <div class="card mb-4 elegant-color" *ngFor="let song of songs">
+   <div class="card col-md-3 col-sm-5 mb-4 elegant-color" *ngFor="let song of songs">
      <div class="view overlay">
        <img class="card-img-top" src="{{song.cover}}" alt="Card image cap">
        <div class="mask rgba-white-slight"></div>
      </div>
     <div class="card-body">
-      <h4 class="card-title text-muted">{{song.album}}</h4>
+      <h4 class="card-title text-muted text-truncate">{{song.title}}</h4>
       <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="songLoader(song)">
         <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
       </button>

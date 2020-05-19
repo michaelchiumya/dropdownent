@@ -1,6 +1,21 @@
 
 
-@media (max-width: 575px) {}
+@media (max-width: 575px)
+ {
+    .btn.btn-sm
+      {
+       padding: .1rem .2rem;
+       font-size: .64rem;
+      }
+    .h4, h4
+      {
+       font-size: 1rem;
+      }
+    .card-body
+     {
+      padding: .1rem;
+     }
+}
 
 @media (max-width: 767px) {}
 

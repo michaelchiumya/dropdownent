@@ -7,18 +7,21 @@ import { Track } from 'ngx-audio-player';
 })
 export class DataService {
 
- private dataSource = new BehaviorSubject<Track[]>
- ( [{
-  title: null,
-  link: null
-}] );
+ private dataSource = new BehaviorSubject<Track[]>(
+   [
+     {
+     title: null,
+     link : null
+     }
+   ]);
 
  public data : Observable<Track[]> = this.dataSource.asObservable();
 
   constructor() { }
 
-  storeData(data :Track[] ){
-    return this.dataSource.next(data);
-  }
+storeData(data :Track[] )
+{
+  return this.dataSource.next(data);
+}
 
 }

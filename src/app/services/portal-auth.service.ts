@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { throwError, BehaviorSubject, Observable } from 'rxjs';
+import { catchError, map, tap, switchMap, take } from 'rxjs/operators';
 import { JsonPipe } from '@angular/common';
 import { Admin } from '../interface/admin';
 
@@ -9,37 +9,50 @@ import { Admin } from '../interface/admin';
   providedIn: 'root'
 })
 export class PortalAuthService {
+
   private apiURL = 'https://dropdown-entertainment.herokuapp.com/api';
+  subject =  new BehaviorSubject('sign in!');
 
   constructor(private http:HttpClient) { }
 
-  gettoken(){
-    return !!localStorage.getItem("token");
-    }
 
+  gettoken()
+  {
+    return !!sessionStorage.getItem("token");
+  }
 
-   login(data){
-      const header = new HttpHeaders({
-        'content-type': 'application/json'
-          });
-      return this.http.post(`${this.apiURL}/login`, data, {'headers' :header, observe: 'response' }).pipe( catchError(this.handleError));
-    }
+  login(data)
+  {
+      return this.http.post(`${this.apiURL}/login`, data, { observe: 'response' }).pipe(map((data: any)=>{
+        return data;
+     }),
+     catchError(error => {
+       return throwError('something went wrong...');
+     })
+     );
+  }
 
-    userDetails(){
+  userDetails()
+  {
       let body = {}
-      return this.http.post(`${this.apiURL}/udetails`, body).pipe(map((data: Admin)=>data),
-      catchError(error=>{
-        return throwError('something went wrong..');
+      return this.http.post(`${this.apiURL}/udetails`, body).pipe(map((data: any)=>
+      {
+        return  data['success'].name
+      }
+        ),
+
+      catchError((error) =>
+      {
+        return throwError('something went wrong...');
       })
-      )
-    }
+   );
+}
 
-    logout(){
-      const header = new HttpHeaders({
-        'content-type': 'application/json'
+logout()
+  {
 
-          });
-      return this.http.post(`${this.apiURL}/logout`, {'headers' :header, observe: 'response' }).pipe( catchError(this.handleError));
+      return this.http.post(`${this.apiURL}/logout`, { observe: 'response' })
+      .pipe( catchError(this.handleError));
     }
 
   private handleError(err: HttpErrorResponse | any)

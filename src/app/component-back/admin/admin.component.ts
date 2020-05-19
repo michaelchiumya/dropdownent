@@ -3,7 +3,7 @@ import { ArtistService } from 'src/app/services/artist.service';
 import { VideosService } from 'src/app/services/videos.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PortalAuthService } from 'src/app/services/portal-auth.service';
+import { MusicService } from 'src/app/services/music.service';
 import { Admin } from 'src/app/interface/admin';
 import { Artist } from 'src/app/interface/artist';
 
@@ -26,7 +26,7 @@ export class AdminComponent implements OnInit {
     private fb: FormBuilder,
     private ArtistService: ArtistService,
     private VideosService: VideosService,
-    private PortalAuth: PortalAuthService,
+    private MusicService: MusicService,
     private route: Router
     )
    { }
@@ -40,26 +40,60 @@ export class AdminComponent implements OnInit {
       });
 
    this.videoForm =  this.fb.group({
-       artistId: ['', [Validators.required]],
+      artistId: ['', [Validators.required]],
       title: ['', [Validators.required]],
-      link: ['',Validators.required]
+      link: ['',Validators.required],
+      file: ['',Validators.required]
     });
 
  this.addSongForm =  this.fb.group({
     artistId: ['', [Validators.required]],
     title: ['', [Validators.required]],
     album: ['', [Validators.required]],
-    file: ['',Validators.required]
+    file: ['',Validators.required],
+    cover: ['',Validators.required]
      });
 
 }
 
-getArtistList(){
-      this.ArtistService.getArtist().subscribe((data: any)=>{
-        console.log(data);
-        this.artists = data;
+getArtistList()
+{
+  this.ArtistService.getArtist().subscribe((data: any)=>{
+   console.log(data);
+    this.artists = data;
       });
+}
+
+onArtistSubmit()
+{
+  if(this.artistForm.valid)
+  {
+    console.log(this.artistForm.valid);
+     this.ArtistService.postArtist(this.artistForm.value).subscribe(
+           response=>{ console.log(response); },
+           error  => { console.log("Rrror", error); }
+        );
+       this.artistForm.reset();
+  }
+}
+
+onArtistImageSelect(event)
+ {
+    if (event.target.files.length > 0)
+    {
+      const file = event.target.files[0];
+      this.artistForm.get('image').setValue(file);
     }
+}
+
+onSongCoverSelect(event)
+ {
+    if (event.target.files.length > 0)
+    {
+      const file = event.target.files[0];
+      this.addSongForm.get('cover').setValue(file);
+    }
+}
 
 onSongSelect(event)
 {
@@ -72,63 +106,53 @@ onSongSelect(event)
      }
   }
 
-onArtistImageSelect(event)
- {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.artistForm.get('image').setValue(file);
-    }
-  }
-
  onSongSubmit()
  {
-  if(this.addSongForm.valid){
+  if(this.addSongForm.valid)
+  {
      var formData = new FormData();
        formData.append('artistId', this.addSongForm.get('artistId').value);
        formData.append('title', this.addSongForm.get('title').value);
        formData.append('album', this.addSongForm.get('album').value);
        formData.append('file', this.addSongForm.get('file').value);
-       console.log(formData);
+       formData.append('cover', this.addSongForm.get('cover').value);
 
-      console.log(this.addSongForm.valid, this.addSongForm.value);
-      this.ArtistService.postSong(formData).subscribe(
+      this.MusicService.postSong(formData).subscribe(
            response=>{ console.log(response); },
            error  => { console.log("Rrror", error); }
        );
-
-       this.artistForm.reset();
-   }else{
-       console.log('form not valid');
-     }
+       this.addSongForm.reset();
+   }
  }
 
-  onArtistSubmit()
-   {
-     if(this.artistForm.valid){
-       console.log(this.artistForm.valid);
-        this.ArtistService.postArtist(this.artistForm.value).subscribe(
-              response=>{ console.log(response); },
-              error  => { console.log("Rrror", error); }
-           );
-          this.artistForm.reset();
-     }else{
-       console.log('form not valid');
-      }
-  }
+onVideoImageSelect(event)
+{
+  if(event.target.files.length > 0)
+     {
+       const file = event.target.files[0];
+       this.videoForm.patchValue({
+         file : file
+       });
+     }
+}
 
-
-  onVideoSubmit()
+onVideoSubmit()
   {
-    if(this.videoForm.valid){
-        console.log(this.videoForm.valid);
-         this.VideosService.postVideo(this.videoForm.value).subscribe(
+    if(this.videoForm.valid)
+    {
+      var formData = new FormData();
+      formData.append('artistId', this.videoForm.get('artistId').value);
+      formData.append('title', this.videoForm.get('title').value);
+      formData.append('link', this.videoForm.get('link').value);
+      formData.append('file', this.videoForm.get('file').value);
+
+         this.VideosService.postVideo(formData).subscribe(
                response=>{ console.log(response); },
                error  => { console.log("Rrror", error); }
            );
-         this.videoForm.reset();
-    }else{
-      console.log('form not valid');
-      }
+           this.videoForm.reset();
+    }
+
    }
 
 }

@@ -42,16 +42,16 @@
     </ul>
 
 
-    <ul class="navbar-nav ml-auto nav-flex-icons">
+    <ul class="navbar-nav ml-auto nav-flex-icons" >
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333 " data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-         <i class="fas fa-user"></i> {{ user?.name }}
+         <i class="fas fa-user"></i>{{ display }}
         </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-default"
-          aria-labelledby="navbarDropdownMenuLink-333" *ngIf="user">
-          <a class="dropdown-item" routerLink="admin">My Page</a>
-          <a class="dropdown-item" (click)="logout()">Logout</a>
+        <div class="dropdown-menu dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" routerLink="admin" data-toggle="collapse" data-target="#navbarSupportedContent">My Page</a>
+          <a class="dropdown-item" (click)="logout()" data-toggle="collapse" data-target="#navbarSupportedContent">Logout</a>
         </div>
       </li>
     </ul>

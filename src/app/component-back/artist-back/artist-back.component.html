@@ -2,21 +2,19 @@
  <div class="row">
 
   <div class="card mb-4 col-md-4 col-sm-12">
-    <div class="view overlay">
+    <img *ngIf="artist.image=='null'" class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card">
+    <div class="view overlay" *ngIf="artist.image !='null'" >
       <a href="#!"></a>
-       <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card">
+       <img class="card-img-top" src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{ artist.image }}" alt="Card">
       <a href="#!">
        <div class="mask rgba-white-slight"></div>
      </a>
   </div>
    <div class="card-body p-0">
       <form [formGroup]="imageform" (ngSubmit)="UpdateImageSubmit()">
-
-        <div class="file-field">
-          <div class="btn elegant-color white-text btn-sm float-left">
-            <span>Choose file</span>
-            <input type="file" formControlName="image" (change)="onImageSelect($event)">
-          </div>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFileLang" lang="en" formControlName="image" (change)="onImageSelect($event)">
+          <label class="custom-file-label" for="customFileLang">upload image</label>
         </div>
         <button class="btn elegant-color white-text" type="submit">Update</button>
       </form>
@@ -34,11 +32,9 @@
     </select>
     <div class="md-form">
       <input type="text" id="inputMDEx" class="form-control" [(ngModel)]="artist.name" formControlName="name">
-      <label for="inputMDEx">Name</label>
     </div>
      <div class="md-form amber-textarea active-amber-textarea">
-      <textarea id="form19" class="md-textarea form-control" rows="3" formControlName="biography" [(ngModel)]="artist.biography"></textarea>
-      <label for="form19">Bio</label>
+      <textarea id="form19" class="md-textarea form-control" formControlName="biography" [(ngModel)]="artist.biography"></textarea>
      </div>
   <button class="btn elegant-color white-text" type="submit">Update</button>
   </form>

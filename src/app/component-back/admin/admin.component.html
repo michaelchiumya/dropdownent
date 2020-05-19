@@ -69,7 +69,7 @@
           <div class="md-form mb-4">
             <select formControlName="artistId" class="browser-default custom-select" required>
                <option selected>Select Artist</option>
-               <option *ngFor="let artist of artists" value={{artist.id}}>{{artist.name}}</option>
+               <option *ngFor="let artist of artists" value={{artist.id}}>{{artist.name | uppercase}}</option>
             </select>
          </div>
            <div class="md-form mb-4">
@@ -87,9 +87,19 @@
             <label data-error="wrong" data-success="right" for="form3">Album</label>
          </div>
           <div class="md-form mb-4">
-             <i class="fas fa-book prefix grey-text"></i>
-             <input type="file" formGroupName="file" (change)="onSongSelect($event)" required>
+             <i class="fas fa-music prefix grey-text"></i>
+             <input type="file"
+              formGroupName="file"
+              (change)="onSongSelect($event)"
+              accept="audio/*" required>
           </div>
+          <div class="md-form mb-4">
+            <i class="fas fa-image prefix grey-text"></i>
+            <input type="file"
+             formGroupName="cover"
+             (change)="onSongCoverSelect($event)"
+             accept="image/*" required>
+         </div>
         <!--Footer-->
          <div class="modal-footer justify-content-center">
            <button type="submit" class="btn btn-outline-warning waves-effect">
@@ -123,7 +133,8 @@
             <div class="md-form mb-4">
               <select formControlName="artistId" class="browser-default custom-select">
                 <option selected>Select Artist</option>
-                <option *ngFor="let artist of artists" value={{artist.id}}>{{artist.name}}</option>
+                <div class="dropdown-divider"></div>
+                <option *ngFor="let artist of artists" value={{artist.id}}>{{ artist.name |uppercase }}</option>
              </select>
              <span class="text-danger"
              *ngIf="(videoForm.get('artistId').dirty ||videoForm.get('artistId').touched) && videoForm.get('artistId').invalid && videoForm.get('artistId').errors.required">
@@ -142,7 +153,7 @@
            </div>
 
            <div class="md-form mb-4">
-            <i class="fas fa-book prefix grey-text"></i>
+            <i class="fas fa-link prefix grey-text"></i>
              <input class="form-control validate" formControlName="link" required>
               <label data-error="wrong" data-success="right" for="link">link</label>
               <span class="text-danger"
@@ -150,6 +161,11 @@
                   link field required
                 </span>
            </div>
+           <div class="md-form mb-4">
+            <i class="fas fa-book prefix grey-text"></i>
+            <input type="file" formGroupName="file" (change)="onVideoImageSelect($event)" required>
+
+         </div>
 
     <!--Footer-->
     <div class="modal-footer justify-content-center">
@@ -183,22 +199,31 @@
           <div class="card-body pt-0">
             <div class="nav-item dropdown float-left">
 
-                <a class="nav-link text-muted" href="#" id="navbardrop" data-toggle="dropdown">
-                 Artist
-                </a>
-                <div class="dropdown-menu" >
-                  <a class="dropdown-item text-muted" *ngFor="let artist of artists" routerLink="/artist-backend/{{artist.id}}" data-toggle="collapse" data-target="#navbarSupportedContent">{{artist.name}}</a>
-                </div>
+              <button
+                 class="btn elegant-color white-text dropdown-toggle mr-4"
+                type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Artists
+             </button>
 
-            </div>
-            <div class="float-right">
-              <a class="btn-floating btn-lg" data-toggle="modal" data-target="#addartist">
-                  <i class="far fa-plus-square"></i>
+            <div class="dropdown-menu">
+             <a class="dropdown-item text-muted"
+             *ngFor="let artist of artists" routerLink="/artist-backend/{{artist.id}}"
+              data-toggle="collapse">
+                {{artist.name | uppercase}}
               </a>
-            </div>
-          </div>
+           </div>
+
         </div>
-    </div>
+        <div class="float-right">
+          <a class="btn-floating btn-lg"
+           data-toggle="modal"
+            data-target="#addartist">
+            <i class="far fa-plus-square"></i>
+          </a>
+      </div>
+   </div>
+</div>
+</div>
 
 
 
@@ -297,13 +322,16 @@
                Admin
               </a>
               <div class="dropdown-menu" >
-                <a class="dropdown-item text-muted" *ngFor="let artist of artists" routerLink="/artist-backend/{{artist.id}}" data-toggle="collapse" data-target="#navbarSupportedContent">{{artist.name}}</a>
-              </div>
+                <a class="dropdown-item text-muted"
 
-          </div>
-          <div class="float-right">
-            <a class="btn-floating btn-lg text-muted" routerLink="/signup">
-                <i class="far fa-plus-square"></i>
+                data-toggle="collapse">
+               admin 1
+              </a>
+            </div>
+        </div>
+      <div class="float-right">
+        <a class="btn-floating btn-lg text-muted" routerLink="/signup">
+     <i class="far fa-plus-square"></i>
             </a>
           </div>
         </div>
