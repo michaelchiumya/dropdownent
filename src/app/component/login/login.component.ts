@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PortalAuthService } from 'src/app/services/portal-auth.service';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -27,13 +28,12 @@ export class LoginComponent implements OnInit {
           email: ['', [Validators.required,Validators.email ]],
           password: ['',Validators.required]
          });
-
        this.loggedInCheck();
   }
 
 
-  onPortalSubmit()
-  {
+onPortalSubmit()
+{
       if(this.portalForm.valid)
       {
           this.PortalAuth.login(this.portalForm.value).subscribe((res)=>{
@@ -41,7 +41,12 @@ export class LoginComponent implements OnInit {
            {
              this.token = res.body['success'].token;
               sessionStorage.setItem('token', this.token);
-                this.router.navigate(['admin']);
+              this.PortalAuth.userDetails().pipe(map((data)=>
+              {
+                this.PortalAuth.subject.next(data)
+               })
+               );
+                this.router.navigateByUrl('admin')
             }
         })
       }
@@ -49,10 +54,10 @@ export class LoginComponent implements OnInit {
 
 loggedInCheck()
 {
-  if(sessionStorage.getItem('token'))
-  {
+   if(sessionStorage.getItem('token'))
+    {
       this.router.navigate(['/admin'])
-  }
+   }
 }
 
 }

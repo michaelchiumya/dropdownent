@@ -59,7 +59,6 @@ export class AdminComponent implements OnInit {
 getArtistList()
 {
   this.ArtistService.getArtist().subscribe((data: any)=>{
-   console.log(data);
     this.artists = data;
       });
 }

@@ -32,33 +32,43 @@
 <!-- Jumbotron -->
 <br><br>
 
-<div class="container-fluid elegant-color py-4" *ngIf="songs">
-  <h3 class="h3 font-weight-bold my-3 text-muted">SINGLES</h3>
-  <div class="row ">
+<div class="container-fluid">
+  <div class="row">
+   <div class="col-md-6 table-wrapper-scroll-y my-custom-scrollbar">
+<table id="dtBasicExample" class="table table-striped table-borderless table-sm" cellspacing="0" width="100%">
+  <thead class="d-none">
+    <tr>
+      <th class="th-sm">image</th>
+      <th class="th-sm">Title</th>
+   </tr>
 
-   <div class="card col-md-3 col-sm-5 mb-4 elegant-color" *ngFor="let song of songs">
-     <div class="view overlay">
-       <img class="card-img-top" src="{{song.cover}}" alt="Card image cap">
-       <div class="mask rgba-white-slight"></div>
-     </div>
-    <div class="card-body">
-      <h4 class="card-title text-muted text-truncate">{{song.title}}</h4>
-      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="songLoader(song)">
+  </thead>
+  <tbody *ngFor="let song of songs">
+    <tr>
+      <td><img src="{{song.cover}}" class="img-fluid " width="200" alt="Responsive image"></td>
+      <td >
+        {{song.title | uppercase}} <br>
+        <small class="text-muted">{{song.album | uppercase}}</small> <br>
+        <button type="button" class="btn btn-elegant btn-rounded text-lg text-muted" (click)="songLoader(song)">
         <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
-      </button>
-      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="playlistSong(song)">
-        <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
+        </button>
 
- </div>
+        <button type="button" class="btn btn-elegant btn-rounded text-lg text-muted" (click)="playlistSong(song)">
+          <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+
+
+  </tbody>
+
+</table>
 </div>
-
-  <br>
+<br>
 
 
 <br>
+<div class="col-md-6">
 <div class="container-fluid elegant-color py-4" *ngIf="albums">
   <h3 class="h3 font-weight-bold my-3 text-muted">Albums</h3>
   <div class="card-deck">
@@ -70,10 +80,10 @@
      </div>
     <div class="card-body">
       <h4 class="card-title text-muted">{{album.album}}</h4>
-      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="albumLoader(album.songs)">
+      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted p-0" (click)="albumLoader(album.songs)">
         <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
       </button>
-      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted" (click)="playlistAlbum(album.songs)">
+      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted p-0" (click)="playlistAlbum(album.songs)">
         <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
       </button>
     </div>
@@ -81,6 +91,8 @@
 
  </div>
 </div>
-
+</div>
+</div>
+</div>
   <br><br>
 

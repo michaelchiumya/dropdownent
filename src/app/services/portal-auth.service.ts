@@ -37,7 +37,7 @@ export class PortalAuthService {
       let body = {}
       return this.http.post(`${this.apiURL}/udetails`, body).pipe(map((data: any)=>
       {
-        return  data['success'].name
+        return  data['success']
       }
         ),
 

@@ -42,11 +42,11 @@
     </ul>
 
 
-    <ul class="navbar-nav ml-auto nav-flex-icons" >
+    <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="display">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333 " data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-         <i class="fas fa-user"></i>{{ display }}
+         <i class="fas fa-user"></i>{{ display.name }}
         </a>
         <div class="dropdown-menu dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">

@@ -3,6 +3,7 @@ import { ArtistService } from 'src/app/services/artist.service';
 import { Artist } from 'src/app/interface/artist';
 import { PortalAuthService } from 'src/app/services/portal-auth.service';
 import { Router } from '@angular/router';
+import { Admin } from 'src/app/interface/admin';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class MenuComponent implements OnInit,OnDestroy {
 artists : Artist[];
 user : any ;
 name :string;
-display ;
+display;
+
 
   constructor(
     private ArtistService: ArtistService,
@@ -26,27 +28,23 @@ display ;
   ngOnInit(): void
  {
     this.getArtistList();
-
     this.PortalAuth.userDetails().subscribe((data)=>{
       this.display = data
-      console.log('data', this.display)
     })
-
-  }
+}
 
   getArtistList()
   {
     this.ArtistService.getArtist().subscribe((data: any)=>{
-      console.log(data);
       this.artists = data;
     });
   }
 
   logout()
-   {
-     sessionStorage.removeItem('token');
+  {
+    sessionStorage.removeItem('token');
      this.user= null;
-     this.PortalAuth.subject.next('sign in!')
+     this.display= null;
     //  this.PortalAuth.logout().subscribe((res)=>{
     //    console.log(res);
     //  });
