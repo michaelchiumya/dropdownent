@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError, BehaviorSubject, Observable } from 'rxjs';
+import {  HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { throwError, Subject, Observable } from 'rxjs';
 import { catchError, map, tap, switchMap, take } from 'rxjs/operators';
 import { JsonPipe } from '@angular/common';
 import { Admin } from '../interface/admin';
@@ -11,11 +11,15 @@ import { Admin } from '../interface/admin';
 export class PortalAuthService {
 
   private apiURL = 'https://dropdown-entertainment.herokuapp.com/api';
-  subject =  new BehaviorSubject('sign in!');
+  private subject$ =  new Subject<Admin>();
 
   constructor(private http:HttpClient) { }
 
 
+  get _subject$()
+  {
+    return this.subject$;
+  }
   gettoken()
   {
     return !!sessionStorage.getItem("token");
@@ -23,21 +27,20 @@ export class PortalAuthService {
 
   login(data)
   {
-      return this.http.post(`${this.apiURL}/login`, data, { observe: 'response' }).pipe(map((data: any)=>{
+      return this.http.post(`${this.apiURL}/login`, data,
+       { observe: 'response' }).pipe(map((data)=>
+        {
         return data;
-     }),
-     catchError(error => {
-       return throwError('something went wrong...');
-     })
+       })
      );
   }
 
   userDetails()
   {
       let body = {}
-      return this.http.post(`${this.apiURL}/udetails`, body).pipe(map((data: any)=>
+      return this.http.post(`${this.apiURL}/udetails`, body).pipe(tap((data :Admin)=>
       {
-        return  data['success']
+        this.subject$.next(data)
       }
         ),
 

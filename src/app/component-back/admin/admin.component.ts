@@ -90,7 +90,9 @@ onSongCoverSelect(event)
     if (event.target.files.length > 0)
     {
       const file = event.target.files[0];
-      this.addSongForm.get('cover').setValue(file);
+      this.addSongForm.get('file').patchValue({
+        file : file
+      })
     }
 }
 
@@ -99,9 +101,10 @@ onSongSelect(event)
     if(event.target.files.length > 0)
      {
        const file = event.target.files[0];
-       this.addSongForm.patchValue({
-         file : file
-       });
+       this.addSongForm.get('cover').patchValue({
+          cover : file
+       })
+
      }
   }
 
@@ -116,12 +119,15 @@ onSongSelect(event)
        formData.append('file', this.addSongForm.get('file').value);
        formData.append('cover', this.addSongForm.get('cover').value);
 
+       console.log(this.addSongForm.value)
       this.MusicService.postSong(formData).subscribe(
            response=>{ console.log(response); },
            error  => { console.log("Rrror", error); }
-       );
+       )
+
        this.addSongForm.reset();
    }
+   console.log(this.addSongForm.value)
  }
 
 onVideoImageSelect(event)

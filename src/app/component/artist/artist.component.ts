@@ -3,7 +3,7 @@ import {Router, NavigationEnd,ActivatedRoute } from '@angular/router';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { DataService } from 'src/app/services/data.service';
 import { ArtistService } from 'src/app/services/artist.service';
-import { MusicService } from 'src/app/services/music.service'
+import { MusicService } from 'src/app/services/music.service';
 import { Track } from 'ngx-audio-player';
 
 @Component({

@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit,OnDestroy {
 artists : Artist[];
 user : any ;
 name :string;
-display;
+display :any;
 
 
   constructor(
@@ -28,12 +28,23 @@ display;
   ngOnInit(): void
  {
     this.getArtistList();
-    this.PortalAuth.userDetails().subscribe((data)=>{
+    this.PortalAuth._subject$.subscribe((data)=>{
+
       this.display = data
     })
+    this.getAdmin();
+    console.log('display ',this.display)
+
 }
 
-  getArtistList()
+getAdmin()
+{
+  this.PortalAuth.userDetails().subscribe((data)=>{
+    this.display = data
+  })
+}
+
+getArtistList()
   {
     this.ArtistService.getArtist().subscribe((data: any)=>{
       this.artists = data;

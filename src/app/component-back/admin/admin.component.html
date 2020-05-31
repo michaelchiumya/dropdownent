@@ -93,13 +93,7 @@
               (change)="onSongSelect($event)"
               accept="audio/*" required>
           </div>
-          <div class="md-form mb-4">
-            <i class="fas fa-image prefix grey-text"></i>
-            <input type="file"
-             formGroupName="cover"
-             (change)="onSongCoverSelect($event)"
-             accept="image/*" required>
-         </div>
+         
         <!--Footer-->
          <div class="modal-footer justify-content-center">
            <button type="submit" class="btn btn-outline-warning waves-effect">
@@ -236,7 +230,7 @@
           <div class="card-body pt-0">
             <div class="float-left">
                <h6 class="font-weight-bold mb-1">
-                  <a class="black-text" routerLink="/artist-backend">Songs</a>
+                  <a class="black-text" routerLink="/music">Songs</a>
                </h6>
             </div>
             <div class="float-right">

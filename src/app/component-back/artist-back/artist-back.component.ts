@@ -32,7 +32,7 @@ export class ArtistBackComponent implements OnInit {
             });
 
       this.imageform = this.fb.group({
-          image: ['']
+          image: ['',[Validators.required]]
           });
 
       this.loadArtist()
@@ -43,16 +43,14 @@ loadArtist(){
   var numId = Number(this.id);
   this.ArtistService.getArtistById(numId).subscribe((arg)=>{
     this.artist = arg
-    console.log(this.artist)
   })
 }
 
 onImageSelect(event)
 {
-
   if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.imageform.get('image').setValue(file);
+      this.imageform.get('image').setValue(file,{emitModelToViewChange: true})
     }
 }
 
@@ -60,29 +58,26 @@ UpdateImageSubmit(){
   var formData = new FormData();
   var id =  this.id;
   formData.append('image', this.imageform.get('image').value);
-
-  //  this.ArtistService.postImage(formData, id).subscribe(
-  //             response=>{ console.log(response); },
-  //             error  => { console.log("Rrror", error); }
-  //         );
-
-       console.log(formData.get('image'));
+   this.ArtistService.postImage(formData, id).subscribe(
+              response=>{ console.log(response); },
+              error  => { console.log("Rrror", error); }
+          );
 }
 
 UpdateFormSubmit(){
    console.log(this.updateform.value)
   if(this.updateform.valid){
-       console.log("updateform", this.updateform.value);
-
-       this.ArtistService.updateArtist(this.updateform.value, this.id).subscribe(
+      this.ArtistService.updateArtist(this.updateform.value, this.id).subscribe(
               response=>{ console.log(response); },
               error  => { console.log("Rrror", error); }
           );
-
-   }else{
-    console.log('form not valid');
    }
 }
 
-
+deleteArtist(id)
+ {
+   this.ArtistService.destroyArtist(id).subscribe((response)=>{
+     console.log(response)
+   })
+ }
 }

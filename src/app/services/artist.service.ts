@@ -53,14 +53,14 @@ export class ArtistService {
     )
   }
 
-updateArtist(data:any, id: string){
-  //var body = JSON.stringify(data);
+updateArtist(data:any, id: string)
+{
   return this.http.put<any>(`${this.url}/artist/${id}`,data).pipe(map((data: any)=>{
     return data;
- }),
- catchError(error => {
+   }),
+   catchError(error => {
    return throwError('something went wrong...');
- })
+      })
  );
 }
 

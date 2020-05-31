@@ -1,0 +1,46 @@
+<div class="panel text-center" *ngIf="!songs">
+   <h4 class="h4">No songs Added </h4>
+</div>
+<div class="container-fluid elegant-color py-4" *ngIf="songs">
+  <h3 class="h3 font-weight-bold my-3 text-muted">Music</h3>
+  <div class="card-deck">
+
+   <div class="card mb-4 elegant-color my-3" *ngFor="let song of songs">
+    <img *ngIf="song.cover=='null'" class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card">
+     <div class="view overlay">
+       <img *ngIf="song.cover!='null'" class="card-img-top" src="{{song.cover}}" alt="Card image cap">
+       <div class="mask rgba-white-slight"></div>
+     </div>
+
+    <div class="card-body white">
+    <h4 class="h4 font-weight-bold my-3 text-muted"> {{song.title}}</h4>
+      <form [formGroup]="songCoverForm">
+        <div class="md-form mb-4">
+           <input type="file"
+            formGroupName="file"
+            (change)="onSongCoverSelect($event)"
+            accept="image/*" required>
+        </div>
+     </form>
+      <div class="d-flex justify-content-between">
+        <div>
+         <form [formGroup]="SongActivateForm">
+           <label>Status</label>
+           <select class="browser-default custom-select" formControlName="active" [(ngModel)]="song.active">
+            <option value="true">On</option>
+            <option value="false">Off</option>
+          </select>
+        </form>
+        </div>
+       <div>
+        <button type="button" class="btn btn-elegant text-lg text-muted" (click)="deleteSong(song.id)">
+          <i class="fas fa-trash fa-2x pr-2" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  </div>
+<br><br>
+ </div>
+</div>

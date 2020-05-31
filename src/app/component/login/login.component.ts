@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
    token : string= '';
-   error : string ;
+   error : string="" ;
    portalForm :FormGroup;
 
   constructor(
@@ -41,13 +41,10 @@ onPortalSubmit()
            {
              this.token = res.body['success'].token;
               sessionStorage.setItem('token', this.token);
-              this.PortalAuth.userDetails().pipe(map((data)=>
-              {
-                this.PortalAuth.subject.next(data)
-               })
-               );
+               this.PortalAuth.userDetails().subscribe();
                 this.router.navigateByUrl('admin')
             }
+
         })
       }
 }

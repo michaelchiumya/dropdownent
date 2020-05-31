@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Song } from '../interface/song';
@@ -42,4 +42,12 @@ export class MusicService {
       )
     }
 
+getAllSongs()
+{
+  return this.http.get(`${this.url}/songs`).pipe(map((data: Song[])=>data),
+    catchError(error=>{
+      return throwError('something went wrong..');
+        })
+        )
+      }
 }

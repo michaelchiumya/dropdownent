@@ -12,11 +12,13 @@
   </div>
    <div class="card-body p-0">
       <form [formGroup]="imageform" (ngSubmit)="UpdateImageSubmit()">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="customFileLang" lang="en" formControlName="image" (change)="onImageSelect($event)">
-          <label class="custom-file-label" for="customFileLang">upload image</label>
+        <div class=" ">
+          <input
+            type="file" formControlName="image"
+            (change)="onImageSelect($event)" accept="image/*">
+
         </div>
-        <button class="btn elegant-color white-text" type="submit">Update</button>
+        <button class="btn elegant-color white-text mt-2" type="submit">Update</button>
       </form>
    </div>
  </div>
@@ -36,7 +38,15 @@
      <div class="md-form amber-textarea active-amber-textarea">
       <textarea id="form19" class="md-textarea form-control" formControlName="biography" [(ngModel)]="artist.biography"></textarea>
      </div>
-  <button class="btn elegant-color white-text" type="submit">Update</button>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <button class="btn elegant-color white-text" type="submit">Update</button>
+      </div>
+     <div>
+        <button class="btn elegant-color white-text" (click)="deleteArtist(artist.id)">Delete</button>
+    </div>
+  </div>
   </form>
  </div>
 

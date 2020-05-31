@@ -27,9 +27,7 @@ import { PortalAuthService } from './services/portal-auth.service';
 import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import{ AngularFireStorageModule}from '@angular/fire/storage';
-
-
+import { SongsComponent } from './component-back/songs/songs.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +41,8 @@ import{ AngularFireStorageModule}from '@angular/fire/storage';
     SafePipePipe,
     ArtistBackComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    SongsComponent
   ],
 
   imports: [
@@ -54,8 +53,16 @@ import{ AngularFireStorageModule}from '@angular/fire/storage';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp( {
+      apiKey: "AIzaSyAQY-hpjYnB7JBTBbkMDvi5FO2YmcWqUkA",
+      authDomain: "dropdown-entertainment.firebaseapp.com",
+      databaseURL: "https://dropdown-entertainment.firebaseio.com",
+      projectId: "dropdown-entertainment",
+      storageBucket: "dropdown-entertainment.appspot.com",
+      messagingSenderId: "299668417535",
+      appId: "1:299668417535:web:784e6ab6d9d0ae647a55ca",
+      measurementId: "G-V7GK6GGDSZ"
+    } )
   ],
 
   providers: [

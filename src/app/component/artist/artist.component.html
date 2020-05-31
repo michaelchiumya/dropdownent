@@ -45,17 +45,28 @@
   </thead>
   <tbody *ngFor="let song of songs">
     <tr>
-      <td><img src="{{song.cover}}" class="img-fluid " width="200" alt="Responsive image"></td>
+      <td>
+        <img *ngIf="song.cover == 'null'" class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg">
+        <img *ngIf="song.cover != 'null'"src="{{song.cover}}" class="img-fluid" width="200" alt="image">
+      </td>
       <td >
         {{song.title | uppercase}} <br>
         <small class="text-muted">{{song.album | uppercase}}</small> <br>
-        <button type="button" class="btn btn-elegant btn-rounded text-lg text-muted" (click)="songLoader(song)">
-        <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
-        </button>
 
-        <button type="button" class="btn btn-elegant btn-rounded text-lg text-muted" (click)="playlistSong(song)">
-          <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
-        </button>
+
+
+        <div class="d-flex justify-content-between">
+          <div>
+            <button type="button" class="btn btn-elegant  btn-sm text-lg text-muted" (click)="songLoader(song)">
+              <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
+              </button>
+          </div>
+         <div>
+          <button type="button" class="btn btn-elegant btn-sm text-lg text-muted" (click)="playlistSong(song)">
+            <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
       </td>
     </tr>
 
@@ -80,10 +91,10 @@
      </div>
     <div class="card-body">
       <h4 class="card-title text-muted">{{album.album}}</h4>
-      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted p-0" (click)="albumLoader(album.songs)">
+      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="albumLoader(album.songs)">
         <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
       </button>
-      <button type="button" class="btn btn-elegant btn-sm btn-rounded text-lg text-muted p-0" (click)="playlistAlbum(album.songs)">
+      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="playlistAlbum(album.songs)">
         <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
       </button>
     </div>

@@ -10,6 +10,7 @@ import { ArtistBackComponent } from './component-back/artist-back/artist-back.co
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component-back/signup/signup.component';
 import { PortalAuthGuard } from './portal-auth.guard';
+import { SongsComponent } from './component-back/songs/songs.component';
 
 
 
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
   {path: 'admin',  component: AdminComponent, canActivate: [PortalAuthGuard] },
+  {path: 'music',  component: SongsComponent, canActivate: [PortalAuthGuard] },
   {path: 'artist-backend/:id', component: ArtistBackComponent, canActivate: [PortalAuthGuard]},
   {path: 'signup', component:SignupComponent, canActivate: [PortalAuthGuard]},
   {path: '404', component: PageNotFoundComponent},
