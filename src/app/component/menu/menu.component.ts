@@ -33,7 +33,6 @@ display :any;
       this.display = data
     })
     this.getAdmin();
-    console.log('display ',this.display)
 
 }
 

@@ -4,9 +4,9 @@
 <div class="container-fluid elegant-color py-4" *ngIf="songs">
   <h3 class="h3 font-weight-bold my-3 text-muted">Music</h3>
   <div class="card-deck">
-
+   <div class="col-md-3 col-sm-12">
    <div class="card mb-4 elegant-color my-3" *ngFor="let song of songs">
-    <img *ngIf="song.cover=='null'" class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card">
+    <img *ngIf="song.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
      <div class="view overlay">
        <img *ngIf="song.cover!='null'" class="card-img-top" src="{{song.cover}}" alt="Card image cap">
        <div class="mask rgba-white-slight"></div>
@@ -41,6 +41,8 @@
   </div>
 
   </div>
-<br><br>
+  </div>
+
  </div>
+ <br><br><br><br>
 </div>

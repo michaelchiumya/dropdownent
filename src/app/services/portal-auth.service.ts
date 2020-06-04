@@ -31,7 +31,8 @@ export class PortalAuthService {
        { observe: 'response' }).pipe(map((data)=>
         {
         return data;
-       })
+       }
+       )
      );
   }
 

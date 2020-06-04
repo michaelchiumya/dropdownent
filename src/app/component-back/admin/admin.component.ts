@@ -50,8 +50,7 @@ export class AdminComponent implements OnInit {
     artistId: ['', [Validators.required]],
     title: ['', [Validators.required]],
     album: ['', [Validators.required]],
-    file: ['',Validators.required],
-    cover: ['',Validators.required]
+    file: ['',Validators.required]
      });
 
 }
@@ -85,24 +84,24 @@ onArtistImageSelect(event)
     }
 }
 
-onSongCoverSelect(event)
- {
-    if (event.target.files.length > 0)
-    {
-      const file = event.target.files[0];
-      this.addSongForm.get('file').patchValue({
-        file : file
-      })
-    }
-}
+// onSongCoverSelect(event)
+//  {
+//     if (event.target.files.length > 0)
+//     {
+//       const file = event.target.files[0];
+//       this.addSongForm.get('file').patchValue({
+//         file : file
+//       })
+//     }
+// }
 
 onSongSelect(event)
 {
     if(event.target.files.length > 0)
      {
        const file = event.target.files[0];
-       this.addSongForm.get('cover').patchValue({
-          cover : file
+       this.addSongForm.get('file').patchValue({
+          file : file
        })
 
      }
@@ -117,7 +116,7 @@ onSongSelect(event)
        formData.append('title', this.addSongForm.get('title').value);
        formData.append('album', this.addSongForm.get('album').value);
        formData.append('file', this.addSongForm.get('file').value);
-       formData.append('cover', this.addSongForm.get('cover').value);
+
 
        console.log(this.addSongForm.value)
       this.MusicService.postSong(formData).subscribe(

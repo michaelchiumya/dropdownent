@@ -35,8 +35,9 @@ export class ArtistComponent implements OnInit,OnDestroy {
           this.activeRoute.params.subscribe((res)=>{
             this.getArtist(res.id)
             this.getSongs(res.id)
+            this.getAlbums(res.id)
            })
-          this.albums = this.AlbumsService.showAlbums()
+
   }
 
   getArtist(id)
@@ -47,6 +48,11 @@ export class ArtistComponent implements OnInit,OnDestroy {
   getSongs(id)
   {
     this.MusicService.getSongs(id).subscribe(arg=> this.songs= arg);
+  }
+
+  getAlbums(id)
+  {
+    this.AlbumsService.showAlbums(id).subscribe((arg)=> this.albums = arg);
   }
 
   songLoader(song :any)
@@ -60,8 +66,10 @@ export class ArtistComponent implements OnInit,OnDestroy {
   albumLoader(album :any)
   {
     this.playlist = [];
-    this.playlist.push(album);
-    this.DataService.storeData(album);
+    album.forEach(element => {
+      this.playlist.push( {title: element.title, link: element.song });
+     });
+    this.DataService.storeData(this.playlist);
   }
 
   playlistSong(song :any)
@@ -73,10 +81,11 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   playlistAlbum(album :any)
   {
-       album.forEach(element => {
-        this.playlist.push( {title: element.title, link: element.link });
+      album.forEach(element => {
+        this.playlist.push( {title: element.title, link: element.song });
        });
-       this.DataService.storeData(this.playlist);
+
+      this.DataService.storeData(this.playlist);
   }
 
 ngOnDestroy()

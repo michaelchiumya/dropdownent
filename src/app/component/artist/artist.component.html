@@ -27,7 +27,8 @@
   </button>
 <div class="container collapse" id="mycollapse">
   <h3 class="h3">Biography</h3>
-  <p class="my-2 pb-2 px-md-5 mx-md-5">{{artist?.biography}}</p>
+  <p class="my-2 pb-2 px-md-5 mx-md-5"></p>
+  {{ artist?.biography }}
 </div>
 <!-- Jumbotron -->
 <br><br>
@@ -46,7 +47,7 @@
   <tbody *ngFor="let song of songs">
     <tr>
       <td>
-        <img *ngIf="song.cover == 'null'" class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg">
+        <img *ngIf="song.cover == 'null'" class="img-fluid" src="/assets/img/img.jpg">
         <img *ngIf="song.cover != 'null'"src="{{song.cover}}" class="img-fluid" width="200" alt="image">
       </td>
       <td >
@@ -84,17 +85,18 @@
   <h3 class="h3 font-weight-bold my-3 text-muted">Albums</h3>
   <div class="card-deck">
 
-   <div class="card mb-4 elegant-color" *ngFor="let album of albums">
+   <div class="card mb-4 elegant-color" *ngFor="let album of albums,let i=index">
      <div class="view overlay">
-       <img class="card-img-top" src="{{album.cover}}" alt="Card image cap">
+       <img *ngIf="album[0].cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="album">
+       <img *ngIf="album[0].cover !='null'" class="card-img-top" src="{{album[0].cover}}" alt="album">
        <div class="mask rgba-white-slight"></div>
      </div>
     <div class="card-body">
-      <h4 class="card-title text-muted">{{album.album}}</h4>
-      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="albumLoader(album.songs)">
+      <h4 class="card-title text-muted">{{album[0].album}}</h4>
+      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="albumLoader(album)">
         <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
       </button>
-      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="playlistAlbum(album.songs)">
+      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="playlistAlbum(album)">
         <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
       </button>
     </div>
