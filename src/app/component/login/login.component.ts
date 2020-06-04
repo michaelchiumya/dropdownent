@@ -13,8 +13,8 @@ import { map } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
    token : string= '';
-   error : string="" ;
    portalForm :FormGroup;
+   loginError: any;
 
   constructor(
     private fb:FormBuilder,
@@ -36,16 +36,23 @@ onPortalSubmit()
 {
       if(this.portalForm.valid)
       {
-          this.PortalAuth.login(this.portalForm.value).subscribe((res)=>{
-          if (res.status == 200)
-           {
-             this.token = res.body['success'].token;
-              sessionStorage.setItem('token', this.token);
-               this.PortalAuth.userDetails().subscribe();
-                this.router.navigateByUrl('admin')
-            }
+          this.PortalAuth.login(this.portalForm.value).subscribe(
+            (res)=>
+               {
+                 if (res.status == 200)
+                {
+                  this.token = res.body['success'].token;
+                  sessionStorage.setItem('token', this.token);
+                  this.PortalAuth.userDetails().subscribe();
+                  this.router.navigateByUrl('admin');
+                }
+             },
+            (error)=>
+             {
+               this.loginError = error;
+             }
 
-        })
+        )
       }
 }
 
