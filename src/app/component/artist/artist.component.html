@@ -91,14 +91,79 @@
        <img *ngIf="album[0].cover !='null'" class="card-img-top" src="{{album[0].cover}}" alt="album">
        <div class="mask rgba-white-slight"></div>
      </div>
+
     <div class="card-body">
-      <h4 class="card-title text-muted">{{album[0].album}}</h4>
-      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="albumLoader(album)">
-        <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
-      </button>
-      <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="playlistAlbum(album)">
-        <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
-      </button>
+      <h4 class="card-title text-muted">{{ album[0].album | uppercase}}</h4>
+       <div class="d-flex justify-content-between">
+         <div>
+          <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="albumLoader(album)">
+            <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="playlistAlbum(album)">
+            <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+          </button>
+         </div>
+
+
+       <div>
+        <span type="button" class=" text-muted m-0" data-toggle="modal" attr.data-target="#song{{i}}">
+          <i class="fas fa-ellipsis-v fa-2x pr-2" aria-hidden="true"></i>
+        </span>
+      </div>
+
+    <div class="modal fade" id="song{{i}}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{ album[0].album | uppercase }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+         </div>
+
+      <div class="modal-body">
+        <button type="button" class="btn btn-blue-grey waves-effect" (click)="albumLoader(album)" >
+           <i class="fas fa-play " aria-hidden="true"></i>
+           play all
+          </button>
+        <ol>
+           <li class="my-5 text-truncate" *ngFor="let item of album;let j = index;">
+            <div class="float-left">
+              <span class="muted-text"> {{j+1}}. {{ album[j].title | titlecase }} </span>
+            </div>
+
+            <div class="float-right">
+              <button type="button" class="btn btn-sm btn-blue-grey px-3" (click)="songLoader(album[j])">
+                <i class="fas fa-play " aria-hidden="true"></i>
+              </button>
+              <button type="button" class="btn btn-sm btn-blue-grey px-3" (click)="playlistSong(album[j])">
+                <i class="fas fa-list-ul" aria-hidden="true"></i>
+              </button>
+            </div>
+
+
+
+
+
+            </li>
+        </ol>
+      </div>
+
+
+    </div>
+  </div>
+
+ </div>
+</div>
+
+
+
+
+
     </div>
   </div>
 
