@@ -9,7 +9,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class SongsComponent implements OnInit {
   songs: any
-  SongActivateForm : FormGroup
+  SongUpdateForm : FormGroup
   songCoverForm :FormGroup
 
   constructor(private MusicService : MusicService,private fb :FormBuilder) { }
@@ -20,8 +20,10 @@ export class SongsComponent implements OnInit {
       this.songs = data
     })
 
-    this.SongActivateForm =  this.fb.group({
+    this.SongUpdateForm =  this.fb.group({
+      id :[],
       active: ['', [Validators.required]],
+      album: ['', [Validators.required]],
     });
 
     this.songCoverForm =  this.fb.group({
@@ -40,13 +42,20 @@ onSongCoverSelect(event)
   }
 }
 
-songActivate(id)
-{
 
+UpdateSongSubmit(){
+
+ if(this.SongUpdateForm.valid){
+   let id : any = this.SongUpdateForm.get('id')
+     this.MusicService.updateSong(this.SongUpdateForm.value, id).subscribe();
+  }
 }
 
 deleteSong(id)
 {
-
+  this.MusicService.destroySong(id).subscribe();
 }
+
+
+
 }

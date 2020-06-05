@@ -13,7 +13,7 @@
      </div>
 
     <div class="card-body white">
-    <h4 class="h4 font-weight-bold my-3 text-muted"> {{song.title}}</h4>
+    <h4 class="h4 font-weight-bold my-3 text-muted"> {{song.title | titlecase}}</h4>
       <form [formGroup]="songCoverForm">
         <div class="md-form mb-4">
            <input type="file"
@@ -21,22 +21,38 @@
             (change)="onSongCoverSelect($event)"
             accept="image/*" required>
         </div>
+        <button class="btn elegant-color text-muted" type="submit">Upload</button>
      </form>
+
+     <div class="divider"></div>
       <div class="d-flex justify-content-between">
         <div>
-         <form [formGroup]="SongActivateForm">
-           <label>Status</label>
-           <select class="browser-default custom-select" formControlName="active" [(ngModel)]="song.active">
-            <option value="true">On</option>
-            <option value="false">Off</option>
-          </select>
+           <form [formGroup]="SongUpdateForm" ngSubmit="son">
+            <div class="md-form mb-4">
+             <select class="browser-default custom-select" formControlName="active" [(ngModel)]="song.active">
+              <option value="true">On</option>
+              <option value="false">Off</option>
+             </select>
+            </div>
+
+          <div class="md-form mb-4">
+            <input type="text" formControlName="album" [(ngModel)]="song.album">
+          </div>
+
+          <div class="d-flex justify-content-between">
+          <div>
+            <button class="btn elegant-color text-muted" type="submit">Update</button>
+          </div>
+          <div>
+            <button type="button" class="btn btn-elegant text-muted" (click)="deleteSong(song.id)">
+              Delete
+            </button>
+          </div>
+        </div>
+
         </form>
         </div>
-       <div>
-        <button type="button" class="btn btn-elegant text-lg text-muted" (click)="deleteSong(song.id)">
-          <i class="fas fa-trash fa-2x pr-2" aria-hidden="true"></i>
-        </button>
-      </div>
+
     </div>
   </div>
 

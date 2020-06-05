@@ -13,41 +13,32 @@ export class MusicService {
 
   postSong(data : any)
   {
-    return  this.http.post<any>(`${this.url}/song`, data).pipe(map((data: any)=>
-    {
-      return data;
-   }),
-   catchError(error => {
-     return throwError('something went wrong...');
-   })
-   );
+    return  this.http.post<any>(`${this.url}/song`, data).pipe(map((data: any)=>{return data}));
   }
 
-  postImage(data : any, id: string) {
-    return  this.http.post<any>(`${this.url}/artist/${id}/image`, data).pipe(map((data: any)=>{
-      return data;
-   }),
-   catchError(error => {
-     return throwError('something went wrong...');
-   })
-   );
-  }
-
-  getSongs(id )
+  postImage(data : any, id: string)
   {
-      return this.http.get(`${this.url}/songs/${id}`).pipe(map((data: Song[])=>data),
-      catchError(error=>{
-        return throwError('something went wrong..');
-      })
-      )
-    }
+    return  this.http.post<any>(`${this.url}/song/${id}/image`, data).pipe(map((data: any)=>{return data}));
+  }
 
-getAllSongs()
-{
-  return this.http.get(`${this.url}/songs`).pipe(map((data: Song[])=>data),
-    catchError(error=>{
-      return throwError('something went wrong..');
-        })
-        )
-      }
+  updateSong(data : any, id)
+  {
+    return  this.http.put<any>(`${this.url}/song/${id}`, data).pipe(map((data: any)=> {return data}));
+  }
+
+  getSongs(id)
+  {
+   return this.http.get(`${this.url}/songs/${id}`).pipe(map((data: Song[])=>data))
+  }
+
+  getAllSongs()
+ {
+  return this.http.get(`${this.url}/songs`).pipe(map((data: Song[])=>data))
+ }
+
+ destroySong(id :number)
+ {
+  return this.http.delete(`${this.url}/song/${id}`);
+}
+
 }
