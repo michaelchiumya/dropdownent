@@ -20,6 +20,8 @@ export class AdminComponent implements OnInit {
   addSongForm : FormGroup;
   admin : Admin;
   artists: Artist[];
+  noArtist: any;
+  newArtist: any;
 
 
   constructor(
@@ -66,11 +68,10 @@ onArtistSubmit()
 {
   if(this.artistForm.valid)
   {
-    console.log(this.artistForm.valid);
      this.ArtistService.postArtist(this.artistForm.value).subscribe(
-           response=>{ console.log(response); },
-           error  => { console.log("Rrror", error); }
-        );
+       (data)=> {this.newArtist = data},
+       (error)=>{ this.noArtist = error}
+     );
        this.artistForm.reset();
   }
 }

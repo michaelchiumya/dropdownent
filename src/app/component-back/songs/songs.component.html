@@ -27,7 +27,7 @@
      <div class="divider"></div>
       <div class="d-flex justify-content-between">
         <div>
-           <form [formGroup]="SongUpdateForm" ngSubmit="son">
+           <form [formGroup]="SongUpdateForm" (ngSubmit)="UpdateSongSubmit()">
             <div class="md-form mb-4">
              <select class="browser-default custom-select" formControlName="active" [(ngModel)]="song.active">
               <option value="true">On</option>

@@ -6,9 +6,11 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
   </ol>
 
-  <div class="carousel-inner">
+  <div class="carousel-inner elegant-color">
     <div class="carousel-item active">
       <div class="view">
         <img class="d-block" src="https://j.gifs.com/5Qg9Dx.gif" alt="First slide" >
@@ -18,9 +20,9 @@
             <h5>Why Music Video<br>
                <small class="muted-text">PQ</small>
            </h5>
-        <button
+        <button routerLink="/videos"
          class="btn btn-outline-warning p-4">
-         Watch Video
+         Watch Videos
         </button>
     </div>
   </div>
@@ -35,7 +37,33 @@
           <h5>Uptown Girl Music Video<br>
             <small class="muted-text">PQ ft Blasto</small>
          </h5>
-        <button class="btn btn-outline-warning p-4">Watch Video</button>
+        <button class="btn btn-outline-warning p-4" routerLink="/videos">Watch Videos</button>
+     </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="view">
+        <img class="pic" [src]="'assets/img/ns.jpg'" alt="slide" >
+         <div class="mask rgba-black-strong"></div>
+      </div>
+        <div class="carousel-caption d-sm-block my-0 p-2">
+          <h5>New Album<br>
+            <small class="muted-text">Mad Settingz</small>
+         </h5>
+        <button class="btn btn-outline-warning p-4" routerLink="/artist/1">Stream</button>
+     </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="view">
+        <img class="pic" [src]="'assets/img/ldme.jpeg'" alt="slide">
+         <div class="mask rgba-black-strong"></div>
+      </div>
+        <div class="carousel-caption d-sm-block my-0 p-2">
+          <h5>New EP<br>
+            <small class="muted-text">LDME</small>
+         </h5>
+        <button class="btn btn-outline-warning p-4" routerLink="/artist/3">Stream</button>
      </div>
     </div>
 
@@ -48,9 +76,10 @@
           <h5>Give Thanks Music Video<br>
             <small class="muted-text">PQ ft Malinga</small>
          </h5>
-        <button class="btn btn-outline-warning p-4" href="https://youtu.be/XLmcp6Eq1lo">Watch Video</button>
+        <button class="btn btn-outline-warning p-4" routerLink="/videos">Watch Videos</button>
     </div>
   </div>
+
 
  <div class="container mt-2">
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -93,7 +122,7 @@
     <div class="card text-center mt-4 mb-4">
 
   <div class="card-header text-white elegant-color">
-      <h5>Fun Love</h5>
+      <h5>Fan Love</h5>
   </div>
 
   <div class="card-body">
@@ -102,10 +131,22 @@
        Subscribe with your email address for more updates events releases promotion merch and many more..
      </p>
 
-    <form class="" action="subscribe.php">
+    <form [formGroup] = "fanForm" (ngSubmit)="funpageSubmit()" autocomplete="off">
       <div class="form-group col-sm-6 offset-sm-3">
-        <input class="form-control " type="email" placeholder="Email">
+        <input class="form-control " type="email" placeholder="Email" formControlName="email" required>
       </div>
+      <div>
+        <div class="alert alert-danger" role="alert"
+         *ngIf="fanForm.get('email').dirty && fanForm.get('email').invalid && fanForm.get('email').errors.required">
+             valid email field required
+        </div>
+        <div *ngIf="noFan" class="alert alert-danger" role="alert">
+         {{ noFan.error.error}}
+        </div>
+        <div *ngIf="newFan" class="alert alert-success" role="alert">
+          {{ newFan}}
+         </div>
+     </div>
       <button class="btn btn-elegant" type="submit"><i class="fas fa-mail mr-1"></i>Subscribe</button>
     </form>
   </div>

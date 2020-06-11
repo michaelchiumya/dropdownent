@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicService } from 'src/app/services/music.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Song } from 'src/app/interface/song';
 
 @Component({
   selector: 'app-songs',
@@ -8,7 +9,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./songs.component.css']
 })
 export class SongsComponent implements OnInit {
-  songs: any
+  songs :any
   SongUpdateForm : FormGroup
   songCoverForm :FormGroup
 
@@ -16,20 +17,30 @@ export class SongsComponent implements OnInit {
 
   ngOnInit()
   {
-    this.MusicService.getAllSongs().subscribe((data)=>{
-      this.songs = data
-    })
+
+    this.loadSongs();
 
     this.SongUpdateForm =  this.fb.group({
       id :[],
+      title:[],
       active: ['', [Validators.required]],
       album: ['', [Validators.required]],
+      song : [],
+      cover : [],
+      artist_id : []
     });
 
     this.songCoverForm =  this.fb.group({
       file: ['', [Validators.required]],
     });
   }
+
+loadSongs()
+{
+  this.MusicService.getAllSongs().subscribe((data)=>{
+    this.songs = data
+  })
+}
 
 onSongCoverSelect(event)
 {

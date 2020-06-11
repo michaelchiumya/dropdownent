@@ -58,10 +58,7 @@ UpdateImageSubmit(){
   var formData = new FormData();
   var id =  this.id;
   formData.append('image', this.imageform.get('image').value);
-   this.ArtistService.postImage(formData, id).subscribe(
-              response=>{ console.log(response); },
-              error  => { console.log("Rrror", error); }
-          );
+   this.ArtistService.postImage(formData, id).subscribe();
 }
 
 UpdateFormSubmit(){

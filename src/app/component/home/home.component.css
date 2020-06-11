@@ -6,6 +6,12 @@
   object-fit: cover;
 }
 
+.carousel-inner .pic {
+  width:540px;
+  width:540px;
+
+}
+
 .carousel-caption{
   bottom:350px;
 }
