@@ -47,11 +47,11 @@
   </thead>
   <tbody *ngFor="let song of songs">
     <tr>
-      <td>
+      <td style="width: 30%;">
         <img *ngIf="song.cover == 'null'" class="img-fluid" src="/assets/img/img.jpg">
         <img *ngIf="song.cover != 'null'"src="{{song.cover}}" class="img-fluid" width="200" alt="image">
       </td>
-      <td >
+      <td td style="width: 30%;">
         {{song.title | uppercase}} <br>
         <small class="text-muted">{{song.album | uppercase}}</small> <br>
 
@@ -89,7 +89,7 @@
   <h3 class="h3 font-weight-bold my-3 text-muted">Albums</h3>
   <div class="card-deck">
 
-   <div class="card mb-4 elegant-color" *ngFor="let album of albums,let i=index">
+   <div class="card mb-4 elegant-color col-md-6" *ngFor="let album of albums,let i=index">
      <div class="view overlay">
        <img *ngIf="album[0].cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="album">
        <img *ngIf="album[0].cover !='null'" class="card-img-top" src="{{album[0].cover}}" alt="album">
@@ -136,13 +136,13 @@
           </button>
       <ol>
            <li class="my-4 text-truncate" *ngFor="let item of album;let j = index;">
-            <div class="float-left text-truncate" style="max-width: 150px;">
+            <div class="float-left text-truncate" style="max-width: 110px;">
               <span class="muted-text text-truncate"> {{ j+1 }}. {{ album[j].title | titlecase }} </span>
             </div>
 
             <div class="float-right">
               <button type="button" class="btn btn-sm btn-blue-grey px-3" (click)="songLoader(album[j])">
-                <i class="fas fa-play " aria-hidden="true"></i>
+                <i class="fas fa-play" aria-hidden="true"></i>
               </button>
               <button type="button" class="btn btn-sm btn-blue-grey px-3" (click)="playlistSong(album[j])">
                 <i class="fas fa-list-ul" aria-hidden="true"></i>
@@ -151,9 +151,7 @@
           </li>
       </ol>
       </div>
-
-
-    </div>
+     </div>
   </div>
 
  </div>
