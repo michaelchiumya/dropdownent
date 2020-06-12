@@ -18,11 +18,7 @@ export class VideosService {
   }
 
   getVideos(): any{
-    return this.http.get(`${this.url}/videos`).pipe(map((data: Video[])=>data),
-    catchError(error=>{
-      return throwError('something went wrong..');
-    })
-    )
+    return this.http.get(`${this.url}/videos`).pipe(map((data: Video[])=>data));
   }
 
 

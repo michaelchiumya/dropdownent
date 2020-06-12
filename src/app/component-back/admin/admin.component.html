@@ -12,6 +12,12 @@
                 <span aria-hidden="true" class="white-text">&times;</span>
              </button>
          </div>
+
+         <div>
+          <div *ngIf="artistError" class="alert alert-danger" role="alert">
+           {{ artistError.error.error}}
+          </div>
+       </div>
         <!--Body-->
        <div class="modal-body">
          <form  [formGroup] = "artistForm" (ngSubmit)="onArtistSubmit()">
@@ -20,10 +26,13 @@
               <i class="fas fa-user prefix grey-text"></i>
               <input type="text" class="form-control validate" formControlName="name" required>
               <label data-error="wrong" data-success="right" for="form3">Name</label>
-              <span class="text-danger"
+
+              <label
+               class="text-danger"
+               data-error="wrong"
                 *ngIf="(artistForm.get('name').dirty || artistForm.get('name').touched) && artistForm.get('name').invalid && artistForm.get('name').errors.required">
                   name field required
-                </span>
+            </label>
            </div>
 
            <div class="md-form mb-4">
@@ -31,10 +40,12 @@
               <textarea  class="form-control validate md-textarea rounded-0" rows="5" formControlName="biography" required>
               </textarea>
               <label data-error="wrong" data-success="right" for="biography">Biography</label>
-              <span class="text-danger"
+              <label
+                class="text-danger"
+                data-error="wrong"
                 *ngIf="(artistForm.get('biography').dirty || artistForm.get('biography').touched) && artistForm.get('biography').invalid && artistForm.get('biography').errors.required">
                   biography field required
-                </span>
+            </label>
            </div>
 
     <!--Footer-->
@@ -93,7 +104,7 @@
               (change)="onSongSelect($event)"
               accept="audio/*" required>
           </div>
-         
+
         <!--Footer-->
          <div class="modal-footer justify-content-center">
            <button type="submit" class="btn btn-outline-warning waves-effect">

@@ -23,6 +23,7 @@ export class AdminComponent implements OnInit {
   noArtist: any;
   newArtist: any;
 
+  artistError :any;
 
   constructor(
     private fb: FormBuilder,
@@ -61,7 +62,10 @@ getArtistList()
 {
   this.ArtistService.getArtist().subscribe((data: any)=>{
     this.artists = data;
-      });
+      },
+    (error)=>{
+       this.artistError = error
+    });
 }
 
 onArtistSubmit()

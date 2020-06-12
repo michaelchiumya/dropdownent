@@ -22,58 +22,35 @@ export class ArtistService {
 
   constructor(private http: HttpClient) { }
 
-  postArtist(data : any) {
+  postArtist(data : any)
+  {
     var body = JSON.stringify(data);
-     return  this.http.post<any>(`${this.url}/artist`, body, this.options).pipe(map((data: any)=>{
-       return data;
-    }),
-    catchError(error => {
-      return throwError('something went wrong...');
-    })
-    );
+     return  this.http.post<any>(`${this.url}/artist`, body, this.options).pipe(map((data: any)=>{return data}));
   }
 
-
-
-  postImage(data : any, id: string) {
-    return  this.http.post<any>(`${this.url}/artist/${id}/image`, data).pipe(map((data: any)=>{
-      return data;
-   }),
-   catchError(error => {
-     return throwError('something went wrong...');
-   })
-   );
+  postImage(data : any, id: string)
+  {
+    return  this.http.post<any>(`${this.url}/artist/${id}/image`, data).pipe(map((data: any)=>{ return data}));
   }
 
-  getArtist():any{
-    return this.http.get(`${this.url}/artists`).pipe(map((data: Artist)=>data),
-    catchError(error=>{
-      return throwError('something went wrong..');
-    })
-    )
-  }
+getArtist() :any
+{
+    return this.http.get(`${this.url}/artists`).pipe(map((data: Artist)=>data))}
 
 updateArtist(data:any, id: string)
 {
-  return this.http.put<any>(`${this.url}/artist/${id}`,data).pipe(map((data: any)=>{
-    return data;
-   }),
-   catchError(error => {
-   return throwError('something went wrong...');
-      })
- );
+  return this.http.put<any>(`${this.url}/artist/${id}`,data).pipe(map((data: any)=> {return data}));
+}
+
+getArtistById(id :number)
+{
+  return this.http.get(`${this.url}/artist/${id}`).pipe(map((data: Artist)=>data))
+}
+
+destroyArtist(id :number)
+{
+  return this.http.delete(`${this.url}/artist/${id}`);
 }
 
 
-  getArtistById(id :number){
-     return this.http.get(`${this.url}/artist/${id}`).pipe(map((data: Artist)=>data),
-     catchError(error=>{
-       return throwError('something went wrong getting data..');
-     })
-     )
-  }
-
-  destroyArtist(id :number){
-    return this.http.delete(`${this.url}/artist/${id}`);
- }
 }
