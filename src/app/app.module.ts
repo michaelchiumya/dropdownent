@@ -30,6 +30,7 @@ import { environment } from '../environments/environment';
 import { SongsComponent } from './component-back/songs/songs.component';
 import { AlbumComponent } from './component-back/album/album.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
