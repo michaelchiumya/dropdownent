@@ -19,6 +19,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
   private playlist : Track[];
   id :string;
   artist : any;
+  status: boolean = false;
 
 
   constructor(
@@ -57,6 +58,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   songLoader(song :any)
   {
+    this.status = !this.status;
     this.playlist = [];
     var toAdd = {title: song.title, link: song.song};
     this.playlist.push(toAdd);

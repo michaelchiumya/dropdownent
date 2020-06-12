@@ -41,6 +41,7 @@
     <tr>
       <th class="th-sm">image</th>
       <th class="th-sm">Title</th>
+      <th class="th-sm">action</th>
    </tr>
 
   </thead>
@@ -55,10 +56,13 @@
         <small class="text-muted">{{song.album | uppercase}}</small> <br>
 
 
-
         <div class="d-flex justify-content-between">
           <div>
-            <button type="button" class="btn btn-elegant  btn-sm text-lg text-muted" (click)="songLoader(song)">
+            <button
+               type="button"
+               class="btn btn-elegant  btn-sm text-lg text-muted"
+               [ngClass]="status ? 'action' : 'nonaction'"
+               (click)="songLoader(song)">
               <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
               </button>
           </div>
@@ -96,17 +100,17 @@
       <h4 class="card-title text-muted">{{ album[0].album | uppercase}}</h4>
        <div class="d-flex justify-content-between">
          <div>
-          <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="albumLoader(album)">
+          <button type="button" class="btn btn-elegant btn-sm px-3 text-muted m-0" (click)="albumLoader(album)">
             <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
           </button>
-          <button type="button" class="btn btn-elegant btn-sm text-lg text-muted m-0" (click)="playlistAlbum(album)">
+          <button type="button" class="btn btn-elegant btn-sm px-3 text-muted m-0" (click)="playlistAlbum(album)">
             <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
           </button>
          </div>
 
 
        <div>
-        <span type="button" class=" text-muted m-0" data-toggle="modal" attr.data-target="#song{{i}}">
+        <span type="button" class="btn-sm px-3  text-muted m-0" data-toggle="modal" attr.data-target="#song{{i}}">
           <i class="fas fa-ellipsis-v fa-2x pr-2" aria-hidden="true"></i>
         </span>
       </div>
@@ -130,10 +134,10 @@
            <i class="fas fa-play " aria-hidden="true"></i>
            play all
           </button>
-        <ol>
-           <li class="my-5 text-truncate" *ngFor="let item of album;let j = index;">
-            <div class="float-left">
-              <span class="muted-text"> {{j+1}}. {{ album[j].title | titlecase }} </span>
+      <ol>
+           <li class="my-4 text-truncate" *ngFor="let item of album;let j = index;">
+            <div class="float-left text-truncate" style="max-width: 150px;">
+              <span class="muted-text text-truncate"> {{ j+1 }}. {{ album[j].title | titlecase }} </span>
             </div>
 
             <div class="float-right">
@@ -144,13 +148,8 @@
                 <i class="fas fa-list-ul" aria-hidden="true"></i>
               </button>
             </div>
-gi
-
-
-
-
-            </li>
-        </ol>
+          </li>
+      </ol>
       </div>
 
 

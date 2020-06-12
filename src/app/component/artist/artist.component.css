@@ -8,7 +8,14 @@
   overflow: auto;
   height: 400px;
 }
-
+.action
+{
+ color: green;
+}
+.nonaction
+{
+  color: red;
+}
 @media (max-width: 575px)
  {}
 
