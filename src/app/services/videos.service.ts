@@ -21,5 +21,9 @@ export class VideosService {
     return this.http.get(`${this.url}/videos`).pipe(map((data: Video[])=>data));
   }
 
+  getActiveVideos(): any{
+    return this.http.get(`${this.url}/active/videos`).pipe(map((data: Video[])=>data));
+  }
+
 
 }

@@ -21,7 +21,7 @@ export class VideosComponent implements OnInit {
 
   ngOnInit(): void
   {
-      this.VideosService.getVideos().subscribe((res)=>{
+      this.VideosService.getActiveVideos().subscribe((res)=>{
         this.videos = res;
         this.searchResults$.next(res);
       })

@@ -35,7 +35,13 @@ export class ArtistService {
 
 getArtist() :any
 {
-    return this.http.get(`${this.url}/artists`).pipe(map((data: Artist)=>data))}
+    return this.http.get(`${this.url}/artists`).pipe(map((data: Artist)=>data))
+}
+
+getActiveArtist() :any
+{
+    return this.http.get(`${this.url}/active/artists`).pipe(map((data: Artist)=>data))
+}
 
 updateArtist(data:any, id: string)
 {

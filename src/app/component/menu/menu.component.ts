@@ -45,7 +45,7 @@ getAdmin()
 
 getArtistList()
   {
-    this.ArtistService.getArtist().subscribe((data: any)=>{
+    this.ArtistService.getActiveArtist().subscribe((data: any)=>{
       this.artists = data;
     });
   }
@@ -63,7 +63,7 @@ getArtistList()
 
 ngOnDestroy()
 {
-   this.ArtistService.getArtist().unsubscribe();
+   this.ArtistService.getActiveArtist().unsubscribe();
 }
 
 }

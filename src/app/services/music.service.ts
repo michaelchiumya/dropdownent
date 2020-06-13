@@ -31,6 +31,11 @@ export class MusicService {
    return this.http.get(`${this.url}/songs/${id}`).pipe(map((data: Song[])=>data))
   }
 
+  getActiveSongs(id)
+  {
+   return this.http.get(`${this.url}/songs/active/${id}`).pipe(map((data: Song[])=>data))
+  }
+
   getAllSongs()
  {
   return this.http.get(`${this.url}/songs`).pipe(map((data: Song[])=>data))

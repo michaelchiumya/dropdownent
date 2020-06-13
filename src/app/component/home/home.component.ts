@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   getArtistList(){
-    this.ArtistService.getArtist().subscribe((data: any)=>{
+    this.ArtistService.getActiveArtist().subscribe((data: any)=>{
       this.artistData = data;
     });
   }

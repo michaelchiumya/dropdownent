@@ -48,7 +48,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   getSongs(id)
   {
-    this.MusicService.getSongs(id).subscribe(arg=> this.songs= arg);
+    this.MusicService.getActiveSongs(id).subscribe(arg=> this.songs= arg);
   }
 
   getAlbums(id)
