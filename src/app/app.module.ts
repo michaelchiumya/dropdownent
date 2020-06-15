@@ -28,6 +28,7 @@ import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { SongsComponent } from './component-back/songs/songs.component';
+import { SongEditComponent } from './component-back/song-edit/song-edit.component';
 
 
 
@@ -44,7 +45,8 @@ import { SongsComponent } from './component-back/songs/songs.component';
     ArtistBackComponent,
     SignupComponent,
     LoginComponent,
-    SongsComponent
+    SongsComponent,
+    SongEditComponent
   ],
 
   imports: [

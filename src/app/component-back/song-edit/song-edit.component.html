@@ -1,0 +1,82 @@
+
+<div class="card-deck p-2 m-2">
+
+
+  <div class="card mb-4">
+    <h4 class="card-title">Upload Song Cover Image</h4>
+    <img *ngIf="songs.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
+       <div class="view overlay">
+         <img *ngIf="songs.cover!='null'" class="card-img-top" src="{{songs.cover}}" alt="Card image cap">
+         <div class="mask rgba-white-slight"></div>
+       </div>
+    <div class="card-body">
+
+        <form [formGroup]="songCoverForm">
+            <div class="md-form mb-4">
+               <input type="file"
+                formGroupName="file"
+                (change)="onSongCoverSelect($event)"
+                accept="image/*" required>
+            </div>
+
+            <div class="d-flex justify-content-between">
+             <div>
+               <button class="btn elegant-color text-muted" type="submit">Upload</button>
+             </div>
+            </div>
+        </form>
+    </div>
+  </div>
+
+
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Activate Song</h4>
+
+        <form [formGroup]="SongActiveForm" (ngSubmit)="UpdateSongSubmit()">
+           <div>
+             <input type="hidden" formControlName="id" [(ngModel)]="songs.id">
+           </div>
+
+          <div class="md-form mb-4">
+
+           <select class="browser-default custom-select" formControlName="active" [(ngModel)]="songs.active">
+             <option value="true">On</option>
+             <option value="false">Off</option>
+           </select>
+          </div>
+
+          <div class="d-flex justify-content-between">
+          <button class="btn elegant-color text-muted" type="submit">Activate</button>
+          </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Update Song</h4>
+      <form [formGroup]="SongUpdateForm">
+        <div class="md-form mb-4">
+          <input type="text" id="album" formControlName="album" [(ngModel)]="songs.album">
+          <label for="album">Album</label>
+         </div>
+
+         <div class="md-form mb-4">
+          <input type="text" id="title" formControlName="title" [(ngModel)]="songs.title">
+          <label for="title">Title</label>
+         </div>
+
+         <div class="d-flex justify-content-between">
+          <div>
+            <button class="btn elegant-color text-muted" type="submit">Update</button>
+          </div>
+         </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+

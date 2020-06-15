@@ -62,7 +62,7 @@ UpdateImageSubmit(){
 }
 
 UpdateFormSubmit(){
-   console.log(this.updateform.value)
+
   if(this.updateform.valid){
       this.ArtistService.updateArtist(this.updateform.value, this.id).subscribe(
               response=>{ console.log(response); },

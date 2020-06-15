@@ -1,64 +1,45 @@
 <div class="panel text-center" *ngIf="!songs">
-   <h4 class="h4">No songs Added </h4>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+ </div>
 </div>
+
 <div class="container-fluid elegant-color py-4" *ngIf="songs">
   <h3 class="h3 font-weight-bold my-3 text-muted">Music</h3>
-  <div class="card-deck">
-   <div class="col-md-3 col-sm-12">
-   <div class="card mb-4 elegant-color my-3" *ngFor="let song of songs">
-    <img *ngIf="song.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
-     <div class="view overlay">
-       <img *ngIf="song.cover!='null'" class="card-img-top" src="{{song.cover}}" alt="Card image cap">
-       <div class="mask rgba-white-slight"></div>
-     </div>
 
-    <div class="card-body white">
-    <h4 class="h4 font-weight-bold my-3 text-muted"> {{song.title | titlecase}}</h4>
-      <form [formGroup]="songCoverForm">
-        <div class="md-form mb-4">
-           <input type="file"
-            formGroupName="file"
-            (change)="onSongCoverSelect($event)"
-            accept="image/*" required>
-        </div>
-        <button class="btn elegant-color text-muted" type="submit">Upload</button>
-     </form>
+   <div class="row">
+    <div class="col-md-3 mb-4 d-flex align-items-stretch"  *ngFor="let song of songs">
 
+     <div class="card elegant-color">
+       <img *ngIf="song.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
+       <div class="view overlay">
+         <img *ngIf="song.cover!='null'" class="card-img-top" src="{{song.cover}}" alt="Card image cap">
+         <div class="mask rgba-white-slight"></div>
+       </div>
+
+      <div class="card-body white">
+        <h4 class="h4 font-weight-bold my-3 text-muted"> {{song.title | titlecase}}</h4>
+        <h6 class="h6 font-weight-bold text-muted"> {{song.album | titlecase}}</h6>
      <div class="divider"></div>
-      <div class="d-flex justify-content-between">
-        <div>
-           <form [formGroup]="SongUpdateForm" (ngSubmit)="UpdateSongSubmit()">
-            <div class="md-form mb-4">
-             <select class="browser-default custom-select" formControlName="active" [(ngModel)]="song.active">
-              <option value="true">On</option>
-              <option value="false">Off</option>
-             </select>
-            </div>
 
-          <div class="md-form mb-4">
-            <input type="text" formControlName="album" [(ngModel)]="song.album">
-          </div>
-
-          <div class="d-flex justify-content-between">
+     <div class="d-flex justify-content-between">
           <div>
-            <button class="btn elegant-color text-muted" type="submit">Update</button>
+            <button class="btn elegant-color text-muted" type="submit">Delete</button>
           </div>
           <div>
-            <button type="button" class="btn btn-elegant text-muted" (click)="deleteSong(song.id)">
-              Delete
-            </button>
-          </div>
+           <button type="button" class="btn btn-elegant text-muted" routerLink="/music/edit/{{ song.id}}">
+           Update
+          </button>
         </div>
+      </div>
 
-        </form>
-        </div>
-
+     </div>
     </div>
-  </div>
 
-  </div>
-  </div>
+</div>
 
  </div>
  <br><br><br><br>
-</div>
+
