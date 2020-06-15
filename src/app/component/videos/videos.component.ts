@@ -21,10 +21,15 @@ export class VideosComponent implements OnInit {
 
   ngOnInit(): void
   {
-      this.VideosService.getActiveVideos().subscribe((res)=>{
-        this.videos = res;
-        this.searchResults$.next(res);
-      })
+    this.loadVideos();
+  }
+
+  loadVideos()
+  {
+    this.VideosService.getActiveVideos().subscribe((res)=>{
+      this.videos = res;
+      this.searchResults$.next(res);
+    })
   }
 
   search(searchTerm)

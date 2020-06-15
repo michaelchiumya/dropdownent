@@ -1,4 +1,16 @@
-<div class="panel text-center" *ngIf="!songs">
+<!-- Search form -->
+<div class="container-fluid mb-3 py-4 rgba-black-strong">
+  <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+    <i class="fas fa-search white-text" aria-hidden="true"></i>
+    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by typing tittle or artist"
+      aria-label="Search"
+     [(ngModel)]="searchQuery"
+     (ngModelChange)="search($event)"
+     [ngModelOptions]="{standalone: true}" />
+  </form>
+</div>
+
+<div class="panel text-center" *ngIf="!searchResults$">
   <div class="d-flex justify-content-center">
     <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
       <span class="sr-only">Loading...</span>
@@ -10,7 +22,7 @@
   <h3 class="h3 font-weight-bold my-3 text-muted">Music</h3>
 
    <div class="row">
-    <div class="col-md-3 mb-4 d-flex align-items-stretch"  *ngFor="let song of songs">
+    <div class="col-md-3 mb-4 d-flex align-items-stretch" *ngFor="let song of searchResults$ | async; let i = index">
 
      <div class="card elegant-color">
        <img *ngIf="song.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
@@ -20,8 +32,10 @@
        </div>
 
       <div class="card-body white">
-        <h4 class="h4 font-weight-bold my-3 text-muted"> {{song.title | titlecase}}</h4>
-        <h6 class="h6 font-weight-bold text-muted"> {{song.album | titlecase}}</h6>
+        <h4 class="h4 font-weight-bolder mt-3 text-muted text-truncate">
+          {{song.title | titlecase}}
+        </h4>
+        <span class="h6 font-weight-bold text-muted text-uppercase"> {{song.album | titlecase}}</span>
      <div class="divider"></div>
 
      <div class="d-flex justify-content-between">

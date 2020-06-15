@@ -43,7 +43,7 @@ export class MusicService {
 
   getAllSongs()
  {
-  return this.http.get(`${this.url}/songs`).pipe(map((data: Song)=>data))
+  return this.http.get(`${this.url}/songs`).pipe(map((data: Song[])=>data))
  }
 
  destroySong(id :number)
