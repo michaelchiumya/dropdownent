@@ -25,12 +25,21 @@
   </div>
    <div class="card-body p-0">
       <form [formGroup]="imageform" (ngSubmit)="UpdateImageSubmit()">
-        <div class=" ">
+        <div>
+          <div *ngIf="imgError" class="alert alert-danger" role="alert">
+             {{ imgError.error}}
+          </div>
+          <div *ngIf="imgSuccess" class="alert alert-success" role="alert">
+              {{ imgSuccess.success}} : new image updated!
+          </div>
+       </div>
+
+        <div>
           <input
             type="file" formControlName="image"
             (change)="onImageSelect($event)" accept="image/*">
-
         </div>
+
         <button class="btn elegant-color white-text mt-2" type="submit">Update</button>
       </form>
    </div>
@@ -38,6 +47,18 @@
 
  <div class="card col-md-7 p-3 mx-2">
   <form [formGroup]="updateform" (ngSubmit)="UpdateFormSubmit()">
+
+    <div>
+      <div *ngIf="updateError" class="alert alert-danger" role="alert">
+         {{ updateError.error}}
+      </div>
+      <div *ngIf="updateSuccess" class="alert alert-success" role="alert">
+          {{ updateSuccess.success}} : new artist updated!
+      </div>
+      <div *ngIf="deleteError" class="alert alert-danger" role="alert">
+        Error : {{ deleteError}}
+    </div>
+   </div>
 
     <input type="hidden" formControlName="id" [(ngModel)]="artist.id">
     <label>Status</label>

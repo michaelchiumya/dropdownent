@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Video } from 'src/app/interface/video';
 import { VideosService } from 'src/app/services/videos.service';
@@ -14,11 +14,14 @@ export class VideoEditComponent implements OnInit {
   videoUpdateForm : FormGroup;
   videoCoverForm : FormGroup;
   videoActiveForm : FormGroup;
-  update: any;
-  noUpdate: any;
+
+  updateError: any;
+  updateSuccess: any;
   activeError: any;
   activeSuccess :any;
+  imgError: any;
 
+  @ViewChild('vimage') vimage: ElementRef;
   videos = new Video;
   id :any;
 
@@ -59,8 +62,8 @@ UpdateVideoSubmit(){
   if(this.videoUpdateForm.valid)
      {
       this.videoService.updateVideo(this.videoUpdateForm.value, this.id).subscribe(
-        (data)=>{this.update = data},
-        (error)=>{this.noUpdate = error}
+        (data)=>{this.updateSuccess = data},
+        (error)=>{this.updateError = error}
       );
     }
  }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ArtistService } from 'src/app/services/artist.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,11 +14,19 @@ export class ArtistBackComponent implements OnInit {
   artist = new Artist()
   updateform: FormGroup;
   imageform: FormGroup;
+  @ViewChild('aimage') aimage: ElementRef;
+
+  imgError :any;
+  imgSuccess :any;
+  updateSuccess :any
+  updateError: any;
+  deleteError: any;
 
   constructor(
     private ArtistService: ArtistService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router
 
     ) { }
 
@@ -58,7 +66,11 @@ UpdateImageSubmit(){
   var formData = new FormData();
   var id =  this.id;
   formData.append('image', this.imageform.get('image').value);
-   this.ArtistService.postImage(formData, id).subscribe();
+   this.ArtistService.postImage(formData, id).subscribe(
+     (res)=>{this.imgSuccess = res},
+     (error)=>{this.imgError = error}
+   );
+   this.aimage.nativeElement.value = null;
 }
 
 UpdateFormSubmit(){
@@ -66,16 +78,18 @@ UpdateFormSubmit(){
   if(this.updateform.valid)
      {
       this.ArtistService.updateArtist(this.updateform.value, this.id).subscribe(
-              response=>{ console.log(response); },
-              error  => { console.log("Rrror", error); }
+              response=>{ this.updateSuccess=response},
+              error  => { this.updateError=error}
           );
     }
 }
 
 deleteArtist(id)
  {
-   this.ArtistService.destroyArtist(id).subscribe((response)=>{
-     console.log(response)
-   })
+   this.ArtistService.destroyArtist(id).subscribe(
+     (response)=>{ },
+     (error)=>{this.deleteError = error}
+      )
+   this.router.navigate(['admin']);
  }
 }

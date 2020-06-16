@@ -20,12 +20,12 @@ export class VideosService {
 
   updateVideo(data : any, id)
   {
-    return  this.http.put<any>(`${this.url}/update/video/${id}`, data).pipe(map((data: any)=> {return data}));
+    return  this.http.put<any>(`${this.url}/video/${id}`, data).pipe(map((data: any)=> {return data}));
   }
 
   activateVideo(data : any, id)
   {
-    return  this.http.put<any>(`${this.url}/video/${id}`, data).pipe(map((data: any)=> {return data}));
+    return  this.http.put<any>(`${this.url}/video/activate/${id}`, data).pipe(map((data: any)=> {return data}));
   }
 
   getVideos(): any
