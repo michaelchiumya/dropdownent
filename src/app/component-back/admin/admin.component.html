@@ -2,81 +2,93 @@
 
 <!--add artist-->
 <div class="modal fade" id="addartist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-notify elegant-color" role="document">
-        <!--Content-->
-       <div class="modal-content">
-        <!--Header-->
-          <div class="modal-header text-center elegant-color">
-            <h4 class="modal-title white-text w-100 font-weight-bold py-2 ">ADD NEW ARTIST</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="white-text">&times;</span>
-             </button>
-         </div>
+  <div class="modal-dialog modal-notify elegant-color" role="document">
 
-         <div>
+    <div class="modal-content">
+      <div class="modal-header text-center elegant-color">
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2 ">ADD NEW ARTIST</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+      </div>
+
+
+
+
+    <div class="modal-body">
+      <form  [formGroup] = "artistForm" (ngSubmit)="onArtistSubmit()">
+
+        <div>
           <div *ngIf="artistError" class="alert alert-danger" role="alert">
-           {{ artistError.error.error}}
+              {{ artistError.error}}
           </div>
-       </div>
-        <!--Body-->
-       <div class="modal-body">
-         <form  [formGroup] = "artistForm" (ngSubmit)="onArtistSubmit()">
+          <div *ngIf="artistSuccess" class="alert alert-success" role="alert">
+              {{ artistSuccess.success}} : new artist added!S
+          </div>
+        </div>
 
-            <div class="md-form mb-4">
-              <i class="fas fa-user prefix grey-text"></i>
-              <input type="text" class="form-control validate" formControlName="name" required>
-              <label data-error="wrong" data-success="right" for="form3">Name</label>
-
-              <label
+        <div class="md-form mb-4">
+          <i class="fas fa-user prefix grey-text"></i>
+           <input type="text" class="form-control validate" formControlName="name" required>
+             <label data-error="wrong" data-success="right" for="form3">Name</label>
+             <label
                class="text-danger"
                data-error="wrong"
-                *ngIf="(artistForm.get('name').dirty || artistForm.get('name').touched) && artistForm.get('name').invalid && artistForm.get('name').errors.required">
-                  name field required
-            </label>
-           </div>
+               *ngIf="(artistForm.get('name').dirty || artistForm.get('name').touched) && artistForm.get('name').invalid && artistForm.get('name').errors.required">
+                name field required
+             </label>
+        </div>
 
-           <div class="md-form mb-4">
-              <i class="fas fa-book prefix grey-text"></i>
-              <textarea  class="form-control validate md-textarea rounded-0" rows="5" formControlName="biography" required>
-              </textarea>
-              <label data-error="wrong" data-success="right" for="biography">Biography</label>
-              <label
-                class="text-danger"
-                data-error="wrong"
-                *ngIf="(artistForm.get('biography').dirty || artistForm.get('biography').touched) && artistForm.get('biography').invalid && artistForm.get('biography').errors.required">
-                  biography field required
+        <div class="md-form mb-4">
+          <i class="fas fa-book prefix grey-text"></i>
+            <textarea  class="form-control validate md-textarea rounded-0" rows="5" formControlName="biography" required>
+            </textarea>
+            <label data-error="wrong" data-success="right" for="biography">Biography</label>
+            <label
+              class="text-danger"
+              data-error="wrong"
+              *ngIf="(artistForm.get('biography').dirty || artistForm.get('biography').touched) && artistForm.get('biography').invalid && artistForm.get('biography').errors.required">
+                biography field required
             </label>
-           </div>
+        </div>
 
-    <!--Footer-->
        <div class="modal-footer justify-content-center">
         <button type="submit" class="btn btn-outline-warning waves-effect">
           Send<i class="fas fa-paper-plane-o ml-1"></i>
         </button>
-      </div>
+       </div>
   </form>
-  </div>
-  </div>
-  <!--Content-->
+</div>
+</div>
+
  </div>
 </div>
 
-<!--add song-->
+<!--add song form-->
 <div class="modal fade" id="addsong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-notify modal-warning elegant-color" role="document">
-       <!--Content-->
-      <div class="modal-content">
-       <!--Header-->
-         <div class="modal-header text-center elegant-color">
+
+    <div class="modal-content">
+        <div class="modal-header text-center elegant-color">
            <h4 class="modal-title white-text w-100 font-weight-bold py-2">ADD NEW SONG</h4>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true" class="white-text">&times;</span>
             </button>
         </div>
-       <!--Body-->
-      <div class="modal-body">
+
+    <div class="modal-body">
 
         <form [formGroup] ="addSongForm" (ngSubmit)="onSongSubmit()">
+
+          <div>
+            <div *ngIf="songError" class="alert alert-danger" role="alert">
+               {{ songError.error.error}}
+            </div>
+            <div *ngIf="songSuccess" class="alert alert-success" role="alert">
+                {{ songSuccess.success}} : new song added!
+            </div>
+         </div>
+
           <div class="md-form mb-4">
             <select formControlName="artistId" class="browser-default custom-select" required>
                <option selected>Select Artist</option>
@@ -100,12 +112,13 @@
           <div class="md-form mb-4">
              <i class="fas fa-music prefix grey-text"></i>
              <input type="file"
+              #asong
               formGroupName="file"
               (change)="onSongSelect($event)"
               accept="audio/*" required>
           </div>
 
-        <!--Footer-->
+
          <div class="modal-footer justify-content-center">
            <button type="submit" class="btn btn-outline-warning waves-effect">
              Send<i class="fas fa-paper-plane-o ml-1"></i>
@@ -115,26 +128,33 @@
 
  </div>
  </div>
- <!--Content-->
+
 </div>
 </div>
 
 <!--add video-->
 <div class="modal fade" id="addvideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-notify modal-warning elegant-color" role="document">
-       <!--Content-->
+
       <div class="modal-content">
-       <!--Header-->
+
          <div class="modal-header text-center elegant-color">
            <h4 class="modal-title white-text w-100 font-weight-bold py-2">ADD NEW VIDEO</h4>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true" class="white-text">&times;</span>
             </button>
         </div>
-       <!--Body-->
+
       <div class="modal-body">
            <form  [formGroup] = "videoForm" (ngSubmit)="onVideoSubmit()">
-
+            <div>
+              <div *ngIf="videoError" class="alert alert-danger" role="alert">
+                 {{ videoError.error}}
+              </div>
+              <div *ngIf="videoSuccess" class="alert alert-success" role="alert">
+                  {{ videoSuccess.success}} : new video added!
+              </div>
+           </div>
             <div class="md-form mb-4">
               <select formControlName="artistId" class="browser-default custom-select">
                 <option selected>Select Artist</option>
@@ -168,11 +188,11 @@
            </div>
            <div class="md-form mb-4">
             <i class="fas fa-book prefix grey-text"></i>
-            <input type="file" formGroupName="file" (change)="onVideoImageSelect($event)" required>
+            <input type="file" #vimage formGroupName="file" (change)="onVideoImageSelect($event)" required>
 
          </div>
 
-    <!--Footer-->
+
     <div class="modal-footer justify-content-center">
       <button type="submit" class="btn elegant-gradient waves-effect">
          Send<i class="fas fa-paper-plane-o ml-1"></i>

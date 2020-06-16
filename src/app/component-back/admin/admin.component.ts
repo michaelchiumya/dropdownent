@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ArtistService } from 'src/app/services/artist.service';
 import { VideosService } from 'src/app/services/videos.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -20,10 +20,16 @@ export class AdminComponent implements OnInit {
   addSongForm : FormGroup;
   admin : Admin;
   artists: Artist[];
-  noArtist: any;
-  newArtist: any;
 
-  artistError :any;
+  songError :any;
+  songSuccess: any;
+  artistError: any;
+  artistSuccess: any;
+  videoError: any;
+  videoSuccess: any;
+
+  @ViewChild('asong') asong: ElementRef;
+  @ViewChild('vimage') vimage: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -73,9 +79,11 @@ onArtistSubmit()
   if(this.artistForm.valid)
   {
      this.ArtistService.postArtist(this.artistForm.value).subscribe(
-       (data)=> {this.newArtist = data},
-       (error)=>{ this.noArtist = error}
+       (data)=> {this.artistSuccess = data},
+       (error)=>{ this.artistError= error}
+
      );
+     console.log(this.artistSuccess)
        this.artistForm.reset();
   }
 }
@@ -122,16 +130,14 @@ onSongSelect(event)
        formData.append('album', this.addSongForm.get('album').value);
        formData.append('file', this.addSongForm.get('file').value);
 
-
-       console.log(this.addSongForm.value)
       this.MusicService.postSong(formData).subscribe(
-           response=>{ console.log(response); },
-           error  => { console.log("Rrror", error); }
+           response=>{ this.songSuccess = response },
+           error  => { this.songError = error}
        )
-
        this.addSongForm.reset();
+       this.asong.nativeElement.value = null;
    }
-   console.log(this.addSongForm.value)
+
  }
 
 onVideoImageSelect(event)
@@ -156,10 +162,11 @@ onVideoSubmit()
       formData.append('file', this.videoForm.get('file').value);
 
          this.VideosService.postVideo(formData).subscribe(
-               response=>{ console.log(response); },
-               error  => { console.log("Rrror", error); }
+               response=>{this.videoSuccess = response},
+               error  => { this.videoError = error }
            );
            this.videoForm.reset();
+           this.vimage.nativeElement.value = null;
     }
 
    }
