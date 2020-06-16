@@ -63,12 +63,13 @@ UpdateImageSubmit(){
 
 UpdateFormSubmit(){
 
-  if(this.updateform.valid){
+  if(this.updateform.valid)
+     {
       this.ArtistService.updateArtist(this.updateform.value, this.id).subscribe(
               response=>{ console.log(response); },
               error  => { console.log("Rrror", error); }
           );
-   }
+    }
 }
 
 deleteArtist(id)

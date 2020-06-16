@@ -23,6 +23,11 @@ export class MusicService {
 
   updateSong(data : any, id)
   {
+    return  this.http.put<any>(`${this.url}/update/song/${id}`, data).pipe(map((data: any)=> {return data}));
+  }
+
+ activateSong(data : any, id)
+  {
     return  this.http.put<any>(`${this.url}/song/${id}`, data).pipe(map((data: any)=> {return data}));
   }
 

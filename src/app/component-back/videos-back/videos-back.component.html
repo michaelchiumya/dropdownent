@@ -18,24 +18,24 @@
  </div>
 </div>
 
-<div class="container-fluid elegant-color py-4" *ngIf="songs">
+<div class="container-fluid elegant-color py-4" *ngIf="videos">
   <h3 class="h3 font-weight-bold my-3 text-muted">Music</h3>
 
    <div class="row">
-    <div class="col-md-3 mb-4 d-flex align-items-stretch" *ngFor="let song of searchResults$ | async; let i = index">
+    <div class="col-md-3 mb-4 d-flex align-items-stretch" *ngFor="let video of searchResults$ | async">
 
      <div class="card elegant-color">
-       <img *ngIf="song.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
+       <img *ngIf="video.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
        <div class="view overlay">
-         <img *ngIf="song.cover!='null'" class="card-img-top" src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{song.cover}}" alt="Card image cap">
+         <img *ngIf="video.cover!='null'" class="card-img-top" src="{{video.snapshot}}" alt="Card image cap">
          <div class="mask rgba-white-slight"></div>
        </div>
 
       <div class="card-body white">
         <h4 class="h4 font-weight-bolder mt-3 text-muted text-truncate">
-          {{song.title | titlecase}}
+          {{video.title | titlecase}}
         </h4>
-        <span class="h6 font-weight-bold text-muted text-uppercase"> {{song.album | titlecase}}</span>
+
      <div class="divider"></div>
 
      <div class="d-flex justify-content-between">
@@ -43,7 +43,7 @@
             <button class="btn elegant-color text-muted" type="submit">Delete</button>
           </div>
           <div>
-           <button type="button" class="btn btn-elegant text-muted" routerLink="/music/edit/{{ song.id}}">
+           <button type="button" class="btn btn-elegant text-muted" routerLink="/video/edit/{{ video.id}}">
            Update
           </button>
         </div>
@@ -54,6 +54,7 @@
 
 </div>
 
+ </div>
  </div>
  <br><br><br><br>
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicService } from 'src/app/services/music.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Song } from 'src/app/interface/song';
 import { BehaviorSubject } from 'rxjs';
 
@@ -17,7 +16,7 @@ export class SongsComponent implements OnInit {
 
   constructor(
     private MusicService : MusicService,
-    private fb :FormBuilder
+
     ) { }
 
   ngOnInit()

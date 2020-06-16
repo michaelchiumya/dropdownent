@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MusicService } from 'src/app/services/music.service';
 import { ActivatedRoute } from '@angular/router';
+import { Song } from 'src/app/interface/song';
 
 @Component({
   selector: 'app-song-edit',
@@ -15,7 +16,10 @@ export class SongEditComponent implements OnInit {
   SongActiveForm : FormGroup;
   update: any;
   noUpdate: any;
-  songs :any;
+  activeError: any;
+  activeSuccess :any;
+
+  songs = new Song;
   id :any;
 
   constructor(
@@ -27,13 +31,8 @@ export class SongEditComponent implements OnInit {
   ngOnInit(): void
   {
     this.SongUpdateForm =  this.fb.group({
-      id :['', [Validators.required]],
-      title:[],
-      active: ['', [Validators.required]],
-      album: ['', [Validators.required]],
-      song : [],
-      cover : [],
-      artist_id : []
+      title: ['', [Validators.required]],
+      album: ['', [Validators.required]]
     });
 
     this.songCoverForm =  this.fb.group({
@@ -44,26 +43,36 @@ export class SongEditComponent implements OnInit {
       active: ['', [Validators.required]],
     });
 
-    this.loadSong();
+    this.id = this.route.snapshot.paramMap.get('id');
 
+    this.loadSong();
   }
 
-loadSong()
-{
-  this.id = this.route.snapshot.paramMap.get('id');
+ loadSong()
+ {
   this.MusicService.getSong(this.id).subscribe((data)=>{
-    this.songs = data
+    this.songs = data;
   })
-}
+ }
 
 UpdateSongSubmit(){
-  if(this.SongUpdateForm.valid){
-    let aid : any = this.SongUpdateForm.get('id').value;
-      this.MusicService.updateSong(this.SongUpdateForm.value, aid).subscribe(
+  if(this.SongUpdateForm.valid)
+     {
+      this.MusicService.updateSong(this.SongUpdateForm.value, this.id).subscribe(
         (data)=>{this.update = data},
         (error)=>{this.noUpdate = error}
       );
-   }
+    }
+ }
+
+ activateSongSubmit(){
+  if(this.SongActiveForm.valid)
+     {
+      this.MusicService.activateSong(this.SongActiveForm.value, this.id).subscribe(
+        (data)=>{this.activeSuccess = data},
+        (error)=>{this.activeError = error}
+      );
+    }
  }
 
 onSongCoverSelect(event)

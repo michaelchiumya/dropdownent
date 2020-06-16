@@ -29,6 +29,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { SongsComponent } from './component-back/songs/songs.component';
 import { SongEditComponent } from './component-back/song-edit/song-edit.component';
+import { VideoEditComponent } from './component-back/video-edit/video-edit.component';
+import { VideosBackComponent } from './component-back/videos-back/videos-back.component';
 
 
 
@@ -46,7 +48,9 @@ import { SongEditComponent } from './component-back/song-edit/song-edit.componen
     SignupComponent,
     LoginComponent,
     SongsComponent,
-    SongEditComponent
+    SongEditComponent,
+    VideoEditComponent,
+    VideosBackComponent
   ],
 
   imports: [

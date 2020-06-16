@@ -12,6 +12,8 @@ import { SignupComponent } from './component-back/signup/signup.component';
 import { PortalAuthGuard } from './portal-auth.guard';
 import { SongsComponent } from './component-back/songs/songs.component';
 import { SongEditComponent } from './component-back/song-edit/song-edit.component';
+import { VideoEditComponent } from './component-back/video-edit/video-edit.component';
+import { VideosBackComponent } from './component-back/videos-back/videos-back.component';
 
 
 
@@ -25,6 +27,8 @@ export const routes: Routes = [
   {path: 'admin',  component: AdminComponent, canActivate: [PortalAuthGuard] },
   {path: 'music',  component: SongsComponent, canActivate: [PortalAuthGuard] },
   {path: 'music/edit/:id',  component: SongEditComponent, canActivate: [PortalAuthGuard] },
+  {path: 'video/edit/:id',  component: VideoEditComponent, canActivate: [PortalAuthGuard] },
+  {path: 'videos/admin',  component: VideosBackComponent, canActivate: [PortalAuthGuard] },
   {path: 'artist-backend/:id', component: ArtistBackComponent, canActivate: [PortalAuthGuard]},
   {path: 'signup', component:SignupComponent, canActivate: [PortalAuthGuard]},
   {path: '404', component: PageNotFoundComponent},

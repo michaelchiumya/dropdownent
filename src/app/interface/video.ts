@@ -3,6 +3,7 @@ export class Video {
   artist_id: number;
   title: string;
   link: string;
+  active: boolean;
   snapshot: string;
 
 }
