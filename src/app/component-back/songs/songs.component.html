@@ -1,3 +1,16 @@
+<div class="container mt-3">
+<ul class="nav grey lighten-4 py-1 my-3">
+  <li class="nav-item">
+    <a class="nav-link active" routerLink="/admin">admin </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" routerLink="/admin">/</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#!">music</a>
+  </li>
+</ul>
+
 <!-- Search form -->
 <div class="container-fluid mb-3 py-4 rgba-black-strong">
   <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
@@ -27,23 +40,23 @@
      <div class="card elegant-color">
        <img *ngIf="song.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
        <div class="view overlay">
-         <img *ngIf="song.cover!='null'" class="card-img-top" src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{song.cover}}" alt="Card image cap">
+         <img *ngIf="song.cover!='null'" class="card-img-top" src="{{song.cover}}" alt="Card image cap">
          <div class="mask rgba-white-slight"></div>
        </div>
 
       <div class="card-body white">
-        <h4 class="h4 font-weight-bolder mt-3 text-muted text-truncate">
+        <h6 class="h6 font-weight-bolder mt-3 text-muted text-truncate">
           {{song.title | titlecase}}
-        </h4>
-        <span class="h6 font-weight-bold text-muted text-uppercase"> {{song.album | titlecase}}</span>
+        </h6>
+        <span class="h5 font-weight-bold text-muted text-uppercase"> {{song.album | titlecase}}</span>
      <div class="divider"></div>
 
      <div class="d-flex justify-content-between">
           <div>
-            <button class="btn elegant-color text-muted" type="submit">Delete</button>
+            <button class="btn btn-sm elegant-color text-muted" type="submit">Delete</button>
           </div>
           <div>
-           <button type="button" class="btn btn-elegant text-muted" routerLink="/music/edit/{{ song.id}}">
+           <button type="button" class="btn btn-sm btn-elegant text-muted" routerLink="/music/edit/{{ song.id}}">
            Update
           </button>
         </div>
@@ -54,6 +67,7 @@
 
 </div>
 
+ </div>
  </div>
  <br><br><br><br>
 

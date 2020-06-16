@@ -1,4 +1,22 @@
 <div class="container mt-3">
+  <ul class="nav grey lighten-4 py-1 my-3">
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/admin">admin </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" routerLink="/admin">/</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/music">music</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" routerLink="/admin">/</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" routerLink="/admin">edit </a>
+    </li>
+  </ul>
+
  <div class="row">
 
   <div class="col-md-4 mb-4  d-flex align-items-stretch">
@@ -40,12 +58,16 @@
               <form [formGroup]="SongUpdateForm" class="mb-4">
                 <div class="md-form">
                   <input type="text" id="album" formControlName="album" [(ngModel)]="songs.album">
-                  <label for="album">Album</label>
+                  <small id="active" class="form-text text-muted mb-4">
+                   Album
+                  </small>
                  </div>
 
                  <div class="md-form">
                   <input type="text" id="title" formControlName="title" [(ngModel)]="songs.title">
-                  <label for="title">Title</label>
+                  <small id="active" class="form-text text-muted mb-4">
+                   Title
+                 </small>
                  </div>
 
                  <div class="d-flex justify-content-between">
