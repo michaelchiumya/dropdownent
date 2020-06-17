@@ -12,18 +12,14 @@
           </button>
       </div>
 
-
-
-
     <div class="modal-body">
       <form  [formGroup] = "artistForm" (ngSubmit)="onArtistSubmit()">
-
         <div>
           <div *ngIf="artistError" class="alert alert-danger" role="alert">
               {{ artistError.error}}
           </div>
           <div *ngIf="artistSuccess" class="alert alert-success" role="alert">
-              {{ artistSuccess.success}} : new artist added!S
+              {{ artistSuccess.success}} : new artist added!
           </div>
         </div>
 
@@ -77,9 +73,7 @@
         </div>
 
     <div class="modal-body">
-
         <form [formGroup] ="addSongForm" (ngSubmit)="onSongSubmit()">
-
           <div>
             <div *ngIf="songError" class="alert alert-danger" role="alert">
                {{ songError.error.error}}
@@ -181,10 +175,10 @@
             <i class="fas fa-link prefix grey-text"></i>
              <input class="form-control validate" formControlName="link" required>
               <label data-error="wrong" data-success="right" for="link">link</label>
-              <span class="text-danger"
+              <small class="text-danger"
                 *ngIf="(videoForm.get('link').dirty || videoForm.get('link').touched) && videoForm.get('link').invalid && videoForm.get('link').errors.required">
                   link field required
-                </span>
+                </small>
            </div>
            <div class="md-form mb-4">
             <i class="fas fa-book prefix grey-text"></i>

@@ -112,33 +112,30 @@ onSongSelect(event)
 {
     if(event.target.files.length > 0)
      {
-       const file = event.target.files[0];
-       this.addSongForm.get('file').patchValue({
-          file : file
-       })
-
+      const file = event.target.files[0];
+      this.addSongForm.get('file').setValue(file);
      }
-  }
+}
 
  onSongSubmit()
  {
-  if(this.addSongForm.valid)
-  {
-     var formData = new FormData();
+
+   if(this.addSongForm.valid)
+    {
+      var formData = new FormData();
        formData.append('artistId', this.addSongForm.get('artistId').value);
        formData.append('title', this.addSongForm.get('title').value);
        formData.append('album', this.addSongForm.get('album').value);
        formData.append('file', this.addSongForm.get('file').value);
 
       this.MusicService.postSong(formData).subscribe(
-           response=>{ this.songSuccess = response },
-           error  => { this.songError = error}
+           (response)=>{ this.songSuccess = response },
+           (error)  => { this.songError = error}
        )
        this.addSongForm.reset();
        this.asong.nativeElement.value = null;
    }
-
- }
+}
 
 onVideoImageSelect(event)
 {
@@ -152,7 +149,7 @@ onVideoImageSelect(event)
 }
 
 onVideoSubmit()
-  {
+{
     if(this.videoForm.valid)
     {
       var formData = new FormData();
@@ -162,13 +159,12 @@ onVideoSubmit()
       formData.append('file', this.videoForm.get('file').value);
 
          this.VideosService.postVideo(formData).subscribe(
-               response=>{this.videoSuccess = response},
-               error  => { this.videoError = error }
+               (response) => {this.videoSuccess = response},
+               (error) => { this.videoError = error }
            );
            this.videoForm.reset();
            this.vimage.nativeElement.value = null;
     }
-
-   }
+}
 
 }

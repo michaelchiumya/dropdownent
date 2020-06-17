@@ -14,8 +14,12 @@ export class SongEditComponent implements OnInit {
   SongUpdateForm : FormGroup;
   songCoverForm : FormGroup;
   SongActiveForm : FormGroup;
-  update: any;
-  noUpdate: any;
+
+  imgError :any;
+  imgSuccess :any;
+  updateSuccess :any
+  updateError: any;
+
   activeError: any;
   activeSuccess :any;
 
@@ -59,8 +63,8 @@ UpdateSongSubmit(){
   if(this.SongUpdateForm.valid)
      {
       this.MusicService.updateSong(this.SongUpdateForm.value, this.id).subscribe(
-        (data)=>{this.update = data},
-        (error)=>{this.noUpdate = error}
+        (data)=>{this.updateSuccess = data},
+        (error)=>{this.updateError = error}
       );
     }
  }
