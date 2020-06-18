@@ -11,10 +11,12 @@
           Dropdown
         </button>
         <div class="dropdown-menu px-1" aria-labelledby="dropdownMenuMenu">
-          <button class="dropdown-item" type="button"><img src="https://img.icons8.com/color/32/000000/spotify--v1.png" class="px-1"/>Spotify</button>
-          <button class="dropdown-item " type="button"><img src="https://img.icons8.com/material/32/000000/tidal.png" class="px-1"/>Tidal</button>
-          <button class="dropdown-item" type="button"><img src="https://img.icons8.com/color/32/000000/deezer.png" class="px-1"/>Deezer</button>
-          <button class="dropdown-item" type="button"><img src="/assets/img/mmlogo.jpg" width="32" class="px-1"/>MalawiMusic</button>
+          <button class="dropdown-item" type="button" *ngFor="let plat of platform">
+            <img src="{{ plat.image }}" class="px-1"/>
+              {{ plat.name }}
+          </button>
+
+          <button class="dropdown-item" type="button"><img src="/assets/img/logos/mmlogo.jpg" width="32" class="px-1"/>MalawiMusic</button>
         </div>
       </div>
 

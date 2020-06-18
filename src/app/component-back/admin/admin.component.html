@@ -126,6 +126,78 @@
 </div>
 </div>
 
+<!--add platform-->
+<div class="modal fade" id="addplatform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify elegant-color" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header text-center elegant-color">
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2 ">ADD STREAMING PLATFORM</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+      </div>
+
+    <div class="modal-body">
+      <form  [formGroup] = "platformForm" (ngSubmit)="onPlatformSubmit()">
+        <div>
+          <div *ngIf="platformError" class="alert alert-danger" role="alert">
+              {{ platformError.error}}
+          </div>
+          <div *ngIf="platformSuccess" class="alert alert-success" role="alert">
+              {{ platformSuccess.success}} : new platform added!
+          </div>
+        </div>
+
+        <div class="md-form mb-4">
+          <select formControlName="artistId" class="browser-default custom-select">
+            <option selected>Select Artist</option>
+            <option *ngFor="let artist of artists" value={{artist.id}}>{{ artist.name |uppercase }}</option>
+         </select>
+         <span class="text-danger"
+         *ngIf="(videoForm.get('artistId').dirty ||videoForm.get('artistId').touched) && videoForm.get('artistId').invalid && videoForm.get('artistId').errors.required">
+          please select artist field
+        </span>
+        </div>
+
+        <div class="md-form mb-4">
+          <select formControlName="name" class="browser-default custom-select">
+            <option selected>Select Platform</option>
+            <option value="deezer">Deezer</option>
+            <option value="spotify">Spotify</option>
+            <option value="spotify">Tidal</option>
+            <option value="malawi-music">Malawi Music</option>
+         </select>
+         <span class="text-danger"
+         *ngIf="(platformForm.get('name').dirty ||platformForm.get('name').touched) && platformForm.get('name').invalid && platformForm.get('name').errors.required">
+          please select platform
+        </span>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-user prefix grey-text"></i>
+           <input type="text" class="form-control validate" formControlName="link" required>
+             <label data-error="wrong" data-success="right" for="form3">Link</label>
+             <label
+               class="text-danger"
+               data-error="wrong"
+               *ngIf="(platformForm.get('link').dirty || platformForm.get('link').touched) && platformForm.get('link').invalid && platformForm.get('link').errors.required">
+                link field is required
+             </label>
+        </div>
+
+       <div class="modal-footer justify-content-center">
+         <button type="submit" class="btn btn-outline-warning waves-effect">
+           Send<i class="fas fa-paper-plane-o ml-1"></i>
+        </button>
+       </div>
+   </form>
+ </div>
+</div>
+
+ </div>
+</div>
+
 <!--add video-->
 <div class="modal fade" id="addvideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-notify modal-warning elegant-color" role="document">
@@ -277,11 +349,11 @@
   <div class="card-body pt-0">
     <div class="float-left">
       <h6 class="font-weight-bold mb-1">
-        <a class="black-text" routerLink="/artist-backend">Albums</a>
+        <a class="black-text">Platform</a>
       </h6>
     </div>
   <div class="float-right">
-    <a class="btn-floating btn-lg disabled" data-toggle="modal" data-target="#">
+    <a class="btn-floating btn-lg" data-toggle="modal" data-target="#addplatform">
       <i class="far fa-plus-square"></i>
     </a>
   </div>

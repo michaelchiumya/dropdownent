@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataService } from './services/data.service';
 import { ArtistService } from './services/artist.service';
 import { VideosService } from './services/videos.service';
+import { PlatformService } from './services/platform.service';
 import { SafePipePipe } from './safe-pipe.pipe';
 import { ArtistComponent } from './component/artist/artist.component';
 import { AdminComponent } from './component-back/admin/admin.component';
@@ -81,6 +82,7 @@ import { VideosBackComponent } from './component-back/videos-back/videos-back.co
     AdminService,
     AuthService,
     PortalAuthService,
+    PlatformService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

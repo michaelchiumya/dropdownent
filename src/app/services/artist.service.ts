@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError} from 'rxjs';
-import { catchError, map} from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 import { Artist } from '../interface/artist';
 
 

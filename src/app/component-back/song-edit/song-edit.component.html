@@ -30,6 +30,7 @@
         <form [formGroup]="songCoverForm">
             <div class="md-form mb-4">
                <input type="file"
+               #simage
                 formGroupName="file"
                 (change)="onSongCoverSelect($event)"
                 accept="image/*" required>

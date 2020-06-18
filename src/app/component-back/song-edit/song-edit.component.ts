@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MusicService } from 'src/app/services/music.service';
 import { ActivatedRoute } from '@angular/router';
@@ -25,6 +25,8 @@ export class SongEditComponent implements OnInit {
 
   songs = new Song;
   id :any;
+
+  @ViewChild('simage') simage: ElementRef;
 
   constructor(
     private fb :FormBuilder,
@@ -90,5 +92,15 @@ onSongCoverSelect(event)
    }
  }
 
+ UpdateImageSubmit(){
+  var formData = new FormData();
+
+  formData.append('file', this.songCoverForm.get('file').value);
+   this.MusicService.postImage(formData, this.id).subscribe(
+     (res)=>{this.imgSuccess = res},
+     (error)=>{this.imgError = error}
+   );
+   this.simage.nativeElement.value = null;
+}
 
 }

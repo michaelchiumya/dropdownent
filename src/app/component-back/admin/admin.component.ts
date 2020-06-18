@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ArtistService } from 'src/app/services/artist.service';
 import { VideosService } from 'src/app/services/videos.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { PlatformService } from 'src/app/services/platform.service';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MusicService } from 'src/app/services/music.service';
 import { Admin } from 'src/app/interface/admin';
@@ -18,6 +19,7 @@ export class AdminComponent implements OnInit {
   artistForm :  FormGroup;
   videoForm :   FormGroup;
   addSongForm : FormGroup;
+  platformForm : FormGroup;
   admin : Admin;
   artists: Artist[];
 
@@ -27,6 +29,8 @@ export class AdminComponent implements OnInit {
   artistSuccess: any;
   videoError: any;
   videoSuccess: any;
+  platformError :any;
+  platformSuccess :any;
 
   @ViewChild('asong') asong: ElementRef;
   @ViewChild('vimage') vimage: ElementRef;
@@ -36,6 +40,7 @@ export class AdminComponent implements OnInit {
     private ArtistService: ArtistService,
     private VideosService: VideosService,
     private MusicService: MusicService,
+    private PlatformService: PlatformService,
     private route: Router
     )
    { }
@@ -55,12 +60,18 @@ export class AdminComponent implements OnInit {
       file: ['',Validators.required]
     });
 
- this.addSongForm =  this.fb.group({
+  this.addSongForm =  this.fb.group({
     artistId: ['', [Validators.required]],
     title: ['', [Validators.required]],
     album: ['', [Validators.required]],
     file: ['',Validators.required]
      });
+
+     this.platformForm =  this.fb.group({
+      name: ['', [Validators.required]],
+      link: ['',Validators.required],
+      artistId: ['', [Validators.required]],
+    });
 
 }
 
@@ -96,17 +107,6 @@ onArtistImageSelect(event)
       this.artistForm.get('image').setValue(file);
     }
 }
-
-// onSongCoverSelect(event)
-//  {
-//     if (event.target.files.length > 0)
-//     {
-//       const file = event.target.files[0];
-//       this.addSongForm.get('file').patchValue({
-//         file : file
-//       })
-//     }
-// }
 
 onSongSelect(event)
 {
@@ -164,6 +164,44 @@ onVideoSubmit()
            );
            this.videoForm.reset();
            this.vimage.nativeElement.value = null;
+    }
+}
+
+onPlatformSubmit()
+{
+    if(this.platformForm.valid)
+    {
+      let platform = this.platformForm.get('name').value;
+      switch (platform) {
+        case 'deezer':
+            this.platformForm.addControl('image', new FormControl('', Validators.required));
+            this.platformForm.addControl('name', new FormControl('', Validators.required));
+            this.platformForm.get('image').setValue('https://img.icons8.com/color/32/000000/deezer.png');
+            this.platformForm.get('name').setValue(platform);
+          break;
+        case 'spotify':
+          this.platformForm.addControl('image', new FormControl('', Validators.required));
+          this.platformForm.addControl('name', new FormControl('', Validators.required));
+          this.platformForm.get('image').setValue('https://img.icons8.com/color/32/000000/spotify--v1.png');
+          this.platformForm.get('name').setValue(platform);
+            break;
+        case 'tidal':
+          this.platformForm.addControl('image', new FormControl('', Validators.required));
+          this.platformForm.addControl('name', new FormControl('', Validators.required));
+          this.platformForm.get('image').setValue('https://img.icons8.com/material/32/000000/tidal.png');
+          this.platformForm.get('name').setValue(platform);
+
+              break;
+        default:
+             this.platformForm.invalid
+          break;
+       }
+
+         this.PlatformService.postPlatform(this.platformForm.value).subscribe(
+               (response) => {this.platformSuccess = response},
+               (error) => { this.platformError = error }
+           );
+           this.videoForm.reset();
     }
 }
 

@@ -4,6 +4,7 @@ import { AlbumsService } from 'src/app/services/albums.service';
 import { DataService } from 'src/app/services/data.service';
 import { ArtistService } from 'src/app/services/artist.service';
 import { MusicService } from 'src/app/services/music.service';
+import { PlatformService } from 'src/app/services/platform.service';
 import { Track } from 'ngx-audio-player';
 
 @Component({
@@ -14,11 +15,12 @@ import { Track } from 'ngx-audio-player';
 
 export class ArtistComponent implements OnInit,OnDestroy {
 
-  songs : any[];
-  albums :any;
-  private playlist : Track[];
+ private playlist : Track[];
   id :string;
   artist : any;
+  songs : any[];
+  albums :any;
+  platform :any;
   status: boolean = false;
 
 
@@ -26,6 +28,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
     private AlbumsService: AlbumsService,
     private DataService: DataService,
     private MusicService: MusicService,
+    private PlatformService: PlatformService,
     private ArtistService: ArtistService,
     private activeRoute: ActivatedRoute,
     private route: Router
@@ -37,6 +40,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
             this.getArtist(res.id)
             this.getSongs(res.id)
             this.getAlbums(res.id)
+            this.getPlatform(res.id)
            })
 
   }
@@ -45,6 +49,12 @@ export class ArtistComponent implements OnInit,OnDestroy {
   {
     this.ArtistService.getArtistById(id).subscribe(arg=> this.artist= arg);
   }
+
+  getPlatform(id)
+  {
+    this.PlatformService.getById(id).subscribe(arg=> this.platform = arg);
+  }
+
 
   getSongs(id)
   {
