@@ -23,7 +23,7 @@ getAll() :any
     return this.http.get(`${this.url}/platform`).pipe(map((data: any)=>data))
 }
 
-updateArtist(data:any, id: string)
+update(data:any, id: string)
 {
   return this.http.put<any>(`${this.url}/platform/${id}`,data).pipe(map((data: any)=> {return data}));
 }

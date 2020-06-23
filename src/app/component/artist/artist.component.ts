@@ -6,6 +6,7 @@ import { ArtistService } from 'src/app/services/artist.service';
 import { MusicService } from 'src/app/services/music.service';
 import { PlatformService } from 'src/app/services/platform.service';
 import { Track } from 'ngx-audio-player';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-artist',
@@ -22,6 +23,9 @@ export class ArtistComponent implements OnInit,OnDestroy {
   albums :any;
   platform :any;
   status: boolean = false;
+
+  searchQuery: any;
+  searchResults$ = new BehaviorSubject<any>(null);
 
 
   constructor(
@@ -58,7 +62,12 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   getSongs(id)
   {
-    this.MusicService.getActiveSongs(id).subscribe(arg=> this.songs= arg);
+    this.MusicService.getActiveSongs(id).subscribe((arg)=> {
+      this.songs= arg
+      this.searchResults$.next(arg)
+    }
+      );
+
   }
 
   getAlbums(id)
@@ -98,6 +107,16 @@ export class ArtistComponent implements OnInit,OnDestroy {
        });
 
       this.DataService.storeData(this.playlist);
+  }
+
+  search(searchTerm)
+  {
+    this.searchResults$.next(
+      this.songs.filter(v =>
+        {
+        return v.title.toLowerCase().includes(searchTerm.toLowerCase());
+       })
+    );
   }
 
 ngOnDestroy()

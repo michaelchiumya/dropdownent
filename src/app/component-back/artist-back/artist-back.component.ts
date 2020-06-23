@@ -1,8 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ArtistService } from 'src/app/services/artist.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ArtistService } from 'src/app/services/artist.service';
+import { PlatformService } from 'src/app/services/platform.service';
 import { Artist } from 'src/app/interface/artist';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-artist-back',
@@ -19,11 +21,16 @@ export class ArtistBackComponent implements OnInit {
   imgError :any;
   imgSuccess :any;
   updateSuccess :any
+  platformError :any;
+  platformSuccess :any;
   updateError: any;
   deleteError: any;
 
+  platform = new BehaviorSubject<void>(null);
+
   constructor(
     private ArtistService: ArtistService,
+    private PlatformService: PlatformService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
@@ -32,6 +39,8 @@ export class ArtistBackComponent implements OnInit {
 
   ngOnInit(): void
   {
+       this.id = this.route.snapshot.paramMap.get('id');
+
        this.updateform = this.fb.group({
             id: ['', [Validators.required]],
             active: ['', [Validators.required]],
@@ -39,18 +48,28 @@ export class ArtistBackComponent implements OnInit {
             biography: ['', [Validators.required]]
             });
 
-      this.imageform = this.fb.group({
+       this.imageform = this.fb.group({
           image: ['',[Validators.required]]
           });
 
-      this.loadArtist()
+       this.loadArtist();
+       this.loadPlatform();
+
 }
 
-loadArtist(){
-  this.id = this.route.snapshot.paramMap.get('id');
+loadArtist()
+{
   var numId = Number(this.id);
   this.ArtistService.getArtistById(numId).subscribe((arg)=>{
     this.artist = arg
+  })
+}
+
+loadPlatform()
+{
+  var numId = Number(this.id);
+  this.PlatformService.getById(numId).subscribe((arg)=>{
+    this.platform.next(arg);
   })
 }
 
@@ -63,6 +82,7 @@ onImageSelect(event)
 }
 
 UpdateImageSubmit(){
+
   var formData = new FormData();
   var id =  this.id;
   formData.append('image', this.imageform.get('image').value);
@@ -92,4 +112,13 @@ deleteArtist(id)
       )
    this.router.navigate(['admin']);
  }
+
+ deletePlatform(id)
+ {
+  this.PlatformService.destroy(id).subscribe(
+    (response)=>{this.platformSuccess = response },
+    (error)=>{this.platformError = error}
+     )
+ }
+
 }

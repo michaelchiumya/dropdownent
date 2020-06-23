@@ -23,6 +23,8 @@
     </div>
   </div>
 </div>
+
+<div class="container mx-auto mx-sm-2">
 <button class="btn btn-elegant my-3" type="button" data-toggle="collapse" data-target="#mycollapse"
     aria-expanded="false" aria-controls="mycollapse">
     Biography
@@ -33,65 +35,65 @@
   {{ artist?.biography }}
 </div>
 <!-- Jumbotron -->
-<br><br>
+<br>
+<br>
 
-<div class="container-fluid">
+<div class="scrollbar scrollbar-black bordered-black square thin stylish-color">
+  <div class="container-fluid mb-3 py-4">
+    <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+      <i class="fas fa-search white-text" aria-hidden="true"></i>
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by typing tittle"
+        aria-label="Search"
+       [(ngModel)]="searchQuery"
+       (ngModelChange)="search($event)"
+       [ngModelOptions]="{standalone: true}" />
+    </form>
+  </div>
+
   <div class="row">
-   <div class="col-md-6 table-wrapper-scroll-y my-custom-scrollbar">
-<table id="dtBasicExample" class="table table-striped table-borderless table-sm compact" cellspacing="0" width="100%">
-  <thead class="d-none">
-    <tr>
-      <th class="th-sm">image</th>
-      <th class="th-sm">Title</th>
-      <th class="th-sm">action</th>
-   </tr>
+    <div class="col-md-4 col-sm-12 my-3 mx-md-4" *ngFor="let song of searchResults$ | async">
+      <div class="row no-gutters">
+         <div class="col-6">
+           <img *ngIf="song.cover == 'null'" class="img-fluid" src="/assets/img/img.jpg">
+           <img *ngIf="song.cover != 'null'"src="{{song.cover}}" class="img-fluid" width="200" alt="image">
+         </div>
+         <div class="col-6">
+           <div>
+             <h5 class="card-title text-white-50 mx-1 mt-2 text-truncate">{{song.title | uppercase}} </h5>
+             <h6 class="card-title text-white-50 mx-1 mt-2 font-weight-bold"> {{song.album | uppercase}}</h6>
 
-  </thead>
-  <tbody *ngFor="let song of songs">
-    <tr>
-      <td style="width: 30%;">
-        <img *ngIf="song.cover == 'null'" class="img-fluid" src="/assets/img/img.jpg">
-        <img *ngIf="song.cover != 'null'"src="{{song.cover}}" class="img-fluid" width="200" alt="image">
-      </td>
-      <td td style="width: 30%;">
-        {{song.title | uppercase}} <br>
-        <small class="text-muted">{{song.album | uppercase}}</small> <br>
+             <div class="d-flex justify-content-between mb-0">
+                <div>
+                 <button
+                 type="button"
+                 class="btn btn-elegant  btn-sm text-lg text-muted"
+                 [ngClass]="status ? 'action' : 'nonaction'"
+                 (click)="songLoader(song)">
+                <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
+                </button>
+                </div>
 
+                <div>
+                  <button type="button" class="btn btn-elegant btn-sm text-lg text-muted" (click)="playlistSong(song)">
+                   <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+                  </button>
+                </div>
+             </div>
 
-        <div class="d-flex justify-content-between">
-          <div>
-            <button
-               type="button"
-               class="btn btn-elegant  btn-sm text-lg text-muted"
-               [ngClass]="status ? 'action' : 'nonaction'"
-               (click)="songLoader(song)">
-              <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
-              </button>
-          </div>
-         <div>
-          <button type="button" class="btn btn-elegant btn-sm text-lg text-muted" (click)="playlistSong(song)">
-            <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-      </td>
-    </tr>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
 
-
-  </tbody>
-
-</table>
 </div>
 <br>
 
-
-<br>
-<div class="col-md-6">
-<div class="container-fluid elegant-color py-4" *ngIf="albums">
+<div class="container-fluid py-4 stylish-color" *ngIf="albums">
   <h3 class="h3 font-weight-bold my-3 text-muted">Albums</h3>
   <div class="card-deck">
 
-   <div class="card mb-4 elegant-color col-md-6" *ngFor="let album of albums,let i=index">
+   <div class="card mb-4 elegant-color col-md-4" *ngFor="let album of albums,let i=index">
      <div class="view overlay">
        <img *ngIf="album[0].cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="album">
        <img *ngIf="album[0].cover !='null'" class="card-img-top" src="{{album[0].cover}}" alt="album">
@@ -153,7 +155,7 @@
           </li>
       </ol>
       </div>
-     </div>
+
   </div>
 
  </div>
@@ -168,8 +170,9 @@
 
  </div>
 </div>
+
 </div>
+
 </div>
-</div>
-  <br><br>
+  <br><br><br>
 

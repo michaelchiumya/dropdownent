@@ -1,23 +1,41 @@
-.table-wrapper-scroll-y
-{
-  display: block;
-}
-.my-custom-scrollbar
+
+.scrollbar
 {
   position: relative;
+  display: block;
   overflow: auto;
   height: 400px;
+  overflow-x: hidden;
 }
-.action
-{
- color: green;
-}
-.nonaction
-{
-  color: red;
-}
+
+.scrollbar-black::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px; }
+
+  .scrollbar-black::-webkit-scrollbar {
+  width: 9px;
+  background-color: #F5F5F5; }
+
+  .scrollbar-black::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #000; }
+
+    .form-control:focus{
+      border-color: #f0f32b !important;
+      background-color: whitesmoke !important;
+      padding-left: 2px;
+    }
+
 @media (max-width: 575px)
- {}
+ {
+   .kard{
+        width: 10rem;
+       }
+ }
 
 @media (max-width: 767px) {
   }
