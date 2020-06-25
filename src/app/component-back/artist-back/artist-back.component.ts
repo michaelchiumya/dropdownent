@@ -26,7 +26,7 @@ export class ArtistBackComponent implements OnInit {
   updateError: any;
   deleteError: any;
 
-  platform = new BehaviorSubject<void>(null);
+  platform :any;
 
   constructor(
     private ArtistService: ArtistService,
@@ -69,7 +69,7 @@ loadPlatform()
 {
   var numId = Number(this.id);
   this.PlatformService.getById(numId).subscribe((arg)=>{
-    this.platform.next(arg);
+    this.platform = arg;
   })
 }
 
@@ -77,7 +77,7 @@ onImageSelect(event)
 {
   if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.imageform.get('image').setValue(file,{emitModelToViewChange: true})
+      this.imageform.get('image').setValue(file)
     }
 }
 

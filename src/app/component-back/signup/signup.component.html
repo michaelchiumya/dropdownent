@@ -1,39 +1,61 @@
-<div class="container-fluid">
- <!-- Default form register -->
-<form class="text-center border border-light p-5" action="#!">
+<div class="container">
+ <!-- Material form register -->
+<div class="card">
 
-  <p class="h4 mb-4">Sign up</p>
+  <h5 class="card-header elegant-color white-text text-center my-2 py-4">
+      <strong>Sign up</strong>
+  </h5>
 
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0 my-4">
 
-     <!-- name -->
-  <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Name" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-  <!--<small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-      required
-  </small>-->
+      <!-- Form -->
+      <form class="text-center" style="color: #757575;" action="#!">
 
-  <!-- E-mail -->
-  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-  <!-- Password -->
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-    <!-- confirm Password -->
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Confirm Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          <!-- Name -->
+          <div class="md-form mt-0">
+            <input type="text" id="materialRegisterFormName" class="form-control">
+            <label for="materialRegisterFormName">Name</label>
+        </div>
 
-  </small>
+          <!-- E-mail -->
+          <div class="md-form mt-0">
+              <input type="email" id="materialRegisterFormEmail" class="form-control">
+              <label for="materialRegisterFormEmail">E-mail</label>
+          </div>
 
+          <!-- Password -->
+          <div class="md-form">
+              <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+              <label for="materialRegisterFormPassword">Password</label>
+              <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                  At least 8 characters and 1 digit
+              </small>
+          </div>
 
-  <!-- Sign up button -->
-  <button class="btn elegant-color white-text my-4 btn-block" type="submit">Sign in</button>
+         <!-- Password confirm -->
+         <div class="md-form">
+          <input type="password" id="materialRegisterFormPasswordconfirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+          <label for="materialRegisterFormPasswordconfirm">Password Confirmation</label>
+          <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+             must match the password
+          </small>
+      </div>
 
+       <!-- Sign up button -->
+<button class="btn btn-outline-warning btn-rounded my-4 waves-effect z-depth-0" type="submit">Sign up Admin</button>
 
-<hr>
-
+ <hr>
   <!-- Terms of service -->
-  <p>By clicking
-      <em>Sign up</em> you agree to our
-      <a href="" target="_blank">terms of service</a>
+ <p>By clicking
+    <em>Sign up</em> you agree to our
+      <a href="" target="_blank">terms of adding admin</a>
 
-</form>
-<!-- Default form register -->
+  </form>
+<!-- Form -->
 
+  </div>
+
+</div>
+<!-- Material form register -->
 </div>

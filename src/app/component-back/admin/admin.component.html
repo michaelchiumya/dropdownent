@@ -49,7 +49,7 @@
         </div>
 
        <div class="modal-footer justify-content-center">
-        <button type="submit" class="btn btn-outline-warning waves-effect">
+        <button type="submit" class="btn btn-outline-warning waves-effect" [disabled]="artistForm.invalid">
           Send<i class="fas fa-paper-plane-o ml-1"></i>
         </button>
        </div>
@@ -114,7 +114,7 @@
 
 
          <div class="modal-footer justify-content-center">
-           <button type="submit" class="btn btn-outline-warning waves-effect">
+           <button type="submit" class="btn btn-outline-warning waves-effect" [disabled]="addSongForm.invalid">
              Send<i class="fas fa-paper-plane-o ml-1"></i>
            </button>
         </div>
@@ -165,8 +165,9 @@
             <option selected>Select Platform</option>
             <option value="deezer">Deezer</option>
             <option value="spotify">Spotify</option>
-            <option value="spotify">Tidal</option>
-            <option value="malawi-music">Malawi Music</option>
+            <option value="tidal">Tidal</option>
+            <option value="apple music">Apple Music</option>
+            <option value="malawi music">Malawi Music</option>
          </select>
          <span class="text-danger"
          *ngIf="(platformForm.get('name').dirty ||platformForm.get('name').touched) && platformForm.get('name').invalid && platformForm.get('name').errors.required">
@@ -187,7 +188,7 @@
         </div>
 
        <div class="modal-footer justify-content-center">
-         <button type="submit" class="btn btn-outline-warning waves-effect">
+         <button type="submit" class="btn btn-outline-warning waves-effect" [disabled]="platformForm.invalid">
            Send<i class="fas fa-paper-plane-o ml-1"></i>
         </button>
        </div>
@@ -260,7 +261,7 @@
 
 
     <div class="modal-footer justify-content-center">
-      <button type="submit" class="btn elegant-gradient waves-effect">
+      <button type="submit" class="btn elegant-gradient waves-effect" [disabled]="videoForm.invalid">
          Send<i class="fas fa-paper-plane-o ml-1"></i>
      </button>
   </div>

@@ -43,6 +43,7 @@ export class SongEditComponent implements OnInit {
 
     this.songCoverForm =  this.fb.group({
       file: ['', [Validators.required]],
+      album: ['',  [Validators.required]]
     });
 
     this.SongActiveForm =  this.fb.group({
@@ -86,9 +87,7 @@ onSongCoverSelect(event)
    if(event.target.files.length > 0)
    {
      const file = event.target.files[0];
-     this.songCoverForm.patchValue({
-       file : file
-     });
+     this.songCoverForm.get('file').setValue(file)
    }
  }
 
@@ -96,6 +95,7 @@ onSongCoverSelect(event)
   var formData = new FormData();
 
   formData.append('file', this.songCoverForm.get('file').value);
+  formData.append('album', this.songs.album );
    this.MusicService.postImage(formData, this.id).subscribe(
      (res)=>{this.imgSuccess = res},
      (error)=>{this.imgError = error}

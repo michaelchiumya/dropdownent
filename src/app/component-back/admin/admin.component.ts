@@ -190,8 +190,19 @@ onPlatformSubmit()
           this.platformForm.addControl('name', new FormControl('', Validators.required));
           this.platformForm.get('image').setValue('https://img.icons8.com/material/32/000000/tidal.png');
           this.platformForm.get('name').setValue(platform);
-
               break;
+        case 'apple music':
+                this.platformForm.addControl('image', new FormControl('', Validators.required));
+                this.platformForm.addControl('name', new FormControl('', Validators.required));
+                this.platformForm.get('image').setValue('/assets/img/logos/apple.png');
+                this.platformForm.get('name').setValue(platform);
+                  break;
+      case 'malawi music':
+                this.platformForm.addControl('image', new FormControl('', Validators.required));
+                this.platformForm.addControl('name', new FormControl('', Validators.required));
+                this.platformForm.get('image').setValue('/assets/img/logos/mmlogo.jpg');
+                this.platformForm.get('name').setValue(platform);
+                break;
         default:
              this.platformForm.invalid
           break;

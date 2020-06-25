@@ -76,18 +76,23 @@
     <div class="d-flex justify-content-between">
 
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="submit" class="btn btn-outline-mdb-color waves-effect">
-          <i class="fas fa-car fa-sm pr-2"
+        <button type="submit" class="btn btn-outline-warning waves-effect">
+          <i class="far fa-edit fa-sm pr-2"
            aria-hidden="true"></i>
           Update
         </button>
 
-       <button (click)="deleteArtist(artist.id)" class="btn btn-outline-mdb-color waves-effect">
-         <i class="fas fa-train fa-sm pr-2"
-           aria-hidden="true"></i>
+       <button (click)="deleteArtist(artist.id)" class="btn btn-outline-danger waves-effect">
+        <i class="far fa-times-circle fa-sm pr-2" aria-hidden="true"></i>
           Delete
        </button>
     </div>
+
+     <div>
+        <button type="button" class="btn btn-outline-mdb-color waves-effect" data-toggle="modal" data-target="#basicExampleModal">
+          <i class="fas fa-external-link-alt mr-2"></i> Platform
+        </button>
+     </div>
   </div>
   </form>
  </div>
@@ -96,9 +101,7 @@
 </div>
 
 
-<button type="button" class="btn btn-outline-mdb-color waves-effect" data-toggle="modal" data-target="#basicExampleModal">
-  <i class="fas fa-external-link-alt mr-2"></i> Platform
-</button>
+
 
 
 <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -106,18 +109,18 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Platform</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let plat of platform | async">
+          <li class="list-group-item" *ngFor="let plat of platform">
 
-             <div class="md-v-line"></div><i class="fas fa-bomb mr-5"></i>
-             <a (click)="deletePlatform(plat.id)" >
-              {{ plat.name }}
+             <div class="md-v-line"></div><i class="fas fa-external-link-alt mr-5"></i>
+             <a (click)="deletePlatform(plat.id)" class="btn btn-outline-danger waves-effect muted-text" >
+              <i class="far fa-times-circle fa-sm pr-2" aria-hidden="true"></i>{{ plat.name }}
             </a>
           </li>
          </ul>

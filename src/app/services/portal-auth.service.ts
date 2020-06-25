@@ -43,13 +43,7 @@ export class PortalAuthService {
       {
         this.subject$.next(data)
       }
-        ),
-
-      catchError((error) =>
-      {
-        return throwError('something went wrong...');
-      })
-   );
+        ));
 }
 
 logout()

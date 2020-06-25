@@ -11,12 +11,15 @@
           Dropdown
         </button>
         <div class="dropdown-menu px-1" aria-labelledby="dropdownMenuMenu">
-          <button class="dropdown-item" type="button" *ngFor="let plat of platform">
-            <img src="{{ plat.image }}" class="px-1"/>
+
+          <button class="dropdown-item"
+           type="button"
+           *ngFor="let plat of platform"
+            (click)="goToPlatform(plat.link)">
+            <img src="{{ plat.image }}" class="px-1" width="32"/>
               {{ plat.name }}
           </button>
 
-          <button class="dropdown-item" type="button"><img src="/assets/img/logos/mmlogo.jpg" width="32" class="px-1"/>MalawiMusic</button>
         </div>
       </div>
 
@@ -37,9 +40,11 @@
 <!-- Jumbotron -->
 <br>
 <br>
+</div>
 
-<div class="scrollbar scrollbar-black bordered-black square thin stylish-color">
-  <div class="container-fluid mb-3 py-4">
+<div class="container mx-auto mb-3 py-4 scrollbar scrollbar-black bordered-black square thin stylish-color">
+
+
     <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
       <i class="fas fa-search white-text" aria-hidden="true"></i>
       <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by typing tittle"
@@ -48,7 +53,7 @@
        (ngModelChange)="search($event)"
        [ngModelOptions]="{standalone: true}" />
     </form>
-  </div>
+
 
   <div class="row">
     <div class="col-md-4 col-sm-12 my-3 mx-md-4" *ngFor="let song of searchResults$ | async">
@@ -89,11 +94,11 @@
 </div>
 <br>
 
-<div class="container-fluid py-4 stylish-color" *ngIf="albums">
+<div class="container py-4 stylish-color" *ngIf="albums">
   <h3 class="h3 font-weight-bold my-3 text-muted">Albums</h3>
   <div class="card-deck">
 
-   <div class="card mb-4 elegant-color col-md-4" *ngFor="let album of albums,let i=index">
+   <div class="card mb-4 p-0 col-md-4" *ngFor="let album of albums,let i=index">
      <div class="view overlay">
        <img *ngIf="album[0].cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="album">
        <img *ngIf="album[0].cover !='null'" class="card-img-top" src="{{album[0].cover}}" alt="album">
@@ -104,10 +109,10 @@
       <h4 class="card-title text-muted">{{ album[0].album | uppercase}}</h4>
        <div class="d-flex justify-content-between">
          <div>
-          <button type="button" class="btn btn-elegant btn-sm px-3 text-muted m-0" (click)="albumLoader(album)">
+          <button type="button" class="btn btn-elegant btn-sm px-3 m-1 text-muted m-0" (click)="albumLoader(album)">
             <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
           </button>
-          <button type="button" class="btn btn-elegant btn-sm px-3 text-muted m-0" (click)="playlistAlbum(album)">
+          <button type="button" class="btn btn-elegant btn-sm px-3 m-1 text-muted m-0" (click)="playlistAlbum(album)">
             <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
           </button>
          </div>
@@ -171,7 +176,7 @@
  </div>
 </div>
 
-</div>
+
 
 </div>
   <br><br><br>

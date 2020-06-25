@@ -138,7 +138,7 @@
       <div>
         <div class="alert alert-danger" role="alert"
          *ngIf="fanForm.get('email').dirty && fanForm.get('email').invalid && fanForm.get('email').errors.required">
-             valid email field required
+             valid email required
         </div>
         <div *ngIf="noFan" class="alert alert-danger" role="alert">
          {{ noFan.error.error}}
@@ -147,7 +147,7 @@
           {{ newFan}}
          </div>
      </div>
-      <button class="btn btn-elegant" type="submit"><i class="fas fa-mail mr-1"></i>Subscribe</button>
+      <button class="btn btn-elegant" type="submit" [disabled]="fanForm.invalid"><i class="fas fa-mail mr-1"></i>Subscribe</button>
     </form>
   </div>
 

@@ -56,9 +56,8 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   getPlatform(id)
   {
-    this.PlatformService.getById(id).subscribe(arg=> this.platform = arg);
+    this.PlatformService.getById(id).subscribe((arg)=>this.platform = arg);
   }
-
 
   getSongs(id)
   {
@@ -109,6 +108,11 @@ export class ArtistComponent implements OnInit,OnDestroy {
       this.DataService.storeData(this.playlist);
   }
 
+  goToPlatform(url)
+  {
+    window.location.href = url;
+  }
+
   search(searchTerm)
   {
     this.searchResults$.next(
@@ -121,7 +125,8 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
 ngOnDestroy()
 {
-  //this.ArtistService.getArtist().unsubscribe()
+
+
 }
 
 }
