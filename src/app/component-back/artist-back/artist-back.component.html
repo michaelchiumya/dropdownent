@@ -86,11 +86,9 @@
         <i class="far fa-times-circle fa-sm pr-2" aria-hidden="true"></i>
           Delete
        </button>
-    </div>
 
-     <div>
         <button type="button" class="btn btn-outline-mdb-color waves-effect" data-toggle="modal" data-target="#basicExampleModal">
-          <i class="fas fa-external-link-alt mr-2"></i> Platform
+          <i class="fas fa-external-link-alt pr-2"></i> Platform
         </button>
      </div>
   </div>
@@ -115,6 +113,14 @@
         </button>
       </div>
       <div class="modal-body">
+        <div>
+          <div *ngIf="platformError" class="alert alert-danger" role="alert">
+             Error : {{ updateError.error}}
+          </div>
+          <div *ngIf="updateSuccess" class="alert alert-success" role="alert">
+              {{ updateSuccess.success}} : platform deleted refresh page!
+          </div>
+       </div>
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let plat of platform">
 

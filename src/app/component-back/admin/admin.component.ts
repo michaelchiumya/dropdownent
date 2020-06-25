@@ -197,6 +197,12 @@ onPlatformSubmit()
                 this.platformForm.get('image').setValue('/assets/img/logos/apple.png');
                 this.platformForm.get('name').setValue(platform);
                   break;
+       case 'play music':
+                this.platformForm.addControl('image', new FormControl('', Validators.required));
+                this.platformForm.addControl('name', new FormControl('', Validators.required));
+                this.platformForm.get('image').setValue('/assets/img/logos/play.png');
+                this.platformForm.get('name').setValue(platform);
+                break;
       case 'malawi music':
                 this.platformForm.addControl('image', new FormControl('', Validators.required));
                 this.platformForm.addControl('name', new FormControl('', Validators.required));
