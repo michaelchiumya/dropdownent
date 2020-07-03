@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MusicService } from 'src/app/services/music.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Song } from 'src/app/interface/song';
 
 @Component({
@@ -27,11 +27,14 @@ export class SongEditComponent implements OnInit {
   id :any;
 
   @ViewChild('simage') simage: ElementRef;
+  deleteError: any;
 
   constructor(
     private fb :FormBuilder,
     private MusicService : MusicService,
-    private route:  ActivatedRoute
+    private route:  ActivatedRoute,
+    private router: Router
+
   ) {}
 
   ngOnInit(): void
@@ -91,9 +94,9 @@ onSongCoverSelect(event)
    }
  }
 
- UpdateImageSubmit(){
+ UpdateImageSubmit()
+ {
   var formData = new FormData();
-
   formData.append('file', this.songCoverForm.get('file').value);
   formData.append('album', this.songs.album );
    this.MusicService.postImage(formData, this.id).subscribe(
@@ -102,5 +105,7 @@ onSongCoverSelect(event)
    );
    this.simage.nativeElement.value = null;
 }
+
+
 
 }

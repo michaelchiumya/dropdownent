@@ -19,10 +19,10 @@ import { VideosBackComponent } from './component-back/videos-back/videos-back.co
 
 export const routes: Routes = [
   { path:'', redirectTo: '/home', pathMatch:'full'},
-  {path: 'home',  component: HomeComponent},
-  {path:'videos', component: VideosComponent},
-  {path:'artist/:id', component: ArtistComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'home',  component: HomeComponent, data: {animation: 'HomePage'}},
+  {path:'videos', component: VideosComponent,data: {animation: 'VideosPage'}},
+  {path:'artist/:id', component: ArtistComponent,data: {animation: 'ArtistPage'}},
+  {path: 'login', component: LoginComponent,data: {animation: 'VideosPage'}},
 
   {path: 'admin',  component: AdminComponent, canActivate: [PortalAuthGuard] },
   {path: 'music',  component: SongsComponent, canActivate: [PortalAuthGuard] },

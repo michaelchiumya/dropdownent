@@ -1,5 +1,5 @@
 <!-- Jumbotron -->
-<div class="card card-image" style="background-image: url(https://dropdownent.s3-eu-west-1.amazonaws.com/{{artist?.image}});background-size: contain;">
+<div class="card card-image" style="background-image: url({{artist?.image}});background-size: contain;">
   <div class="text-white text-center rgba-stylish-strong py-5 px-4">
     <div class="py-3">
 
@@ -71,16 +71,15 @@
                 <div>
                  <button
                  type="button"
-                 class="btn btn-elegant  btn-sm text-lg text-muted"
-                 [ngClass]="status ? 'action' : 'nonaction'"
+                 class="btn btn-elegant btn-sm text-muted aves-effect waves-light"
                  (click)="songLoader(song)">
-                <i class="far fa-play-circle fa-2x pr-2" aria-hidden="true"></i>
+                <i class="far fa-play-circle fa-2x pr-1" aria-hidden="true"></i>
                 </button>
                 </div>
 
                 <div>
-                  <button type="button" class="btn btn-elegant btn-sm text-lg text-muted" (click)="playlistSong(song)">
-                   <i class="fas fa-list-ul fa-2x pr-2" aria-hidden="true"></i>
+                  <button type="button" class="btn btn-elegant btn-sm text-muted aves-effect waves-light" (click)="playlistSong(song)">
+                   <i class="fas fa-list-ul fa-2x pr-1" aria-hidden="true"></i>
                   </button>
                 </div>
              </div>

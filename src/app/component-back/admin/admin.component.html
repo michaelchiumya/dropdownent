@@ -49,8 +49,8 @@
         </div>
 
        <div class="modal-footer justify-content-center">
-        <button type="submit" class="btn btn-outline-warning waves-effect" [disabled]="artistForm.invalid">
-          Send<i class="fas fa-paper-plane-o ml-1"></i>
+        <button type="submit" class="btn elegant-color white-text waves-effect" [disabled]="artistForm.invalid">
+          Add<i class="fas fa-paper-plane-o ml-1"></i>
         </button>
        </div>
   </form>
@@ -84,7 +84,7 @@
          </div>
 
           <div class="md-form mb-4">
-            <select formControlName="artistId" class="browser-default custom-select" required>
+            <select formControlName="artist_id" class="browser-default custom-select" required>
                <option selected>Select Artist</option>
                <option *ngFor="let artist of artists" value={{artist.id}}>{{artist.name | uppercase}}</option>
             </select>
@@ -114,8 +114,8 @@
 
 
          <div class="modal-footer justify-content-center">
-           <button type="submit" class="btn btn-outline-warning waves-effect" [disabled]="addSongForm.invalid">
-             Send<i class="fas fa-paper-plane-o ml-1"></i>
+           <button type="submit" class="btn elegant-color white-text waves-effect" [disabled]="addSongForm.invalid">
+             Add<i class="fas fa-paper-plane-o ml-1"></i>
            </button>
         </div>
  </form>
@@ -142,7 +142,7 @@
       <form  [formGroup] = "platformForm" (ngSubmit)="onPlatformSubmit()">
         <div>
           <div *ngIf="platformError" class="alert alert-danger" role="alert">
-              {{ platformError.error}}
+              {{ platformError.error.error}}
           </div>
           <div *ngIf="platformSuccess" class="alert alert-success" role="alert">
               {{ platformSuccess.success}} : new platform added!
@@ -150,12 +150,12 @@
         </div>
 
         <div class="md-form mb-4">
-          <select formControlName="artistId" class="browser-default custom-select">
+          <select formControlName="artist_id" class="browser-default custom-select">
             <option selected>Select Artist</option>
             <option *ngFor="let artist of artists" value={{artist.id}}>{{ artist.name |uppercase }}</option>
          </select>
          <span class="text-danger"
-         *ngIf="(videoForm.get('artistId').dirty ||videoForm.get('artistId').touched) && videoForm.get('artistId').invalid && videoForm.get('artistId').errors.required">
+         *ngIf="(videoForm.get('artist_id').dirty ||videoForm.get('artist_id').touched) && videoForm.get('artist_id').invalid && videoForm.get('artist_id').errors.required">
           please select artist field
         </span>
         </div>
@@ -167,7 +167,7 @@
             <option value="spotify">Spotify</option>
             <option value="tidal">Tidal</option>
             <option value="apple music">Apple Music</option>
-            <option value="play music">Apple Music</option>
+            <option value="play music">Play Music</option>
             <option value="malawi music">Malawi Music</option>
          </select>
          <span class="text-danger"
@@ -224,13 +224,13 @@
               </div>
            </div>
             <div class="md-form mb-4">
-              <select formControlName="artistId" class="browser-default custom-select">
+              <select formControlName="artist_id" class="browser-default custom-select">
                 <option selected>Select Artist</option>
                 <div class="dropdown-divider"></div>
                 <option *ngFor="let artist of artists" value={{artist.id}}>{{ artist.name |uppercase }}</option>
              </select>
              <span class="text-danger"
-             *ngIf="(videoForm.get('artistId').dirty ||videoForm.get('artistId').touched) && videoForm.get('artistId').invalid && videoForm.get('artistId').errors.required">
+             *ngIf="(videoForm.get('artist_id').dirty ||videoForm.get('artist_id').touched) && videoForm.get('artist_id').invalid && videoForm.get('artist_id').errors.required">
               please select artist field
             </span>
             </div>

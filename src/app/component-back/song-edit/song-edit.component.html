@@ -27,11 +27,10 @@
     </div>
 
     <div class="card-body">
-        <form [formGroup]="songCoverForm">
+        <form [formGroup]="songCoverForm" (ngSubmit)="UpdateImageSubmit()">
             <div class="md-form mb-4">
                <input type="file"
-               #simage
-                formGroupName="file"
+               #simage                
                 (change)="onSongCoverSelect($event)"
                 accept="image/*" required>
             </div>

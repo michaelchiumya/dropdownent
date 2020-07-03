@@ -55,9 +55,9 @@ getArtistList()
     sessionStorage.removeItem('token');
      this.user= null;
      this.display= null;
-    //  this.PortalAuth.logout().subscribe((res)=>{
-    //    console.log(res);
-    //  });
+     this.PortalAuth.logout().subscribe((res)=>{
+       console.log(res);
+     });
       this.route.navigate(['/login']);
    }
 

@@ -1,13 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
 import { DataService } from 'src/app/services/data.service';
+import { trigger, transition, animate, state, style } from '@angular/animations';
 
 
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.css']
+  styleUrls: ['./player.component.css'],
+  animations: [
+    trigger('openClose', [
+
+      state('open', style({
+        transform: 'rotate(180deg)',
+        position :' relative'
+      })),
+      state('closed', style({
+        transform: 'rotate(0)',
+        position :' relative'
+      })),
+      transition('open => closed', [
+        animate('400ms ease-out')
+      ]),
+      transition('closed => open', [
+        animate('450ms ease-out')
+      ]),
+    ]),
+  ],
 })
 export class PlayerComponent implements OnInit {
 
@@ -17,7 +37,7 @@ export class PlayerComponent implements OnInit {
   pageSizeOptions :any;
   msaapDisplayVolumeControls :boolean;
   msaapPlaylist : Track[];
-
+  isOpen = true
   constructor(private DataService: DataService) {}
 
   ngOnInit(): void {
@@ -31,7 +51,8 @@ export class PlayerComponent implements OnInit {
   }
 
 minimisePlayer(){
-if(this.msaapDisplayTitle == true && this.msaapDisplayPlayList == true){
+  this.isOpen = !this.isOpen;
+ if(this.msaapDisplayTitle == true && this.msaapDisplayPlayList == true){
   this.msaapDisplayTitle = false;
   this.msaapDisplayPlayList = false;
 }else if(this.msaapDisplayTitle == false && this.msaapDisplayPlayList == false){

@@ -54,14 +54,14 @@ export class AdminComponent implements OnInit {
       });
 
    this.videoForm =  this.fb.group({
-      artistId: ['', [Validators.required]],
+      artist_id: ['', [Validators.required]],
       title: ['', [Validators.required]],
       link: ['',Validators.required],
       file: ['',Validators.required]
     });
 
   this.addSongForm =  this.fb.group({
-    artistId: ['', [Validators.required]],
+    artist_id: ['', [Validators.required]],
     title: ['', [Validators.required]],
     album: ['', [Validators.required]],
     file: ['',Validators.required]
@@ -70,7 +70,7 @@ export class AdminComponent implements OnInit {
      this.platformForm =  this.fb.group({
       name: ['', [Validators.required]],
       link: ['',Validators.required],
-      artistId: ['', [Validators.required]],
+      artist_id: ['', [Validators.required]]
     });
 
 }
@@ -113,7 +113,9 @@ onSongSelect(event)
     if(event.target.files.length > 0)
      {
       const file = event.target.files[0];
-      this.addSongForm.get('file').setValue(file);
+      this.addSongForm.patchValue({
+         file : file
+      });
      }
 }
 
@@ -123,7 +125,7 @@ onSongSelect(event)
    if(this.addSongForm.valid)
     {
       var formData = new FormData();
-       formData.append('artistId', this.addSongForm.get('artistId').value);
+       formData.append('artist_id', this.addSongForm.get('artist_id').value);
        formData.append('title', this.addSongForm.get('title').value);
        formData.append('album', this.addSongForm.get('album').value);
        formData.append('file', this.addSongForm.get('file').value);
@@ -153,7 +155,7 @@ onVideoSubmit()
     if(this.videoForm.valid)
     {
       var formData = new FormData();
-      formData.append('artistId', this.videoForm.get('artistId').value);
+      formData.append('artist_id', this.videoForm.get('artist_id').value);
       formData.append('title', this.videoForm.get('title').value);
       formData.append('link', this.videoForm.get('link').value);
       formData.append('file', this.videoForm.get('file').value);
@@ -218,7 +220,7 @@ onPlatformSubmit()
                (response) => {this.platformSuccess = response},
                (error) => { this.platformError = error }
            );
-           this.videoForm.reset();
+           this.platformForm.reset();
     }
 }
 

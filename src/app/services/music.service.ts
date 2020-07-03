@@ -51,7 +51,7 @@ export class MusicService {
   return this.http.get(`${this.url}/songs`).pipe(map((data: Song[])=>data))
  }
 
- destroySong(id :number)
+ destroy(id :number)
  {
   return this.http.delete(`${this.url}/song/${id}`);
 }

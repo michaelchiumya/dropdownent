@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicService } from 'src/app/services/music.service';
 import { Song } from 'src/app/interface/song';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -13,10 +14,11 @@ export class SongsComponent implements OnInit {
   songs : Song[];
   searchResults$ = new BehaviorSubject<any>(null);
   searchQuery: any;
+  deleteError :any;
 
   constructor(
     private MusicService : MusicService,
-
+    private router : Router
     ) { }
 
   ngOnInit()
@@ -32,10 +34,14 @@ export class SongsComponent implements OnInit {
     })
   }
 
-  deleteSong(id)
-  {
-    this.MusicService.destroySong(id).subscribe();
-  }
+  delete(id)
+ {
+   this.MusicService.destroy(id).subscribe(
+     (response)=>{ },
+     (error)=>{this.deleteError = error}
+      )
+   this.router.navigate(['admin']);
+ }
 
   search(searchTerm)
   {

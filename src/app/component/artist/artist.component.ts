@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Router, NavigationEnd,ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute } from '@angular/router';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { DataService } from 'src/app/services/data.service';
 import { ArtistService } from 'src/app/services/artist.service';

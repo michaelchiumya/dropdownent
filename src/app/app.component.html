@@ -1,5 +1,7 @@
 <app-menu></app-menu>
 
-<router-outlet></router-outlet>
+<main [@routeAnimations]="prepareRoute(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</main>
 
 <app-player></app-player>

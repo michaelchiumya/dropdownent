@@ -63,7 +63,7 @@
           <h5>New EP<br>
             <small class="muted-text">LDME</small>
          </h5>
-        <button class="btn btn-outline-warning p-4" routerLink="/artist/3">Stream</button>
+        <button class="btn btn-outline-warning p-4" routerLink="/artist/2">Stream</button>
      </div>
     </div>
 
@@ -105,7 +105,7 @@
   <div class="p-2 mx-auto white rounded-circle">
   <div class="view overlay zoom ">
     <img *ngIf="data.image ==='null'" src="/assets/img/dd-logo.svg" class="rounded-circle mx-auto img-fluid" alt="dde">
-    <img *ngIf="data.image !=='null'"src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{data.image}}" class="rounded-circle mx-auto img-fluid" alt="dde">
+    <img *ngIf="data.image !=='null'"src="{{data.image}}" class="rounded-circle mx-auto img-fluid" alt="dde">
       <div class="mask flex-center waves-effect waves-light rgba-white-light rounded-0">
         <h4 class=" h4-responsive">
           <a routerLink="/artist/{{data.id}}" class="black-text font-weight-bold text-monospace"> {{data.name | uppercase}}</a>
