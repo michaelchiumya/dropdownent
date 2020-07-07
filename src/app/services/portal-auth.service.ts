@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError, Subject } from 'rxjs';
+import { throwError, Subject, BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Admin } from '../interface/admin';
 
@@ -10,7 +10,7 @@ import { Admin } from '../interface/admin';
 export class PortalAuthService {
 
   private apiURL = 'https://dropdown-entertainment.herokuapp.com/api';
-  private subject$ =  new Subject<Admin>();
+  private subject$ =  new BehaviorSubject(Admin);
 
   constructor(private http:HttpClient) { }
 
@@ -38,7 +38,7 @@ export class PortalAuthService {
   userDetails()
   {
       let body = {}
-      return this.http.post(`${this.apiURL}/udetails`, body).pipe(tap((data :Admin)=>
+      return this.http.post(`${this.apiURL}/udetails`, body).pipe(tap((data :any)=>
       {
            this.subject$.next(data);
 

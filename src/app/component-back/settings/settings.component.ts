@@ -12,7 +12,7 @@ import { Admin } from 'src/app/interface/admin';
 
 export class SettingsComponent implements OnInit {
 
-  Admin = new Admin();
+  Admin = new Admin;
   updateSuccess : any;
   updatePassSuccess : any;
   updateError: any;
@@ -29,6 +29,12 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void
   {
+
+
+    this._PortalAuth.userDetails().subscribe((data)=>{
+       this.Admin  = data
+     })
+
     this.updateForm = this._fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required,Validators.email]] });
@@ -37,16 +43,13 @@ export class SettingsComponent implements OnInit {
         password: ['', [Validators.required]],
         password_confirmation: ['', [Validators.required]] });
 
-        this._PortalAuth._subject$.subscribe((data)=>{
-          this.Admin = data
-       })
-
        this.loadAdmin();
+
   }
 
 loadAdmin()
 {
-   this._PortalAuth._subject$.subscribe((data)=>{
+   this._PortalAuth.userDetails().subscribe((data)=>{
      this.Admin = data
   })
 }
@@ -70,6 +73,7 @@ loadAdmin()
            response=>{ this.updatePassSuccess=response},
            error  => { this.updatePassError=error}
        );
+        this.updatePasswordForm.reset
       }
  }
 

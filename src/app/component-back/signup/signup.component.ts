@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
      this.addAdminForm.get('password_confirmation').setValue('pa55word');
 
      this._AdminService.post(this.addAdminForm.value).subscribe(
-       (data)=> {this.addAdminError = data},
+       (data)=> {this.addAdminSuccess = data},
        (error)=>{ this.addAdminError= error}
      );
        this.addAdminForm.reset();

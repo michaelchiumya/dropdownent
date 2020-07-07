@@ -28,6 +28,7 @@ display :any;
   ngOnInit(): void
  {
     this.getArtistList();
+
     this.PortalAuth._subject$.subscribe((data)=>{
       this.display = data
     })
