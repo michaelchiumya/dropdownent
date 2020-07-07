@@ -15,11 +15,17 @@
     <div class="modal-body">
       <form  [formGroup] = "artistForm" (ngSubmit)="onArtistSubmit()">
         <div>
-          <div *ngIf="artistError" class="alert alert-danger" role="alert">
-              {{ artistError.error}}
+          <div *ngIf="artistError" class="alert alert-danger alert-dismissible fade show" role="alert">
+             <strong>Error :</strong> {{ artistError.error}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
           </div>
-          <div *ngIf="artistSuccess" class="alert alert-success" role="alert">
-              {{ artistSuccess.success}} : new artist added!
+          <div *ngIf="artistSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success :</strong>{{ artistSuccess.success}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </div>
 
@@ -75,11 +81,17 @@
     <div class="modal-body">
         <form [formGroup] ="addSongForm" (ngSubmit)="onSongSubmit()">
           <div>
-            <div *ngIf="songError" class="alert alert-danger" role="alert">
-               {{ songError.error.error}}
+            <div *ngIf="songError" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error :</strong>  {{ songError.error.error}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
             </div>
-            <div *ngIf="songSuccess" class="alert alert-success" role="alert">
-                {{ songSuccess.success}} : new song added!
+            <div *ngIf="songSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success :</strong>{{ songSuccess.success}} : new song added!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
             </div>
          </div>
 
@@ -141,11 +153,17 @@
     <div class="modal-body">
       <form  [formGroup] = "platformForm" (ngSubmit)="onPlatformSubmit()">
         <div>
-          <div *ngIf="platformError" class="alert alert-danger" role="alert">
-              {{ platformError.error.error}}
+          <div *ngIf="platformError" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error :</strong>{{ platformError.error.error}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
           </div>
-          <div *ngIf="platformSuccess" class="alert alert-success" role="alert">
-              {{ platformSuccess.success}} : new platform added!
+          <div *ngIf="platformSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+             <strong>Success :</strong> {{ platformSuccess.success}}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </div>
 
@@ -216,11 +234,17 @@
       <div class="modal-body">
            <form  [formGroup] = "videoForm" (ngSubmit)="onVideoSubmit()">
             <div>
-              <div *ngIf="videoError" class="alert alert-danger" role="alert">
-                 {{ videoError.error}}
+              <div *ngIf="videoError" class="alert alert-danger alert-dismissible fade show" role="alert">
+                 <strong>Error :</strong>{{ videoError.error}}
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <div *ngIf="videoSuccess" class="alert alert-success" role="alert">
-                  {{ videoSuccess.success}} : new video added!
+              <div *ngIf="videoSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong>Success :</strong> {{ videoSuccess.success}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
               </div>
            </div>
             <div class="md-form mb-4">

@@ -7,11 +7,15 @@ import { MusicService } from 'src/app/services/music.service';
 import { PlatformService } from 'src/app/services/platform.service';
 import { Track } from 'ngx-audio-player';
 import { BehaviorSubject } from 'rxjs';
+import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
 
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
-  styleUrls: ['./artist.component.css']
+  styleUrls: ['./artist.component.css'],
+
+  animations: [fadeAnimation],
+  host: { '[@fadeAnimation]': '' }
 })
 
 export class ArtistComponent implements OnInit,OnDestroy {

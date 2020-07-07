@@ -14,7 +14,8 @@
 
  <div class="row">
 
-  <div class="card mb-4 col-md-4 col-sm-12">
+  <div class="col-md-4 mb-4  d-flex align-items-stretch">
+  <div class="card">
     <img *ngIf="artist.image=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="drpdown-ent">
     <div class="view overlay" *ngIf="artist.image !='null'" >
       <a href="#!"></a>
@@ -26,11 +27,17 @@
    <div class="card-body p-0">
       <form [formGroup]="imageform" (ngSubmit)="UpdateImageSubmit()">
         <div>
-          <div *ngIf="imgError" class="alert alert-danger" role="alert">
-             {{ imgError.error}}
+          <div *ngIf="imgError" class="alert alert-danger alert-dismissible fade show" role="alert">
+             <strong>Error :</strong>{{ imgError.error}}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+             </button>
           </div>
-          <div *ngIf="imgSuccess" class="alert alert-success" role="alert">
-              {{ imgSuccess.success}} : new image updated!
+          <div *ngIf="imgSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Success :</strong>{{ imgSuccess.success}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+               </button>
           </div>
        </div>
 
@@ -42,19 +49,30 @@
       </form>
    </div>
  </div>
+</div>
 
- <div class="card col-md-7 p-3 mx-2">
+<div class="col-md-8 mb-4  p-3 mx-2">
+ <div class="card">
   <form [formGroup]="updateform" (ngSubmit)="UpdateFormSubmit()">
 
     <div>
-      <div *ngIf="updateError" class="alert alert-danger" role="alert">
-         {{ updateError.error}}
+      <div *ngIf="updateError" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error :</strong>{{ updateError.error}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+          </button>
       </div>
-      <div *ngIf="updateSuccess" class="alert alert-success" role="alert">
-          {{ updateSuccess.success}} : new artist updated !
+      <div *ngIf="updateSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success : </strong>{{ updateSuccess.success}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
       </div>
-      <div *ngIf="deleteError" class="alert alert-danger" role="alert">
-        Error : {{ deleteError}}
+      <div *ngIf="deleteError" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error :</strong> {{ deleteError}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
     </div>
    </div>
 
@@ -73,25 +91,27 @@
 
 
 
-    <div class="btn-group" role="group" aria-label="Basic example">
+     <div class="d-flex justify-content-between">
+       <div>
         <button type="submit" class="btn btn-outline-warning waves-effect">
           <i class="far fa-edit fa-sm pr-2"
            aria-hidden="true"></i>
           Update
         </button>
-
-       <button (click)="deleteArtist(artist.id)" class="btn btn-outline-danger waves-effect">
-        <i class="far fa-times-circle fa-sm pr-2" aria-hidden="true"></i>
-          Delete
-       </button>
-
+      </div>
+      <div>
         <button type="button" class="btn btn-outline-mdb-color waves-effect" data-toggle="modal" data-target="#basicExampleModal">
           <i class="fas fa-external-link-alt pr-2"></i> Platform
         </button>
+      </div>
      </div>
-
+     <button (click)="deleteArtist(artist.id)" class="btn btn-outline-danger btn-block waves-effect my-2">
+      <i class="far fa-times-circle fa-sm pr-2" aria-hidden="true"></i>
+        Delete
+     </button>
   </form>
  </div>
+</div>
 
 </div>
 </div>
@@ -112,11 +132,17 @@
       </div>
       <div class="modal-body">
         <div>
-          <div *ngIf="platformError" class="alert alert-danger" role="alert">
-             Error : {{ updateError.error}}
+          <div *ngIf="platformError" class="alert alert-danger alert-dismissible fade show" role="alert">
+             <strong>Error :</strong> {{ updateError.error}}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+             </button>
           </div>
-          <div *ngIf="updateSuccess" class="alert alert-success" role="alert">
-              {{ updateSuccess.success}} : platform deleted refresh page!
+          <div *ngIf="updateSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Success :</strong>{{ updateSuccess.success}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+               </button>
           </div>
        </div>
         <ul class="list-group">

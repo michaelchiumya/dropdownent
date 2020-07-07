@@ -29,7 +29,6 @@ display :any;
  {
     this.getArtistList();
     this.PortalAuth._subject$.subscribe((data)=>{
-
       this.display = data
     })
     this.getAdmin();

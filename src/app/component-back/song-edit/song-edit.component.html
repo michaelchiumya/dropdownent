@@ -30,7 +30,7 @@
         <form [formGroup]="songCoverForm" (ngSubmit)="UpdateImageSubmit()">
             <div class="md-form mb-4">
                <input type="file"
-               #simage                
+               #simage
                 (change)="onSongCoverSelect($event)"
                 accept="image/*" required>
             </div>
@@ -55,11 +55,17 @@
 
               <form [formGroup]="SongUpdateForm" (ngSubmit)="UpdateSongSubmit()" lass="mb-4">
                 <div>
-                  <div *ngIf="updateError" class="alert alert-danger" role="alert">
-                     {{ updateError.error}}
+                  <div *ngIf="updateError" class="alert alert-danger alert-dismissible fade show" role="alert">
+                     <strong>Error :</strong>{{ updateError.error}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                     </button>
                   </div>
-                  <div *ngIf="updateSuccess" class="alert alert-success" role="alert">
-                      {{ updateSuccess.success}} : new song updated!
+                  <div *ngIf="updateSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+                       <strong>Success :</strong>{{ updateSuccess.success}}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                       </button>
                   </div>
                </div>
 
@@ -90,11 +96,17 @@
         <div class="col-md-6">
            <h4 class="card-title font-weight-bold text-muted">Activate Song</h4>
 
-            <div *ngIf="activeError" class="alert alert-danger" role="alert">
-               error : {{ activeError.error }}
+            <div *ngIf="activeError" class="alert alert-danger alert-dismissible fade show" role="alert">
+               <strong>Error :</strong> {{ activeError.error }}
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+               </button>
             </div>
             <div *ngIf="activeSuccess" class="alert alert-success" role="alert">
-              {{ activeSuccess.success}}
+              <strong>Success :</strong>{{ activeSuccess.success}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+               </button>
              </div>
 
           <form [formGroup]="SongActiveForm" (ngSubmit)="activateSongSubmit()">

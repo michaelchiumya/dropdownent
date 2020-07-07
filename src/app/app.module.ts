@@ -19,7 +19,6 @@ import { ArtistComponent } from './component/artist/artist.component';
 import { AdminComponent } from './component-back/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArtistBackComponent } from './component-back/artist-back/artist-back.component';
-
 import { SignupComponent } from './component-back/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
 import { AdminService } from './services/admin.service';
@@ -32,6 +31,7 @@ import { SongsComponent } from './component-back/songs/songs.component';
 import { SongEditComponent } from './component-back/song-edit/song-edit.component';
 import { VideoEditComponent } from './component-back/video-edit/video-edit.component';
 import { VideosBackComponent } from './component-back/videos-back/videos-back.component';
+import { SettingsComponent } from './component-back/settings/settings.component';
 
 
 
@@ -51,7 +51,8 @@ import { VideosBackComponent } from './component-back/videos-back/videos-back.co
     SongsComponent,
     SongEditComponent,
     VideoEditComponent,
-    VideosBackComponent
+    VideosBackComponent,
+    SettingsComponent
   ],
 
   imports: [

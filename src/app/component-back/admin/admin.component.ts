@@ -94,7 +94,7 @@ onArtistSubmit()
        (error)=>{ this.artistError= error}
 
      );
-     console.log(this.artistSuccess)
+
        this.artistForm.reset();
   }
 }

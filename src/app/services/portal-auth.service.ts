@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {  HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError, Subject, Observable } from 'rxjs';
-import { catchError, map, tap, switchMap, take } from 'rxjs/operators';
-import { JsonPipe } from '@angular/common';
+import { throwError, Subject } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Admin } from '../interface/admin';
 
 @Injectable({
@@ -28,7 +27,7 @@ export class PortalAuthService {
   login(data)
   {
       return this.http.post(`${this.apiURL}/login`, data,
-       { observe: 'response' }).pipe(map((data)=>
+       { observe: 'response' }).pipe(map((data :any)=>
         {
         return data;
        }
@@ -41,7 +40,8 @@ export class PortalAuthService {
       let body = {}
       return this.http.post(`${this.apiURL}/udetails`, body).pipe(tap((data :Admin)=>
       {
-        this.subject$.next(data)
+           this.subject$.next(data);
+
       }
         ));
 }

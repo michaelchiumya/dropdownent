@@ -1,61 +1,61 @@
 <div class="container">
- <!-- Material form register -->
-<div class="card">
 
+  <ul class="nav grey lighten-4 mt-3 py-1 mb-3">
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/admin">admin </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">/</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">signup </a>
+    </li>
+  </ul>
+
+<div class="card">
   <h5 class="card-header elegant-color white-text text-center my-2 py-4">
       <strong>Sign up</strong>
   </h5>
 
-  <!--Card content-->
+
   <div class="card-body px-lg-5 pt-0 my-4">
+    <div>
+      <div *ngIf="addAdminError" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error :</strong>{{ addAdminError.error.error}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div *ngIf="addAdminSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong>Success :</strong> {{ addAdminSuccess.success}}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
 
-      <!-- Form -->
-      <form class="text-center" style="color: #757575;" action="#!">
-
-          <!-- Name -->
+    <form class="text-center" style="color: #757575;" [formGroup]="addAdminForm" (ngSubmit)="addAdminSubmit()">
           <div class="md-form mt-0">
-            <input type="text" id="materialRegisterFormName" class="form-control">
+            <input type="text" id="materialRegisterFormName" formControlName="name" class="form-control" required/>
             <label for="materialRegisterFormName">Name</label>
-        </div>
-
-          <!-- E-mail -->
+          </div>
           <div class="md-form mt-0">
-              <input type="email" id="materialRegisterFormEmail" class="form-control">
+              <input type="email" id="materialRegisterFormEmail" formControlName="email" class="form-control" required/>
               <label for="materialRegisterFormEmail">E-mail</label>
           </div>
 
-          <!-- Password -->
-          <div class="md-form">
-              <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-              <label for="materialRegisterFormPassword">Password</label>
-              <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                  At least 8 characters and 1 digit
-              </small>
-          </div>
-
-         <!-- Password confirm -->
-         <div class="md-form">
-          <input type="password" id="materialRegisterFormPasswordconfirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-          <label for="materialRegisterFormPasswordconfirm">Password Confirmation</label>
-          <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-             must match the password
-          </small>
-      </div>
-
-       <!-- Sign up button -->
-<button class="btn btn-outline-warning btn-rounded my-4 waves-effect z-depth-0" type="submit">Sign up Admin</button>
-
- <hr>
-  <!-- Terms of service -->
- <p>By clicking
-    <em>Sign up</em> you agree to our
-      <a href="" target="_blank">terms of adding admin</a>
+      <button class="btn elegant-color white-text btn-rounded my-4 waves-effect z-depth-0" [disabled]="addAdminForm.invalid" type="submit">
+        Sign up Admin
+      </button>
+      <hr>
+     <p>By clicking<em>Sign up</em> you agree to our<a href="" target="_blank"> terms of adding admin</a>
 
   </form>
-<!-- Form -->
+
 
   </div>
 
 </div>
-<!-- Material form register -->
+
 </div>
+<br><br><br>

@@ -12,6 +12,7 @@ import { SignupComponent } from './component-back/signup/signup.component';
 import { PortalAuthGuard } from './portal-auth.guard';
 import { SongsComponent } from './component-back/songs/songs.component';
 import { SongEditComponent } from './component-back/song-edit/song-edit.component';
+import { SettingsComponent } from './component-back/settings/settings.component';
 import { VideoEditComponent } from './component-back/video-edit/video-edit.component';
 import { VideosBackComponent } from './component-back/videos-back/videos-back.component';
 
@@ -19,12 +20,13 @@ import { VideosBackComponent } from './component-back/videos-back/videos-back.co
 
 export const routes: Routes = [
   { path:'', redirectTo: '/home', pathMatch:'full'},
-  {path: 'home',  component: HomeComponent, data: {animation: 'HomePage'}},
-  {path:'videos', component: VideosComponent,data: {animation: 'VideosPage'}},
-  {path:'artist/:id', component: ArtistComponent,data: {animation: 'ArtistPage'}},
-  {path: 'login', component: LoginComponent,data: {animation: 'VideosPage'}},
+  {path: 'home',  component: HomeComponent},
+  {path:'videos', component: VideosComponent},
+  {path:'artist/:id', component: ArtistComponent},
+  {path: 'login', component: LoginComponent},
 
   {path: 'admin',  component: AdminComponent, canActivate: [PortalAuthGuard] },
+  {path: 'settings',  component: SettingsComponent , canActivate: [PortalAuthGuard]},
   {path: 'music',  component: SongsComponent, canActivate: [PortalAuthGuard] },
   {path: 'music/edit/:id',  component: SongEditComponent, canActivate: [PortalAuthGuard] },
   {path: 'video/edit/:id',  component: VideoEditComponent, canActivate: [PortalAuthGuard] },

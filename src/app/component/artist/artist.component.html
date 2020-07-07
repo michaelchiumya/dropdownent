@@ -4,7 +4,7 @@
     <div class="py-3">
 
       <!-- Content -->
-      <h2 class="card-title h2 my-4 font-weight-bold">{{artist?.name}}</h2>
+      <h2 class="card-title h2 my-4 font-weight-bold">{{artist?.name | uppercase}}</h2>
       <div class="dropdown">
         <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -64,7 +64,7 @@
          </div>
          <div class="col-6">
            <div>
-             <h5 class="card-title text-white-50 mx-1 mt-2 text-truncate">{{song.title | uppercase}} </h5>
+             <h6 class="card-title text-white-50 mx-1 mt-2 text-truncate">{{song.title | uppercase}} </h6>
              <h6 class="card-title text-white-50 mx-1 mt-2 font-weight-bold"> {{song.album | uppercase}}</h6>
 
              <div class="d-flex justify-content-between mb-0">

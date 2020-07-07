@@ -3,11 +3,14 @@ import { ArtistService } from 'src/app/services/artist.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { Artist } from 'src/app/interface/artist';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [fadeAnimation],
+  host: { '[@fadeAnimation]': '' }
 })
 export class HomeComponent implements OnInit {
   artistData : Artist[];

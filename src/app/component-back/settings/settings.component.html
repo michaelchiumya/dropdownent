@@ -1,0 +1,95 @@
+<div class="container">
+
+  <ul class="nav grey lighten-4 mt-3 py-1 mb-3">
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/admin">admin </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">/</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">settings</a>
+    </li>
+  </ul>
+
+<div class="card-deck">
+
+ <div class="card mb-4">
+   <h5 class="card-header elegant-color white-text text-center my-2 py-4">
+       <strong>Update Details</strong>
+   </h5>
+
+   <div class="card-body px-lg-5 pt-0 my-4">
+      <form class="text-center" style="color: #757575;" [formGroup]="updateForm" (ngSubmit)="UpdateFormSubmit()">
+        <div>
+          <div *ngIf="updateError" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error :</strong>{{ updateError.error.error}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div *ngIf="updateSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success :</strong>{{ updateSuccess.success}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+       </div>
+
+           <div class="md-form mt-0">
+             <input type="text" class="form-control" formControlName="name" [(ngModel)]="Admin.name">
+             <small id="active" class="form-text text-muted mb-4">Name</small>
+          </div>
+           <div class="md-form mt-0">
+               <input type="email" class="form-control" formControlName="email" [(ngModel)]="Admin.email">
+               <small id="active" class="form-text text-muted mb-4">Email</small>
+           </div>
+
+         <button class="btn elegant-color white-text btn-rounded my-4 waves-effect z-depth-0" type="submit" [disabled]="updateForm.invalid">update</button>
+     <hr>
+   </form>
+</div>
+</div>
+
+ <div class="card mb-4">
+  <h5 class="card-header elegant-color white-text text-center my-2 py-4">
+    <strong>Update Password</strong>
+</h5>
+
+<div class="card-body px-lg-5 pt-0 my-4">
+
+  <form class="text-center" style="color: #757575;" [formGroup]="updatePasswordForm" (ngSubmit)="UpdatePasswordSubmit()">
+    <div>
+      <div *ngIf="updatePassError" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error :</strong>{{ updatePassError.error.error}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div *ngIf="updatePassSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success :</strong>{{ updatePassSuccess.success}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+   </div>
+
+    <div class="md-form">
+      <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" formControlName="password">
+      <label for="materialRegisterFormPassword">Password</label>
+
+  </div>
+
+ <div class="md-form">
+  <input type="password" id="materialRegisterFormPasswordconfirm" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" formControlName="password_confirmation">
+  <label for="materialRegisterFormPasswordconfirm">Password Confirmation</label>
+
+</div>
+
+<button class="btn elegant-color white-text btn-rounded my-4 waves-effect z-depth-0" type="submit" [disabled]="updatePasswordForm.invalid" >update password</button>  </form>
+
+ </div>
+</div>
+ </div>
+</div>
+<br><br><br>

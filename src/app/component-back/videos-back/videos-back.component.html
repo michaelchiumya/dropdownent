@@ -40,7 +40,7 @@
      <div class="card elegant-color">
        <img *ngIf="video.cover=='null'" class="card-img-top" src="/assets/img/img.jpg" alt="Card">
        <div class="view overlay">
-         <img *ngIf="video.cover!='null'" class="card-img-top" src="https://dropdownent.s3-eu-west-1.amazonaws.com/{{video.snapshot}}" alt="Card image cap">
+         <img *ngIf="video.cover!='null'" class="card-img-top" src="{{video.snapshot}}" alt="Card image cap">
          <div class="mask rgba-white-slight"></div>
        </div>
 
