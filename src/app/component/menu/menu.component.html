@@ -33,7 +33,7 @@
          Artist
         </a>
         <div class="dropdown-menu" >
-          <a class="dropdown-item"  *ngFor="let artist of artists" routerLink="artist/{{artist.id}}" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">{{ artist.name | titlecase }}</a>
+          <a class="dropdown-item"  *ngFor="let artist of artists" routerLink="artist/{{artist.id}}" routerLinkActive="active" data-toggle="collapse" data-target="#navbarSupportedContent">{{ artist.name | uppercase }}</a>
         </div>
       </li>
       <li class="nav-item">

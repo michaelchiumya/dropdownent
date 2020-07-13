@@ -1,3 +1,7 @@
 .mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label {
   background-color: #171717 !important;
 }
+.primary-color, .primary{
+  background-color: #171717 !important;
+  color: whitesmoke !important;
+}

@@ -78,7 +78,7 @@
          </div>
          <div class="col-6">
            <div>
-             <h6 class="card-title text-white-50 mx-1 mt-2 text-truncate">{{song.title | uppercase}} </h6>
+             <p class=" text-sm text-white-50 mx-1 mt-2 text-truncate">{{song.title | uppercase}} </p>
              <h6 class="card-title text-white-50 mx-1 mt-2 font-weight-bold"> {{song.album | uppercase}}</h6>
 
              <div class="d-flex justify-content-between mb-0">
@@ -158,8 +158,8 @@
           </button>
       <ol>
            <li class="my-4 text-truncate" *ngFor="let item of album;let j = index;">
-            <div class="float-left text-truncate" style="max-width: 110px;">
-              <span class="muted-text text-truncate"> {{ j+1 }}. {{ album[j].title | titlecase }} </span>
+            <div class="float-left text-truncate">
+              <small class="text-md muted-text text-truncate"> {{ j+1 }}. {{ album[j].title | titlecase }} </small>
             </div>
 
             <div class="float-right">
@@ -170,6 +170,7 @@
                 <i class="fas fa-list-ul" aria-hidden="true"></i>
               </button>
             </div>
+
           </li>
       </ol>
       </div>
