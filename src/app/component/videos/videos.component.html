@@ -25,6 +25,10 @@
 </div>
 
 <div class="container-fluid mb-3 my-4">
+  <div class="loading">
+    <ngx-loading [show]="loading" [config]="{ animationType: ngxLoadingAnimationTypes.rectangleBounce, primaryColour: this.primaryColour, secondaryColour: this.secondaryColour, tertiaryColour: this.primaryColour, backdropBorderRadius: '3px' }"
+      ></ngx-loading>
+ </div>
 <!-- Grid row -->
 <div class="row">
   <!-- Grid column -->

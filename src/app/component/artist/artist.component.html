@@ -68,6 +68,10 @@
        [ngModelOptions]="{standalone: true}" />
     </form>
 
+    <div class="loading">
+      <ngx-loading [show]="loading" [config]="{ animationType: ngxLoadingAnimationTypes.rectangleBounce, primaryColour: this.primaryColour, secondaryColour: this.secondaryColour, tertiaryColour: this.primaryColour, backdropBorderRadius: '3px' }"
+        ></ngx-loading>
+   </div>
 
   <div class="row">
     <div class="col-md-4 col-sm-12 my-3 mx-md-4" *ngFor="let song of searchResults$ | async">

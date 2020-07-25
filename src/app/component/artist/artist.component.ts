@@ -8,6 +8,7 @@ import { PlatformService } from 'src/app/services/platform.service';
 import { Track } from 'ngx-audio-player';
 import { BehaviorSubject } from 'rxjs';
 import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
+import { ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @Component({
   selector: 'app-artist',
@@ -30,6 +31,11 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   searchQuery: any;
   searchResults$ = new BehaviorSubject<any>(null);
+
+  loading = false;
+  public primaryColour ='#dd0031';
+  public secondaryColour =  '#006ddd';
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 
 
   constructor(
@@ -55,7 +61,11 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   getArtist(id)
   {
-    this.ArtistService.getArtistById(id).subscribe(arg=> this.artist= arg);
+    this.loading = true
+    this.ArtistService.getArtistById(id).subscribe((arg)=>{
+      this.loading = false
+      this.artist= arg
+    } );
   }
 
   getPlatform(id)
@@ -65,7 +75,9 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   getSongs(id)
   {
+    this.loading = true
     this.MusicService.getActiveSongs(id).subscribe((arg)=> {
+      this.loading = false
       this.songs= arg
       this.searchResults$.next(arg)
     }
@@ -75,7 +87,11 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   getAlbums(id)
   {
-    this.AlbumsService.showAlbums(id).subscribe((arg)=> this.albums = arg);
+    this.loading = true
+    this.AlbumsService.showAlbums(id).subscribe((arg)=>{
+      this.loading = false;
+      this.albums = arg;
+    } );
   }
 
   songLoader(song :any)

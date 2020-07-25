@@ -27,6 +27,7 @@
     "jwt-decode": "^2.2.0",
     "ng-carousel-cdk": "^1.4.1",
     "ngx-audio-player": "^9.0.6",
+    "ngx-loading": "^8.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "^0.10.3"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VideosService } from 'src/app/services/videos.service';
 import { Video } from 'src/app/interface/video';
 import { BehaviorSubject } from 'rxjs';
+import { ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @Component({
   selector: 'app-videos',
@@ -15,6 +16,11 @@ export class VideosComponent implements OnInit {
     modalId: string ='modal';
     searchResults$ = new BehaviorSubject<any>(null);
 
+    loading = false;
+    public primaryColour ='#dd0031';
+    public secondaryColour =  '#006ddd';
+    public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+
   constructor(
     private VideosService: VideosService
     ) {}
@@ -26,7 +32,9 @@ export class VideosComponent implements OnInit {
 
   loadVideos()
   {
+    this.loading = true;
     this.VideosService.getActiveVideos().subscribe((res)=>{
+      this.loading = false;
       this.videos = res;
       this.searchResults$.next(res);
     })

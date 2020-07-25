@@ -4,6 +4,8 @@ import { AdminService } from 'src/app/services/admin.service';
 import { Artist } from 'src/app/interface/artist';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
+import { ngxLoadingAnimationTypes } from 'ngx-loading';
+
 
 @Component({
   selector: 'app-home',
@@ -14,9 +16,15 @@ import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
 })
 export class HomeComponent implements OnInit {
   artistData : Artist[];
-  fanForm : FormGroup
+  fanForm : FormGroup;
   noFan: any;
   newFan: any;
+
+  loading = false;
+  public primaryColour ='#dd0031';
+  public secondaryColour =  '#006ddd';
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+
 
   constructor(
     private ArtistService: ArtistService,
@@ -33,9 +41,13 @@ export class HomeComponent implements OnInit {
   }
 
   getArtistList(){
-    this.ArtistService.getActiveArtist().subscribe((data: any)=>{
-      this.artistData = data;
-    });
+    this.loading = true;
+    this.ArtistService.getActiveArtist().subscribe(
+      (data: any)=>
+      {
+        this.loading = false;
+        this.artistData = data;
+      });
   }
 
   funpageSubmit()
