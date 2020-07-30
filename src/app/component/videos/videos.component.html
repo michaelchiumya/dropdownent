@@ -24,55 +24,57 @@
   </form>
 </div>
 
-<div class="container-fluid mb-3 my-4">
-  <div class="loading">
+<div class="container-fluid">
+  <div class="loading my-4">
     <ngx-loading [show]="loading" [config]="{ animationType: ngxLoadingAnimationTypes.rectangleBounce, primaryColour: this.primaryColour, secondaryColour: this.secondaryColour, tertiaryColour: this.primaryColour, backdropBorderRadius: '3px' }"
       ></ngx-loading>
  </div>
-<!-- Grid row -->
-<div class="row">
-  <!-- Grid column -->
-  <div class="col-lg-3 col-md-3 col-sm-5 mb-4" *ngFor="let video of searchResults$ | async; let i = index">
-    <!--Modal: Name-->
+
+<!-- Card deck -->
+<div class="container-fluid">
+ <div class="row d-flex justify-content-center">
+
+  <!-- Card -->
+  <div class="card col-md-3 p-0 mb-4 mx-2" *ngFor="let video of searchResults$ | async; let i = index">
+
+    <!--Card image-->
+    <div class="view overlay">
+      <img class="card-img-top" src="{{ video.snapshot }}" alt="video">
+      <a data-toggle="modal" attr.data-target="#{{modalId+i}}">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body elegant-color">     
+      <h4 class="card-title white-text text-truncate" style="font-size:1.2rem;">{{video.title | titlecase}}</h4>
+   </div>
+
     <div class="modal fade" id="{{modalId + i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
 
         <!--Content-->
         <div class="modal-content">
-          <!--Body-->
-          <div class="modal-body mb-0 p-0">
-            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-              <iframe class="embed-responsive-item" [src]="video.link | safePipe"
-                allowfullscreen></iframe>
-            </div>
-          </div>
-
-           <!--Footer-->
+         
+           <div class="modal-body mb-0 p-0">
+              <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                <iframe class="embed-responsive-item" [src]="video.link | safePipe" allowfullscreen></iframe>
+              </div>
+           </div>
+          
            <div class="modal-footer justify-content-center">
-            <span class="mr-4">{{ video.title | titlecase }}</span>
-            <button type="button" class="btn elegant-color white-text btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+             <span class="mr-4">{{ video.title | titlecase }}</span>
+               <button type="button" class="btn elegant-color white-text btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
           </div>
-
         </div>
-        <!--/.Content-->
+        
       </div>
-    </div>
+    </div>  
 
-    <!--Modal: Name-->
-    <a>
-     <div>
-      <img class="img-fluid z-depth-1 rgba-black-light h-10"  src="{{ video.snapshot }}"
-        alt="video" data-toggle="modal" attr.data-target="#{{modalId+i}}">
-          <div class="mask elegant-color flex-center mb-3 py-2">
-            <p class="white-text">{{video.title | titlecase}}</p>
-          </div>
-      </div>
-    </a>
-
-  </div>
-  <!-- Grid column -->
 </div>
 </div>
+
+
 
 <br><br>
 <br><br>

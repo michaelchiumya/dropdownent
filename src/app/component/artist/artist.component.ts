@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import {Router, ActivatedRoute } from '@angular/router';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { DataService } from 'src/app/services/data.service';
@@ -27,7 +27,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
   songs : any[];
   albums :any;
   platform :any;
-  status: boolean = false;
+  played: boolean ;
 
   searchQuery: any;
   searchResults$ = new BehaviorSubject<any>(null);
@@ -44,8 +44,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
     private MusicService: MusicService,
     private PlatformService: PlatformService,
     private ArtistService: ArtistService,
-    private activeRoute: ActivatedRoute,
-    private route: Router
+    private activeRoute: ActivatedRoute
     ) {}
 
   ngOnInit(): void
@@ -58,6 +57,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
            })
 
   }
+
 
   getArtist(id)
   {
@@ -96,7 +96,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   songLoader(song :any)
   {
-    this.status = !this.status;
+    this.played = !this.played;
     this.playlist = [];
     var toAdd = {title: song.title, link: song.song};
     this.playlist.push(toAdd);
