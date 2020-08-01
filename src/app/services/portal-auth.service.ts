@@ -10,7 +10,7 @@ import { Admin } from '../interface/admin';
 export class PortalAuthService {
 
   private apiURL = 'https://dropdown-entertainment.herokuapp.com/api';
-  private subject$ =  new BehaviorSubject(Admin);
+  private subject$ =  new BehaviorSubject(null);
 
   constructor(private http:HttpClient) { }
 

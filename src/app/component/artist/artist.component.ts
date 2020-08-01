@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output } from '@angular/core';
-import {Router, ActivatedRoute } from '@angular/router';
+import {ActivatedRoute } from '@angular/router';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { DataService } from 'src/app/services/data.service';
 import { ArtistService } from 'src/app/services/artist.service';
@@ -9,6 +9,7 @@ import { Track } from 'ngx-audio-player';
 import { BehaviorSubject } from 'rxjs';
 import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
+
 
 @Component({
   selector: 'app-artist',
@@ -49,12 +50,13 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void
    {
-          this.activeRoute.params.subscribe((res)=>{
-            this.getArtist(res.id)
-            this.getSongs(res.id)
-            this.getAlbums(res.id)
-            this.getPlatform(res.id)
-           })
+    this.activeRoute.params.subscribe((res)=>{
+        this.getArtist(res.id)
+          this.getSongs(res.id)
+          this.getAlbums(res.id)
+          this.getPlatform(res.id)
+           });
+
 
   }
 

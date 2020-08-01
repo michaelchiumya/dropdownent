@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
      email: ['', [Validators.required]]
    });
 
+
+
   }
 
   getArtistList(){
