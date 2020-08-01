@@ -37,6 +37,7 @@ import { AdminService } from './services/admin.service';
 import { AuthService } from './services/auth.service';
 import { PortalAuthService } from './services/portal-auth.service';
 
+import { NgxNotificationModule } from 'ngx-notification-9';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { PortalAuthService } from './services/portal-auth.service';
     FormsModule,
     ReactiveFormsModule,
     NgxLoadingModule.forRoot({}),
+    NgxNotificationModule.forRoot(),
     AngularFireModule.initializeApp( {
       apiKey: "AIzaSyAQY-hpjYnB7JBTBbkMDvi5FO2YmcWqUkA",
       authDomain: "dropdown-entertainment.firebaseapp.com",

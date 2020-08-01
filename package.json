@@ -32,6 +32,7 @@
     "ng-carousel-cdk": "^1.4.1",
     "ngx-audio-player": "^9.0.6",
     "ngx-loading": "^8.0.0",
+    "ngx-notification-9": "^1.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

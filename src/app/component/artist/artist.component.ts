@@ -9,7 +9,7 @@ import { Track } from 'ngx-audio-player';
 import { BehaviorSubject } from 'rxjs';
 import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
-
+import { NgxNotificationsService } from 'ngx-notification-9';
 
 @Component({
   selector: 'app-artist',
@@ -20,20 +20,28 @@ import { ngxLoadingAnimationTypes } from 'ngx-loading';
   host: { '[@fadeAnimation]': '' }
 })
 
-export class ArtistComponent implements OnInit,OnDestroy {
+export class ArtistComponent implements OnInit{
 
  private playlist : Track[];
+
   id :string;
   artist : any;
   songs : any[];
   albums :any;
   platform :any;
   played: boolean ;
-
+  options = {
+         timeOut: 3000,
+         position: ["middle", "left"],
+         showProgressBar: true,
+         pauseOnHover: true,
+         clickToClose: true
+            }
   searchQuery: any;
   searchResults$ = new BehaviorSubject<any>(null);
 
   loading = false;
+  playing = false;
   public primaryColour ='#dd0031';
   public secondaryColour =  '#006ddd';
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
@@ -45,7 +53,9 @@ export class ArtistComponent implements OnInit,OnDestroy {
     private MusicService: MusicService,
     private PlatformService: PlatformService,
     private ArtistService: ArtistService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private _playNotifications: NgxNotificationsService
+
     ) {}
 
   ngOnInit(): void
@@ -56,8 +66,6 @@ export class ArtistComponent implements OnInit,OnDestroy {
           this.getAlbums(res.id)
           this.getPlatform(res.id)
            });
-
-
   }
 
 
@@ -98,7 +106,8 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   songLoader(song :any)
   {
-    this.played = !this.played;
+    this._playNotifications.create('now playing..', song.title + ' by ' + this.artist.name);
+    this.playing = true;
     this.playlist = [];
     var toAdd = {title: song.title, link: song.song};
     this.playlist.push(toAdd);
@@ -107,6 +116,8 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   albumLoader(album :any)
   {
+    this._playNotifications.create('now playing..', album[0].title + ' album by ' + this.artist.name);
+    this.playing = true;
     this.playlist = [];
     album.forEach(element => {
       this.playlist.push( {title: element.title, link: element.song });
@@ -116,6 +127,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   playlistSong(song :any)
   {
+    this._playNotifications.create('added to playlist', song.title + ' by ' + this.artist.name)
     var selectedSong = {title: song.title, link: song.song};
     this.playlist.push(selectedSong);
     this.DataService.storeData(this.playlist);
@@ -123,6 +135,7 @@ export class ArtistComponent implements OnInit,OnDestroy {
 
   playlistAlbum(album :any)
   {
+    this._playNotifications.create('now playing..', album[0].title + ' album by' + this.artist.name)
       album.forEach(element => {
         this.playlist.push( {title: element.title, link: element.song });
        });
@@ -145,10 +158,5 @@ export class ArtistComponent implements OnInit,OnDestroy {
     );
   }
 
-ngOnDestroy()
-{
-
-
-}
 
 }
