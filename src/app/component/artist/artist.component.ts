@@ -108,7 +108,7 @@ export class ArtistComponent implements OnInit{
 
   songLoader(song :any)
   {
-    this._playNotifications.create(toUpperCase(song.title) + ' by ' + toUpperCase(this.artist.name),'now playing..');
+    this._playNotifications.create(song.title + ' by ' + this.artist.name, 'now playing..');
     this.playing = true;
     this.playlist = [];
     var toAdd = {title: song.title, link: song.song};
@@ -118,7 +118,7 @@ export class ArtistComponent implements OnInit{
 
   albumLoader(album :any)
   {
-    this._playNotifications.create(toUpperCase(album[0].album) + ' album by ' + toUpperCase(this.artist.name), 'now playing....');
+    this._playNotifications.create(album[0].album + ' album by ' + this.artist.name, 'now playing....');
     this.playing = true;
     this.playlist = [];
     album.forEach(element => {
@@ -129,7 +129,7 @@ export class ArtistComponent implements OnInit{
 
   playlistSong(song :any)
   {
-    this._playNotifications.create('added to playlist', song.title + ' by ' + this.artist.name)
+    this._playNotifications.create(song.title + ' by ' + this.artist.name, 'added to playlist')
     var selectedSong = {title: song.title, link: song.song};
     this.playlist.push(selectedSong);
     this.DataService.storeData(this.playlist);
@@ -137,7 +137,7 @@ export class ArtistComponent implements OnInit{
 
   playlistAlbum(album :any)
   {
-    this._playNotifications.create('now playing..', album[0].title + ' album by' + this.artist.name)
+    this._playNotifications.create(album[0].title + ' album by' + this.artist.name, 'added to playlist')
       album.forEach(element => {
         this.playlist.push( {title: element.title, link: element.song });
        });
