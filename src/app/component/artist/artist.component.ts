@@ -29,22 +29,24 @@ export class ArtistComponent implements OnInit{
   songs : any[];
   albums :any;
   platform :any;
-  played: boolean ;
-  options = {
-         timeOut: 3000,
-         position: ["middle", "left"],
-         showProgressBar: true,
-         pauseOnHover: true,
-         clickToClose: true
-            }
+
+  primaryColour ='#dd0031';
+  secondaryColour =  '#006ddd';
+  ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+
   searchQuery: any;
   searchResults$ = new BehaviorSubject<any>(null);
 
   loading = false;
   playing = false;
-  public primaryColour ='#dd0031';
-  public secondaryColour =  '#006ddd';
-  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+
+  options = {
+             timeOut: 3000,
+             position: ["middle", "left"],
+             showProgressBar: true,
+             pauseOnHover: true,
+             clickToClose: true
+            }
 
 
   constructor(
@@ -106,7 +108,7 @@ export class ArtistComponent implements OnInit{
 
   songLoader(song :any)
   {
-    this._playNotifications.create('now playing..', song.title + ' by ' + this.artist.name);
+    this._playNotifications.create(toUpperCase(song.title) + ' by ' + toUpperCase(this.artist.name),'now playing..');
     this.playing = true;
     this.playlist = [];
     var toAdd = {title: song.title, link: song.song};
@@ -116,7 +118,7 @@ export class ArtistComponent implements OnInit{
 
   albumLoader(album :any)
   {
-    this._playNotifications.create('now playing..', album[0].title + ' album by ' + this.artist.name);
+    this._playNotifications.create(toUpperCase(album[0].album) + ' album by ' + toUpperCase(this.artist.name), 'now playing....');
     this.playing = true;
     this.playlist = [];
     album.forEach(element => {

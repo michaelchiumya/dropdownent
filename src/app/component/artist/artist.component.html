@@ -83,13 +83,13 @@
          </div>
          <div class="col-6">
            <div>
-             <p class=" text-sm text-white-50 mx-1 mt-2 text-truncate" style="font-size:0.7rem;">{{song.title | uppercase}} </p>
+             <p class=" text-sm text-white-50 mx-1 mt-2 text-truncate" style="font-size:1.1rem;">{{song.title | uppercase}} </p>
              <h6 class="card-title text-white-50 mx-1 mt-2 font-weight-bold"> {{song.album | uppercase}}</h6>
 
              <button type="button" id="alert-target" class="btn btn-md btn-blue-grey px-3" (click)="songLoader(song)">
               <i class="fas fa-play" aria-hidden="true"></i>
             </button>
-            <button type="button" class="btn btn-md btn-blue-grey px-3" (click)="playlistSong(song)" [disabled]="playing">
+            <button type="button" class="btn btn-md btn-blue-grey px-3" (click)="playlistSong(song)" [disabled]="!playing">
               <i class="fas fa-list-ul" aria-hidden="true"></i>
            </button>
 
