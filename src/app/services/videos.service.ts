@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class VideosService {
 
-  url = "https://dropdown-entertainment.herokuapp.com/api";
+  private url = "https://dropdown-entertainment.herokuapp.com/api";
 
   constructor(private http:HttpClient) { }
 

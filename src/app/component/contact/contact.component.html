@@ -1,0 +1,73 @@
+<div class="contact">
+  <div class="section-content">
+
+   <div class="text-center">
+      <img src="/assets/img/dd-logo.svg" class="rounded" width="100" alt="image">
+    </div>
+
+	  <h1 class="section-header">Get in <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"> Touch with us</span></h1>
+    <h3 class="subheader">For bookings, queries, merch or any general issues, we will get back at you ASAP!</h3>
+
+    </div>
+
+	<div class="contact-section">
+	  <div class="container">
+
+		<form [formGroup]="contactForm" (ngSubmit)="onContactSubmit()">
+
+      <div>
+        <div *ngIf="contactError" class="alert alert-danger" role="alert">
+             Error : {{ contactError.error.error}}
+        </div>
+        <div *ngIf="contactSuccess" class="alert alert-success" role="alert">
+           Sent : {{ contactSuccess.success.success}}
+         </div>
+      </div>
+
+      <div class="row">
+
+		   <div class="col-md-6 form-line">
+			   <div class="form-group">
+			      <label for="exampleInputUsername">name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Name" required />
+              <span class="alert alert-danger" role="alert"
+             *ngIf="(contactForm.get('name').dirty || contactForm.get('name').touched) && contactForm.get('name').invalid && contactForm.get('name').errors.required">
+              name required
+          </span>
+		     </div>
+
+			 <div class="form-group">
+			    <label for="exampleInputEmail">Email</label>
+			    <input type="email" class="form-control" formControlName="email" id="exampleInputEmail" placeholder="Email" required />
+           <span class="alert alert-danger" role="alert"
+            *ngIf="(contactForm.get('email').dirty || contactForm.get('email').touched) && contactForm.get('email').invalid && contactForm.get('email').errors.required">
+             valid email field required
+          </span>
+       </div>
+
+		  </div>
+
+		   <div class="col-md-6">
+			 <div class="form-group">
+			   <label for ="description"> Message</label>
+			   <textarea  class="form-control" id="description" formControlName="body" placeholder="Enter Your Message" required ></textarea>
+           <span class="alert alert-danger" role="alert"
+             *ngIf="(contactForm.get('body').dirty || contactForm.get('body').touched) && contactForm.get('body').invalid && contactForm.get('body').errors.required">
+              message required
+           </span>
+        </div>
+
+			 <div class="mb-4">
+			   <button type="submit" class="btn elegant-color white-text" [disabled]="contactForm.invalid">
+				   <i class="fa fa-paper-plane" aria-hidden="true"></i>
+					 Send
+         </button>
+         <br>
+			 </div>
+
+            </div>
+       </div>
+       <br><br><br>
+		</form>
+	 </div>
+  </div>

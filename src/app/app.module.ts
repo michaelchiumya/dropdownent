@@ -36,9 +36,11 @@ import { PlatformService } from './services/platform.service';
 import { AdminService } from './services/admin.service';
 import { AuthService } from './services/auth.service';
 import { PortalAuthService } from './services/portal-auth.service';
+import { ContactService } from './services/contact.service';
 
 import { NgxNotificationModule } from 'ngx-notification-9';
-
+import { ContactComponent } from './component/contact/contact.component';
+import { MessagesComponent } from './component-back/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { NgxNotificationModule } from 'ngx-notification-9';
     SongEditComponent,
     VideoEditComponent,
     VideosBackComponent,
-    SettingsComponent
+    SettingsComponent,
+    ContactComponent,
+    MessagesComponent
   ],
 
   imports: [
@@ -91,6 +95,7 @@ import { NgxNotificationModule } from 'ngx-notification-9';
     AuthService,
     PortalAuthService,
     PlatformService,
+    ContactService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

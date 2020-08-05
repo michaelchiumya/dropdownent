@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Track } from 'ngx-audio-player';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
