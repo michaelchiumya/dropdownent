@@ -1,1 +1,95 @@
-<p>messages works!</p>
+<div class="container">
+
+ <ul class="nav nav-tabs md-tabs" id="myTabEx" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active show" id="home-tab-ex" data-toggle="tab" href="#home-ex" role="tab" aria-controls="home-ex"
+      aria-selected="true">all</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab-ex" data-toggle="tab" href="#profile-ex" role="tab" aria-controls="profile-ex"
+      aria-selected="false">Read</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab-ex" data-toggle="tab" href="#contact-ex" role="tab" aria-controls="contact-ex"
+      aria-selected="false">unread</a>
+  </li>
+</ul>
+
+<div class="tab-content pt-2" id="myTabContentEx">
+  <div class="tab-pane fade active show" id="home-ex" role="tabpanel" aria-labelledby="home-tab-ex">
+
+    <div id="accordion" class="myaccordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Undergraduate Studies
+              <span class="fa-stack fa-sm">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+              </span>
+            </button>
+          </h2>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <ul>
+              <li>Computer Science</li>
+              <li>Economics</li>
+              <li>Sociology</li>
+              <li>Nursing</li>
+              <li>English</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Postgraduate Studies
+              <span class="fa-stack fa-2x">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+              </span>
+            </button>
+          </h2>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="d-flex align-items-center justify-content-between btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Research
+              <span class="fa-stack fa-2x">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+              </span>
+            </button>
+          </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            <ul>
+              <li>Astrophysics</li>
+              <li>Informatics</li>
+              <li>Criminology</li>
+              <li>Economics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="profile-ex" role="tabpanel" aria-labelledby="profile-tab-ex">
+    <p>read messages</p>
+  </div>
+
+  <div class="tab-pane fade" id="contact-ex" role="tabpanel" aria-labelledby="contact-tab-ex">
+    <p>unread messages</p>
+  </div>
+
+</div>
+</div>
