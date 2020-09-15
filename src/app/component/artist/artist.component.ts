@@ -68,6 +68,8 @@ export class ArtistComponent implements OnInit{
           this.getAlbums(res.id)
           this.getPlatform(res.id)
            });
+
+
   }
 
 

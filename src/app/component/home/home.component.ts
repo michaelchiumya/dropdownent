@@ -5,7 +5,7 @@ import { Artist } from 'src/app/interface/artist';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { fadeAnimation } from 'src/app/_animations/fadeAnimation';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
-
+import { NgxNotificationsService } from 'ngx-notification-9';
 
 @Component({
   selector: 'app-home',
@@ -25,10 +25,18 @@ export class HomeComponent implements OnInit {
   public secondaryColour =  '#006ddd';
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 
+  options = {
+    timeOut: 3000,
+    position: ["middle", "left"],
+    showProgressBar: true,
+    pauseOnHover: true,
+    clickToClose: true
+   }
 
   constructor(
     private ArtistService: ArtistService,
     private AdminService : AdminService,
+    private _playNotifications: NgxNotificationsService,
     private fb :FormBuilder
     ) { }
 
@@ -38,7 +46,7 @@ export class HomeComponent implements OnInit {
      email: ['', [Validators.required]]
    });
 
-
+   this._playNotifications.info('new video alert!', 'PQ - Nimwelele, click videos section on menu');
 
   }
 
